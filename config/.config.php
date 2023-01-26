@@ -14,16 +14,16 @@ $_ENV['muKey'] = 'SSPanel'; //WebAPI key, used for communication between node se
 // Choose one of db_host|db_socket, if db_socket is set, db_host will be ignored, please leave it blank. If the database is on the local machine, it is recommended to use db_socket.
 // db_host example: localhost (resolvable host name), 127.0.0.1 (IP address), 10.0.0.2:4406 (including port)
 // db_socket example: /var/run/mysqld/mysqld.sock (absolute address is required)
-$_ENV['db_driver'] = 'mysql';
-$_ENV['db_host'] = '';
-$_ENV['db_socket'] = '';
-$_ENV['db_database'] = 'sspanel'; //database name
-$_ENV['db_username'] = 'root'; //Database username
-$_ENV['db_password'] = 'sspanel'; //The password corresponding to the user name
-#advanced
-$_ENV['db_charset'] = 'utf8mb4';
+$_ENV['db_driver']    = 'mysql';
+$_ENV['db_host']      = 'alfie.iran.liara.ir:32562';
+$_ENV['db_socket']    = '';
+$_ENV['db_database']  = 'sharp_neumann';           //数据库名
+$_ENV['db_username']  = 'root';              //数据库用户名
+$_ENV['db_password']  = 'gYBdCYXcWrOeliA6Yo513S2X';           //用户名对应的密码
+#高级
+$_ENV['db_charset']   = 'utf8mb4';
 $_ENV['db_collation'] = 'utf8mb4_unicode_ci';
-$_ENV['db_prefix'] = '';
+$_ENV['db_prefix']    = '';
 
 // Streaming media unlocking The following settings will enable nodes 397 and 297 to reuse the detection results of node 4 and remove the comment when using //
 $_ENV['streaming_media_unlock_multiplexing'] = [

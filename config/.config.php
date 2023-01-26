@@ -6,9 +6,9 @@ $_ENV['pwdMethod'] = 'bcrypt'; // password encryption optional md5, sha256, bcry
 $_ENV['salt'] = ''; //It is recommended to cooperate with md5/sha256, bcrypt/argon2i/argon2id will ignore this item
 
 $_ENV['debug'] = false; //debug mode switch, please keep it as false in production environment
-$_ENV['appName'] = 'SSPanel-UIM'; //site name
-$_ENV['baseUrl'] = 'https://example.com'; //site address
-$_ENV['muKey'] = 'SSPanel'; //WebAPI key, used for communication between node server and panel
+$_ENV['appName'] = 'EZvpn Panel'; //site name
+$_ENV['baseUrl'] = 'https://panel.ezvpn.co'; //site address
+$_ENV['muKey'] = 'igU6fyUmkneTRbRgQ1Kw'; //WebAPI key, used for communication between node server and panel
 
 //Database settings ---------------------------------------------- ----------------------------------------------
 // Choose one of db_host|db_socket, if db_socket is set, db_host will be ignored, please leave it blank. If the database is on the local machine, it is recommended to use db_socket.
@@ -113,10 +113,10 @@ $_ENV['auto_detect_ban'] = [
 
 //Bot settings ---------------------------------------------- ----------------------------------------------
 #Telegram bot
-$_ENV['enable_telegram'] = false; //Whether to enable Telegram bot
-$_ENV['telegram_token'] = ''; //Telegram bot, bot token, apply with father bot
+$_ENV['enable_telegram'] = true; //Whether to enable Telegram bot
+$_ENV['telegram_token'] = '5536109489:AAFHDYYw38_wTIsaU_MrPZxJj-EGTlIZ0KQ'; //Telegram bot, bot token, apply with father bot
 $_ENV['telegram_chatid'] = -111; //Telegram bot, group session ID, you can get it by pulling the robot into the group and /ping him
-$_ENV['telegram_bot'] = '_bot'; //Telegram robot account
+$_ENV['telegram_bot'] = 'EZvpn_co_bot'; //Telegram robot account
 $_ENV['telegram_group_quiet'] = false; //Telegram bot does not respond in groups
 $_ENV['telegram_request_token'] = ''; //The Telegram robot requests the Key, which can be set at will, consisting of uppercase and lowercase English and numbers. After updating this parameter, please use php xcat Tool setTelegram
 
@@ -166,7 +166,7 @@ $_ENV['telegram_general_terms']             = '服务条款.';                  
 
 // social login settings
 #Telegram
-$_ENV['enable_telegram_login'] = false; //Please configure the Telegram bot before enabling this setting, otherwise it will not take effect
+$_ENV['enable_telegram_login'] = true; //Please configure the Telegram bot before enabling this setting, otherwise it will not take effect
 
 #Work order system settings
 $_ENV['enable_ticket'] = true; //whether to enable ticket system

@@ -4,7 +4,7 @@
 
 do_update_sspanel(){
     git pull
-    git reset --hard origin/dev
+    git reset --hard origin/ezdev
     git fetch --prune --prune-tags
     rm -r storage/framework/smarty/compile/*
     php composer.phar update

@@ -84,92 +84,81 @@ final class NodeController extends BaseController
      */
     public function add(Request $request, Response $response, array $args): ResponseInterface
     {
+        $node = new Node();
+        $node->name = $request->getParam('name');
+        $node->server = trim($request->getParam('server'));
+        $node->traffic_rate = $request->getParam('traffic_rate');
+        $node->info = $request->getParam('info');
+        $node->type = $request->getParam('type') === 'true' ? 1 : 0;
+        $node->node_group = $request->getParam('node_group');
+        $node->node_speedlimit = $request->getParam('node_speedlimit');
+        $node->status = '';
+        $node->sort = $request->getParam('sort');
 
-        try {
+        if ($request->getParam('custom_config') !== null) {
+            $node->custom_config = $request->getParam('custom_config');
+        } else {
+            $node->custom_config = '{}';
+        }
 
+        $req_node_ip = trim($request->getParam('node_ip'));
+        $success = true;
+        $server_list = explode(';', $node->server);
 
+        if (Tools::isIPv4($req_node_ip)) {
+            $success = $node->changeNodeIp($req_node_ip);
+        } else {
+            $success = $node->changeNodeIp($server_list[0]);
+        }
 
-            $node = new Node();
-            $node->name = $request->getParam('name');
-            $node->server = trim($request->getParam('server'));
-            $node->traffic_rate = $request->getParam('traffic_rate');
-            $node->info = $request->getParam('info');
-            $node->type = $request->getParam('type') === 'true' ? 1 : 0;
-            $node->node_group = $request->getParam('node_group');
-            $node->node_speedlimit = $request->getParam('node_speedlimit');
-            $node->status = '';
-            $node->sort = $request->getParam('sort');
-
-            if ($request->getParam('custom_config') !== null) {
-                $node->custom_config = $request->getParam('custom_config');
-            } else {
-                $node->custom_config = '{}';
-            }
-
-            $req_node_ip = trim($request->getParam('node_ip'));
-            $success = true;
-            $server_list = explode(';', $node->server);
-
-            if (Tools::isIPv4($req_node_ip)) {
-                $success = $node->changeNodeIp($req_node_ip);
-            } else {
-                $success = $node->changeNodeIp($server_list[0]);
-            }
-
-            if (!$success) {
-                return $response->withJson([
-                    'ret' => 0,
-                    'msg' => '获取节点IP失败，请检查您输入的节点地址是否正确！',
-                ]);
-            }
-
-            $node->node_class = $request->getParam('node_class');
-
-            if ($request->getParam('node_bandwidth_limit') === null || $request->getParam('node_bandwidth_limit') === '') {
-                $node->node_bandwidth_limit = 0;
-            } else {
-                $node->node_bandwidth_limit = $request->getParam('node_bandwidth_limit') * 1024 * 1024 * 1024;
-            }
-
-            $node->bandwidthlimit_resetday = $request->getParam('bandwidthlimit_resetday');
-            $node->password = Tools::genRandomChar(32);
-
-            $node->save();
-
-            if ($_ENV['cloudflare_enable'] === true) {
-                $domain_name = explode('.' . $_ENV['cloudflare_name'], $node->server);
-                CloudflareDriver::updateRecord($domain_name[0], $node->node_ip);
-            }
-
-            if (Setting::obtain('telegram_add_node')) {
-                try {
-                    Telegram::send(
-                        str_replace(
-                            '%node_name%',
-                            $request->getParam('name'),
-                            Setting::obtain('telegram_add_node_text')
-                        )
-                    );
-                } catch (Exception $e) {
-                    return $response->withJson([
-                        'ret' => 1,
-                        'msg' => '节点添加成功，但Telegram通知失败',
-                        'node_id' => $node->id,
-                    ]);
-                }
-            }
-
-            return $response->withJson([
-                'ret' => 1,
-                'msg' => '节点添加成功',
-                'node_id' => $node->id,
-            ]);
-        } catch (Exception $e) {
+        if (!$success) {
             return $response->withJson([
                 'ret' => 0,
-                'msg' => $e,
+                'msg' => '获取节点IP失败，请检查您输入的节点地址是否正确！',
             ]);
         }
+
+        $node->node_class = $request->getParam('node_class');
+
+        if ($request->getParam('node_bandwidth_limit') === null || $request->getParam('node_bandwidth_limit') === '') {
+            $node->node_bandwidth_limit = 0;
+        } else {
+            $node->node_bandwidth_limit = $request->getParam('node_bandwidth_limit') * 1024 * 1024 * 1024;
+        }
+
+        $node->bandwidthlimit_resetday = $request->getParam('bandwidthlimit_resetday');
+        $node->password = Tools::genRandomChar(32);
+
+        $node->save();
+
+        if ($_ENV['cloudflare_enable'] === true) {
+            $domain_name = explode('.' . $_ENV['cloudflare_name'], $node->server);
+            CloudflareDriver::updateRecord($domain_name[0], $node->node_ip);
+        }
+
+        if (Setting::obtain('telegram_add_node')) {
+            try {
+                Telegram::send(
+                    str_replace(
+                        '%node_name%',
+                        $request->getParam('name'),
+                        Setting::obtain('telegram_add_node_text')
+                    )
+                );
+            } catch (Exception $e) {
+                return $response->withJson([
+                    'ret' => 1,
+                    'msg' => '节点添加成功，但Telegram通知失败',
+                    'node_id' => $node->id,
+                ]);
+            }
+        }
+
+        return $response->withJson([
+            'ret' => 1,
+            'msg' => '节点添加成功',
+            'node_id' => $node->id,
+        ]);
     }
 
     /**

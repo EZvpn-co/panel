@@ -7,24 +7,20 @@ $_ENV['Clash_Config'] = [
         [
             'name' => '🔰 Type',
             'type' => 'select',
-            'proxies' => [
-                '⚡️ Best',
-                // '🖥 Pick',
-                // '🎃 Nothing',
-            ],
+            'proxies' => [],
         ],
         // [
         //     'name' => '🖥 Pick',
         //     'type' => 'select',
         //     'proxies' => ['⚡️ Best',],
         // ],
-        [
-            'name' => '⚡️ Best',
-            'type' => 'url-test',
-            'url' => 'http://www.gstatic.com/generate_204',
-            'interval' => 300,
-            'proxies' => [],
-        ],
+        // [
+        //     'name' => '⚡️ Best',
+        //     'type' => 'url-test',
+        //     'url' => 'http://www.gstatic.com/generate_204',
+        //     'interval' => 300,
+        //     'proxies' => [],
+        // ],
     ],
     'rules' => [
         'MATCH,🔰 Select'

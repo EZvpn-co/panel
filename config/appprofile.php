@@ -9,14 +9,8 @@ $_ENV['Clash_Config'] = [
             'type' => 'select',
             'proxies' => [
                 '⚡️ Best',
-                // '🎃 Nothing',
             ],
         ],
-        // [
-        //     'name' => '🖥 Pick',
-        //     'type' => 'select',
-        //     'proxies' => ['⚡️ Best',],
-        // ],
         [
             'name' => '⚡️ Best',
             'type' => 'url-test',

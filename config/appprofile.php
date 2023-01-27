@@ -5,16 +5,16 @@ declare(strict_types=1);
 $_ENV['Clash_Config'] = [
     'proxy-groups' => [
         [
-            'name' => '🔰 节点选择',
+            'name' => '🔰 Selection',
             'type' => 'select',
             // 插入节点名称
             'proxies' => [
-                '♻️ 自动选择',
-                '🎯 全球直连',
+                '♻️ Auto',
+                '🎯 Nothig',
             ],
         ],
         [
-            'name' => '♻️ 自动选择',
+            'name' => '♻️ Auto',
             'type' => 'url-test',
             'url' => 'http://www.gstatic.com/generate_204',
             'interval' => 300,
@@ -26,92 +26,102 @@ $_ENV['Clash_Config'] = [
             'type' => 'select',
             // 插入节点名称
             'proxies' => [
-                '🔰 节点选择',
-                '♻️ 自动选择',
-                '🎯 全球直连',
+                '🔰 Selection',
+                '♻️ Auto',
+                '🎯 Nothig',
             ],
         ],
         [
-            'name' => '⛔️ 广告拦截',
+            'name' => '⛔️ AD blocking',
             'type' => 'select',
             'proxies' => [
-                '🛑 全球拦截',
-                '🎯 全球直连',
-                '🔰 节点选择',
+                '🛑 operational hijacking',
+                '🎯 Nothig',
+                '🔰 Selection',
             ],
         ],
         [
-            'name' => '🚫 运营劫持',
+            'name' => '🚫 operational hijacking',
             'type' => 'select',
             'proxies' => [
-                '🛑 全球拦截',
-                '🎯 全球直连',
-                '🔰 节点选择',
+                '🛑 operational hijacking',
+                '🎯 Nothig',
+                '🔰 Selection',
             ],
         ],
         [
-            'name' => '🌍 国外媒体',
-            'type' => 'select',
-            // 插入节点名称
-            'proxies' => [
-                '🔰 节点选择',
-                '♻️ 自动选择',
-                '🎯 全球直连',
-            ],
-        ],
-        [
-            'name' => '🌏 国内媒体',
-            'type' => 'select',
-            'proxies' => [
-                '🎯 全球直连',
-                '🔰 节点选择',
-            ],
-        ],
-        [
-            'name' => 'Ⓜ️ 微软服务',
+            'name' => '🌍 foreign media',
             'type' => 'select',
             // 插入节点名称
             'proxies' => [
-                '🎯 全球直连',
-                '🔰 节点选择',
+                '🔰 Selection',
+                '♻️ Auto',
+                '🎯 Nothig',
             ],
         ],
         [
-            'name' => '📲 电报信息',
+            'name' => '🌏 domestic media',
+            'type' => 'select',
+            'proxies' => [
+                '🎯 Nothig',
+                '🔰 Selection',
+            ],
+        ],
+        [
+            'name' => 'Ⓜ️ microsoft services',
             'type' => 'select',
             // 插入节点名称
             'proxies' => [
-                '🔰 节点选择',
-                '🎯 全球直连',
+                '🎯 Nothig',
+                '🔰 Selection',
             ],
         ],
         [
-            'name' => '🍎 苹果服务',
+            'name' => '📲 telegram message',
             'type' => 'select',
             // 插入节点名称
             'proxies' => [
-                '🔰 节点选择',
-                '🎯 全球直连',
-                '♻️ 自动选择',
+                '🔰 Selection',
+                '🎯 Nothig',
             ],
         ],
         [
-            'name' => '🎯 全球直连',
+            'name' => '🍎 apple services',
+            'type' => 'select',
+            // 插入节点名称
+            'proxies' => [
+                '🔰 Selection',
+                '🎯 Nothig',
+                '♻️ Auto',
+            ],
+        ],
+        [
+            'name' => '🎯 Nothig',
             'type' => 'select',
             'proxies' => [
                 'DIRECT',
             ],
         ],
         [
-            'name' => '🛑 全球拦截',
+            'name' => '🛑 operational hijacking',
             'type' => 'select',
             'proxies' => [
                 'REJECT',
                 'DIRECT',
             ],
         ],
+        [
+            'name' => '🐟 漏网之鱼',
+            'type' => 'select',
+            // 插入节点名称
+            'proxies' => [
+                '🔰 Selection',
+                '🎯 Nothig',
+                '♻️ Auto',
+            ],
+        ],
     ],
     'rules' => [
-        'MATCH,🔰 节点选择'
+        'MATCH,🔰 Selection'
     ],
 ];

@@ -6,10 +6,10 @@
             <div class="row align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        <span class="home-title">节点列表</span>
+                         <span class="home-title">Node List</span>
                     </h2>
                     <div class="page-pretitle my-3">
-                        <span class="home-subtitle">查看节点在线情况</span>
+                         <span class="home-subtitle">Check node online</span>
                     </div>
                 </div>
             </div>
@@ -22,8 +22,8 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="m-0 my-2">
-                                <p>描述中分别表述为：该节点的在线人数，该节点的流量倍率，该节点的类型</p>
-                                <p>指示灯为绿色表示正常运行；为黄色表示当月流量用尽；为橙色表示未配置成功；为红色表示已离线，不可使用</p>
+                                <p>The description is respectively expressed as: the number of online users of this node, the traffic multiplier of this node, and the type of this node</p>
+                                <p>The green indicator light indicates normal operation; the yellow indicator indicates that the current month's traffic is exhausted; the orange indicator indicates that the configuration is not successful; the red indicator indicates that it is offline and cannot be used</p>
                             </div>
                         </div>
                     </div>
@@ -38,15 +38,16 @@
                                         <div class="col-lg-12">
                                             <div class="card bg-primary-lt">
                                                 {if $server["class"] == 0}
-                                                <div class="ribbon bg-red">免费</div>
+                                                <div class="ribbon bg-red">Free</div>
                                                 {else}
                                                 <div class="ribbon bg-red">LV. {$server["class"]}</div>
                                                 {/if}
                                                 <div class="card-body">
                                                     <p class="text-muted">
                                                         <i class="ti ti-info-circle icon text-blue"></i>
-                                                        你当前的账户等级小于下列节点等级，因此无法使用。可前往 <a
-                                                            href="/user/shop">商店</a> 订购相应等级套餐
+                                                        Your current account level is lower than the node level listed below, so it cannot be used. can go to
+                                                         <a href="/user/shop">Shop</a>
+                                                         Order the corresponding level package
                                                     </p>
                                                 </div>
                                             </div>
@@ -55,7 +56,7 @@
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="card">
                                                 {if $server["class"] == 0}
-                                                <div class="ribbon bg-red">免费</div>
+                                                <div class="ribbon bg-red">Free</div>
                                                 {else}
                                                 <div class="ribbon bg-red">LV. {$server["class"]}</div>
                                                 {/if}
@@ -86,7 +87,7 @@
                                                                     style="font-size: 10px;">
                                                                     {if $server["traffic_limit"] == "0"}
                                                                         {round($server["traffic_used"])} GB /
-                                                                        不限
+                                                                        Unlimited
                                                                     {else}
                                                                         {round($server["traffic_used"])} GB /
                                                                         {round($server["traffic_limit"])} GB
@@ -101,7 +102,7 @@
                                                                     </li>
                                                                     <li class="list-inline-item">
                                                                         <i class="ti ti-rocket"></i>&nbsp;
-                                                                        {$server["traffic_rate"]} 倍
+                                                                        {$server["traffic_rate"]} times
                                                                     </li>
                                                                     <li class="list-inline-item">
                                                                         <i class="ti ti-server-2"></i>&nbsp;

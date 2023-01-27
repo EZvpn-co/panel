@@ -12,15 +12,15 @@ $_ENV['Clash_Config'] = [
             'type' => 'select',
             'proxies' => [
                 '⚡️ Best',
-                '🖥 Pick',
+                // '🖥 Pick',
                 '🎃 Nothing',
             ],
         ],
-        [
-            'name' => '🖥 Pick',
-            'type' => 'select',
-            'proxies' => ['⚡️ Best',],
-        ],
+        // [
+        //     'name' => '🖥 Pick',
+        //     'type' => 'select',
+        //     'proxies' => ['⚡️ Best',],
+        // ],
         [
             'name' => '⚡️ Best',
             'type' => 'url-test',

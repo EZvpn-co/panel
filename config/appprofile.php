@@ -5,105 +5,105 @@ declare(strict_types=1);
 $_ENV['Clash_Config'] = [
     'proxy-groups' => [
         [
-            'name' => '🔰 node selection',
+            'name' => '🔰 节点选择',
             'type' => 'select',
-            // insert node name
+            // 插入节点名称
             'proxies' => [
-                '♻️ Automatic selection',
-                '🎯 Global direct connection',
+                '♻️ 自动选择',
+                '🎯 全球直连',
             ],
         ],
         [
-            'name' => '♻️ Auto Select',
+            'name' => '♻️ 自动选择',
             'type' => 'url-test',
             'url' => 'http://www.gstatic.com/generate_204',
             'interval' => 300,
-            // insert node name
+            // 插入节点名称
             'proxies' => [],
         ],
         [
             'name' => '🎥 NETFLIX',
             'type' => 'select',
-            // insert node name
+            // 插入节点名称
             'proxies' => [
-                '🔰 node selection',
-                '♻️ Automatic selection',
-                '🎯 Global direct connection',
+                '🔰 节点选择',
+                '♻️ 自动选择',
+                '🎯 全球直连',
             ],
         ],
         [
-            'name' => '⛔️ Ad Blocker',
+            'name' => '⛔️ 广告拦截',
             'type' => 'select',
             'proxies' => [
-                '🛑 Global Intercept',
-                '🎯 Global direct connection',
-                '🔰 node selection',
+                '🛑 全球拦截',
+                '🎯 全球直连',
+                '🔰 节点选择',
             ],
         ],
         [
-            'name' => '🚫Operation Hijack',
+            'name' => '🚫 运营劫持',
             'type' => 'select',
             'proxies' => [
-                '🛑 Global Intercept',
-                '🎯 Global direct connection',
-                '🔰 node selection',
+                '🛑 全球拦截',
+                '🎯 全球直连',
+                '🔰 节点选择',
             ],
         ],
         [
-            'name' => '🌍 foreign media',
+            'name' => '🌍 国外媒体',
             'type' => 'select',
-            // insert node name
+            // 插入节点名称
             'proxies' => [
-                '🔰 node selection',
-                '♻️ Automatic selection',
-                '🎯 Global direct connection',
+                '🔰 节点选择',
+                '♻️ 自动选择',
+                '🎯 全球直连',
             ],
         ],
         [
-            'name' => '🌏 Domestic Media',
+            'name' => '🌏 国内媒体',
             'type' => 'select',
             'proxies' => [
-                '🎯 Global direct connection',
-                '🔰 node selection',
+                '🎯 全球直连',
+                '🔰 节点选择',
             ],
         ],
         [
-            'name' => 'Ⓜ️ Microsoft Services',
+            'name' => 'Ⓜ️ 微软服务',
             'type' => 'select',
-            // insert node name
+            // 插入节点名称
             'proxies' => [
-                '🎯 Global direct connection',
-                '🔰 node selection',
+                '🎯 全球直连',
+                '🔰 节点选择',
             ],
         ],
         [
-            'name' => '📲 Telegram Information',
+            'name' => '📲 电报信息',
             'type' => 'select',
-            // insert node name
+            // 插入节点名称
             'proxies' => [
-                '🔰 node selection',
-                '🎯 Global direct connection',
+                '🔰 节点选择',
+                '🎯 全球直连',
             ],
         ],
         [
-            'name' => '🍎 Apple Services',
+            'name' => '🍎 苹果服务',
             'type' => 'select',
-            // insert node name
+            // 插入节点名称
             'proxies' => [
-                '🔰 node selection',
-                '🎯 Global direct connection',
-                '♻️ Automatic selection',
+                '🔰 节点选择',
+                '🎯 全球直连',
+                '♻️ 自动选择',
             ],
         ],
         [
-            'name' => '🎯 Global direct connection',
+            'name' => '🎯 全球直连',
             'type' => 'select',
             'proxies' => [
                 'DIRECT',
             ],
         ],
         [
-            'name' => '🛑 Global Intercept',
+            'name' => '🛑 全球拦截',
             'type' => 'select',
             'proxies' => [
                 'REJECT',
@@ -111,13 +111,13 @@ $_ENV['Clash_Config'] = [
             ],
         ],
         [
-            'name' => '🐟 The fish that slipped through the net',
+            'name' => '🐟 漏网之鱼',
             'type' => 'select',
-            // insert node name
+            // 插入节点名称
             'proxies' => [
-                '🔰 node selection',
-                '🎯 Global direct connection',
-                '♻️ Automatic selection',
+                '🔰 节点选择',
+                '🎯 全球直连',
+                '♻️ 自动选择',
             ],
         ],
     ],

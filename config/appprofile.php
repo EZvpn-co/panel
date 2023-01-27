@@ -122,6 +122,6 @@ $_ENV['Clash_Config'] = [
         ],
     ],
     'rules' => [
-        'MATCH,Select'
+        'MATCH,🔰 Select'
     ],
 ];

@@ -3,9 +3,6 @@
 declare(strict_types=1);
 
 $_ENV['Clash_Config'] = [
-    'Proxy' => [
-        '🎃 Nothing = direct',
-    ],
     'proxy-groups' => [
         [
             'name' => '🔰 Type',
@@ -13,7 +10,7 @@ $_ENV['Clash_Config'] = [
             'proxies' => [
                 '⚡️ Best',
                 // '🖥 Pick',
-                '🎃 Nothing',
+                // '🎃 Nothing',
             ],
         ],
         // [

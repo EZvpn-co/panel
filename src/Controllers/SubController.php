@@ -18,7 +18,7 @@ final class SubController extends BaseController
 {
     public static function getContent($request, $response, $args): ResponseInterface
     {
-        if (! $_ENV['Subscribe']) {
+        if (!$_ENV['Subscribe']) {
             return $response->withJson([
                 'ret' => 0,
             ]);
@@ -42,7 +42,7 @@ final class SubController extends BaseController
         }
 
         $subtype_list = ['json', 'clash', 'sip008'];
-        if (! \in_array($subtype, $subtype_list)) {
+        if (!\in_array($subtype, $subtype_list)) {
             return $response->withJson([
                 'ret' => 0,
             ]);
@@ -74,9 +74,9 @@ final class SubController extends BaseController
 
         if ($subtype === 'clash') {
             $sub_details = ' upload=' . $user->u
-            . '; download=' . $user->d
-            . '; total=' . $user->transfer_enable
-            . '; expire=' . strtotime($user->class_expire);
+                . '; download=' . $user->d
+                . '; total=' . $user->transfer_enable
+                . '; expire=' . strtotime($user->class_expire);
             return $response->withHeader('Subscription-Userinfo', $sub_details)->write(
                 $sub_info
             );
@@ -98,7 +98,7 @@ final class SubController extends BaseController
         foreach ($nodes_raw as $node_raw) {
             $node_custom_config = \json_decode($node_raw->custom_config, true);
             //檢查是否配置“前端/订阅中下发的服务器地址”
-            if (! \array_key_exists('server_user', $node_custom_config)) {
+            if (!\array_key_exists('server_user', $node_custom_config)) {
                 $server = $node_raw->server;
             } else {
                 $server = $node_custom_config['server_user'];
@@ -225,7 +225,7 @@ final class SubController extends BaseController
         foreach ($nodes_raw as $node_raw) {
             $node_custom_config = \json_decode($node_raw->custom_config, true);
             //檢查是否配置“前端/订阅中下发的服务器地址”
-            if (! \array_key_exists('server_user', $node_custom_config)) {
+            if (!\array_key_exists('server_user', $node_custom_config)) {
                 $server = $node_raw->server;
             } else {
                 $server = $node_custom_config['server_user'];
@@ -317,7 +317,7 @@ final class SubController extends BaseController
             }
             $nodes[] = $node;
 
-            $indexes = [0, 1, 2, 5, 7, 8, 9, 12];
+            $indexes = [0];
             foreach ($indexes as $index) {
                 $clash_config['proxy-groups'][$index]['proxies'][] = $node_raw->name;
             }

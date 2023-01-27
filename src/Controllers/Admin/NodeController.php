@@ -84,6 +84,12 @@ final class NodeController extends BaseController
      */
     public function add(Request $request, Response $response, array $args): ResponseInterface
     {
+
+        return $response->withJson([
+            'ret' => 0,
+            'msg' => 'check node',
+        ]);
+
         $node = new Node();
         $node->name = $request->getParam('name');
         $node->server = trim($request->getParam('server'));
@@ -111,7 +117,7 @@ final class NodeController extends BaseController
             $success = $node->changeNodeIp($server_list[0]);
         }
 
-        if (! $success) {
+        if (!$success) {
             return $response->withJson([
                 'ret' => 0,
                 'msg' => '获取节点IP失败，请检查您输入的节点地址是否正确！',
@@ -213,7 +219,7 @@ final class NodeController extends BaseController
             $success = $node->changeNodeIp($server_list[0]);
         }
 
-        if (! $success) {
+        if (!$success) {
             return $response->withJson([
                 'ret' => 0,
                 'msg' => '更新节点IP失败，请检查您输入的节点地址是否正确！',
@@ -279,7 +285,7 @@ final class NodeController extends BaseController
         $id = $args['id'];
         $node = Node::find($id);
 
-        if (! $node->delete()) {
+        if (!$node->delete()) {
             return $response->withJson([
                 'ret' => 0,
                 'msg' => '删除失败',

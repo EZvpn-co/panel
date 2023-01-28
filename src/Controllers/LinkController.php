@@ -18,7 +18,7 @@ final class LinkController extends BaseController
 {
     public static function getContent(Request $request, Response $response, array $args): ResponseInterface
     {
-        if (! $_ENV['Subscribe']) {
+        if (!$_ENV['Subscribe']) {
             return $response->withJson([
                 'ret' => 0,
             ]);
@@ -120,7 +120,7 @@ final class LinkController extends BaseController
         foreach ($nodes_raw as $node_raw) {
             $node_custom_config = \json_decode($node_raw->custom_config, true);
             //檢查是否配置“前端/订阅中下发的服务器地址”
-            if (! \array_key_exists('server_user', $node_custom_config)) {
+            if (!\array_key_exists('server_user', $node_custom_config)) {
                 $server = $node_raw->server;
             } else {
                 $server = $node_custom_config['server_user'];
@@ -128,7 +128,7 @@ final class LinkController extends BaseController
             switch ($node_raw->sort) {
                 case '0':
                     $links .= \base64_encode($user->method . ':' . $user->passwd . '@' . $server . ':' . $user->port) . '#' .
-                    $node_raw->name . PHP_EOL;
+                        $node_raw->name . PHP_EOL;
                     break;
             }
         }
@@ -152,7 +152,7 @@ final class LinkController extends BaseController
         foreach ($nodes_raw as $node_raw) {
             $node_custom_config = \json_decode($node_raw->custom_config, true);
             //檢查是否配置“前端/订阅中下发的服务器地址”
-            if (! \array_key_exists('server_user', $node_custom_config)) {
+            if (!\array_key_exists('server_user', $node_custom_config)) {
                 $server = $node_raw->server;
             } else {
                 $server = $node_custom_config['server_user'];
@@ -163,8 +163,8 @@ final class LinkController extends BaseController
                     $plugin_option = $node_custom_config['plugin_option'] ?? '';
 
                     $links .= $user->method . ':' . $user->passwd . '@' . $server . ':' .
-                    $user->port . '/?plugin=' . $plugin . '&' . $plugin_option . '#' .
-                    $node_raw->name . PHP_EOL;
+                        $user->port . '/?plugin=' . $plugin . '&' . $plugin_option . '#' .
+                        $node_raw->name . PHP_EOL;
                     break;
             }
         }
@@ -187,7 +187,7 @@ final class LinkController extends BaseController
         foreach ($nodes_raw as $node_raw) {
             $node_custom_config = \json_decode($node_raw->custom_config, true);
             //檢查是否配置“前端/订阅中下发的服务器地址”
-            if (! \array_key_exists('server_user', $node_custom_config)) {
+            if (!\array_key_exists('server_user', $node_custom_config)) {
                 $server = $node_raw->server;
             } else {
                 $server = $node_custom_config['server_user'];
@@ -205,6 +205,8 @@ final class LinkController extends BaseController
                     $path = $node_custom_config['path'] ?? '/';
                     $enable_vless = $node_custom_config['enable_vless'] ?? '0';
 
+                    $flow = $node_custom_config['flow'] ?? '';
+
                     $v2rayn_array = [
                         'v' => '2',
                         'ps' => $node_raw->name,
@@ -217,6 +219,7 @@ final class LinkController extends BaseController
                         'host' => $host,
                         'path' => $path,
                         'tls' => $security,
+                        'flow' => $flow
                     ];
 
                     if ($enable_vless === '1' || $enable_vless === 1) {
@@ -246,7 +249,7 @@ final class LinkController extends BaseController
         foreach ($nodes_raw as $node_raw) {
             $node_custom_config = \json_decode($node_raw->custom_config, true);
             //檢查是否配置“前端/订阅中下发的服务器地址”
-            if (! \array_key_exists('server_user', $node_custom_config)) {
+            if (!\array_key_exists('server_user', $node_custom_config)) {
                 $server = $node_raw->server;
             } else {
                 $server = $node_custom_config['server_user'];
@@ -265,10 +268,12 @@ final class LinkController extends BaseController
                     $servicename = $node_custom_config['servicename'] ?? '';
                     $path = $node_custom_config['path'] ?? '';
 
+                    $flow = $node_custom_config['flow'] ?? '';
+
                     $links .= 'trojan://' . $user->uuid . '@' . $server . ':' . $trojan_port . '?peer=' . $host . '&sni=' . $host .
-                    '&obfs=' . $transport_plugin . '&path=' . $path . '&mux=' . $mux . '&allowInsecure=' . $allow_insecure .
-                    '&obfsParam=' . $transport_method . '&type=' . $transport . '&security=' . $security . '&serviceName=' . $servicename . '#' .
-                    $node_raw->name . PHP_EOL;
+                        '&obfs=' . $transport_plugin . '&path=' . $path . '&mux=' . $mux . '&allowInsecure=' . $allow_insecure .
+                        '&obfsParam=' . $transport_method . '&type=' . $transport . '&security=' . $security . '&flow=' . $flow . '&serviceName=' . $servicename . '#' .
+                        $node_raw->name . PHP_EOL;
                     break;
             }
         }

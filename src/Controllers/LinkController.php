@@ -129,7 +129,7 @@ final class LinkController extends BaseController
                 case '0':
                     // $links .= 'ss://' . \base64_encode($user->method . ':' . $user->passwd . '@' . $server . ':' . $user->port) . '#' .
                     //     $node_raw->name . PHP_EOL;
-                    $links .= 'ss://' . \base64_encode($node_custom_config->mu_encryption . ':' . $user->passwd . '@' . $server . ':' . $node_custom_config->mu_port) . '#' .
+                    $links .= 'ss://' . \base64_encode($node_custom_config['mu_encryption'] . ':' . $user->passwd . '@' . $server . ':' . $node_custom_config['mu_port']) . '#' .
                         $node_raw->name . PHP_EOL;
                     break;
             }

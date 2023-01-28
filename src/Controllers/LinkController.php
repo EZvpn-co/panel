@@ -225,8 +225,8 @@ final class LinkController extends BaseController
                     ];
 
                     if ($enable_vless === '1' || $enable_vless === 1) {
-                        $links .= 'vless://' . $user->uuid . '@' . $server . ':' . $v2_port . '&path=' . $path .
-                            '&encryption=' . $security . '&type=' . $network . '&headerType=' . $header_type . '&flow=' . $flow . '#' . $node_raw->name . PHP_EOL;
+                        $links .= 'vless://' . $user->uuid . '@' . $server . ':' . $v2_port . '?path=' . $path .
+                            '&security=' . $security . '&type=' . $network . '&headerType=' . $header_type . '&flow=' . $flow . '#' . $node_raw->name . PHP_EOL;
                         break;
                     }
                     $links .= 'vmess://' . \base64_encode(\json_encode($v2rayn_array)) . PHP_EOL;

@@ -127,7 +127,7 @@ final class LinkController extends BaseController
             }
             switch ($node_raw->sort) {
                 case '0':
-                    $links .= \base64_encode($user->method . ':' . $user->passwd . '@' . $server . ':' . $user->port) . '#' .
+                    $links .= 'ss://' . \base64_encode($user->method . ':' . $user->passwd . '@' . $server . ':' . $user->port) . '#' .
                         $node_raw->name . PHP_EOL;
                     break;
             }

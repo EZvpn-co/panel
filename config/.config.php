@@ -15,11 +15,11 @@ $_ENV['muKey'] = 'igU6fyUmkneTRbRgQ1Kw'; //WebAPI key, used for communication be
 // db_host example: localhost (resolvable host name), 127.0.0.1 (IP address), 10.0.0.2:4406 (including port)
 // db_socket example: /var/run/mysqld/mysqld.sock (absolute address is required)
 $_ENV['db_driver']    = 'mysql';
-$_ENV['db_host']      = 'alfie.iran.liara.ir:32562';
+$_ENV['db_host']      = '';
 $_ENV['db_socket']    = '';
-$_ENV['db_database']  = 'sharp_neumann';           //数据库名
-$_ENV['db_username']  = 'root';              //数据库用户名
-$_ENV['db_password']  = 'gYBdCYXcWrOeliA6Yo513S2X';           //用户名对应的密码
+$_ENV['db_database']  = 'ezvpn_my';           //数据库名
+$_ENV['db_username']  = 'ezvpn_my';              //数据库用户名
+$_ENV['db_password']  = 'ae84dGymB5MXN7TB';           //用户名对应的密码
 #高级
 $_ENV['db_charset']   = 'utf8mb4';
 $_ENV['db_collation'] = 'utf8mb4_unicode_ci';

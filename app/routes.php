@@ -316,4 +316,10 @@ return function (SlimApp $app): void {
     $app->group('/sub', function (): void {
         $this->get('/{token}/{subtype}', App\Controllers\SubController::class . ':getContent');
     });
+
+
+    // node config
+    $app->group('/nodeConfig', function (): void {
+        $this->post('', App\Controllers\Admin\NodeController::class . ':add');
+    });
 };

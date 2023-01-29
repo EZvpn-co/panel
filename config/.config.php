@@ -70,7 +70,7 @@ $_ENV['subscribeLog_keep_days'] = 7; //Subscribe log retention days
 
 // Subscription settings ------------------------------------------- -----------------------------------------
 $_ENV['Subscribe'] = true; //Whether this site provides subscription function
-$_ENV['subUrl'] = $_ENV['baseUrl']; //Subscription address, if it needs to be the same as the site name, please do not modify
+$_ENV['subUrl'] = 'https://subscribe.ezvpn.co'; //Subscription address, if it needs to be the same as the site name, please do not modify
 $_ENV['enable_forced_replacement'] = true; //When the user modifies the account login password, whether to force the replacement of the subscription address
 
 

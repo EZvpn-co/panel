@@ -61,10 +61,10 @@ $_ENV['notify_limit_mode'] = false; //false is closed, per is reminded by percen
 $_ENV['notify_limit_value'] = 20; //When the previous item is per, fill in the percentage here; when the previous item is mb, fill in the traffic here
 
 //log settings ---------------------------------------------- -----------------------------------------
-$_ENV['trafficLog'] = false; //Whether to record the traffic used by users every hour
+$_ENV['trafficLog'] = true; //Whether to record the traffic used by users every hour
 $_ENV['trafficLog_keep_days'] = 14; //The number of days to keep traffic records per hour
 
-$_ENV['subscribeLog'] = false; //Whether to record user subscription log
+$_ENV['subscribeLog'] = true; //Whether to record user subscription log
 $_ENV['subscribeLog_show'] = true; //Whether to allow users to view subscription records
 $_ENV['subscribeLog_keep_days'] = 7; //Subscribe log retention days
 
@@ -218,7 +218,7 @@ $_ENV['jump_delay'] = 1200; //Jump delay, unit ms, not recommended to be too lon
 $_ENV['checkNodeIp'] = true; //Whether webapi verifies node ip
 $_ENV['muKeyList'] = []; //Multiple key list
 $_ENV['keep_connect'] = false; // Speed limit to 1Mbps for traffic exhausted users
-$_ENV['money_from_admin'] = false; //Whether to enable the administrator to create a recharge record when modifying the user balance
+$_ENV['money_from_admin'] = true; //Whether to enable the administrator to create a recharge record when modifying the user balance
 
 #Cloudflare
 $_ENV['cloudflare_enable'] = false; // Whether to enable Cloudflare analysis

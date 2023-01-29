@@ -3,7 +3,7 @@
 <main class="content">
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading">购买记录</h1>
+            <h1 class="content-heading">Purchase records</h1>
         </div>
     </div>
     <div class="container">
@@ -13,7 +13,7 @@
                 <div class="card">
                     <div class="card-main">
                         <div class="card-inner">
-                            <p>系统中您的购买记录。</p>
+                            <p>Your purchase records in the system.</p>
                         </div>
                     </div>
                 </div>
@@ -26,13 +26,13 @@
                                     <table class="table">
                                         <tr>
                                             <th>ID</th>
-                                            <th>购买时间</th>
-                                            <th>商品名称</th>
-                                            <th>内容</th>
-                                            <th>价格</th>
-                                            <th>续费时间</th>
-                                            <th>续费时重置流量</th>
-                                            <th>操作</th>
+                                            <th>Buy time</th>
+                                            <th>Name of commodity</th>
+                                            <th>content</th>
+                                            <th>The price</th>
+                                            <th>A renewal time</th>
+                                            <th>Time consuming to reset the flow</th>
+                                            <th>operation</th>
                                         </tr>
                                         {foreach $shops as $shop}
                                             <tr>
@@ -40,12 +40,12 @@
                                                 <td>{$shop->datetime()}</td>
                                                 <td>{$shop->shop()->name}</td>
                                                 <td>{$shop->shop()->content()}</td>
-                                                <td>{$shop->price} 元</td>
+                                                <td>{$shop->price} yuan</td>
                                                 <td>{$shop->renew()}</td>
                                                 <td>{$shop->autoResetBandwidthString()}</td>
                                                 <td>
                                                     <a class="btn btn-brand"
-                                                       {if $shop->renew==0}disabled{else}href="javascript:void(0);" onClick="delete_modal_show('{$shop->id}')"{/if}>关闭自动续费</a>
+                                                       {if $shop->renew==0}disabled{else}href="javascript:void(0);" onClick="delete_modal_show('{$shop->id}')"{/if}>Close the automatic renewal</a>
                                                 </td>
                                             </tr>
                                         {/foreach}
@@ -62,20 +62,20 @@
                         <div class="modal-content">
                             <div class="modal-heading">
                                 <a class="modal-close" data-dismiss="modal">×</a>
-                                <h2 class="modal-title">确认要关闭自动续费？</h2>
+                                <h2 class="modal-title">Confirm to shut down automatically renew?</h2>
                             </div>
                             <div class="modal-inner">
-                                <p>请您确认。</p>
+                                <p>Please confirm.</p>
                             </div>
                             <div class="modal-footer">
                                 <p class="text-right">
                                     <button class="btn btn-flat btn-brand-accent waves-attach waves-effect"
                                             data-dismiss="modal" type="button">
-                                        取消
+                                        cancel
                                     </button>
                                     <button class="btn btn-flat btn-brand-accent waves-attach" data-dismiss="modal"
                                             id="delete_input" type="button">
-                                        确定
+                                        determine
                                     </button>
                                 </p>
                             </div>
@@ -117,7 +117,7 @@
                     $("#result").modal();
                     $$.getElementById('msg').innerHTML = `${
                             data.msg
-                            } 发生错误了`;
+                            } There was an error with`;
                 }
             });
         }

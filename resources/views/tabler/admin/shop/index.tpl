@@ -3,7 +3,7 @@
 <main class="content">
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading">商品列表</h1>
+            <h1 class="content-heading">List of goods</h1>
         </div>
     </div>
     <div class="container">
@@ -12,8 +12,8 @@
                 <div class="card">
                     <div class="card-main">
                         <div class="card-inner">
-                            <p>系统中所有商品的列表。</p>
-                            <p>显示表项:
+                            <p>A list of all the goods in the system.</p>
+                            <p>Display list item:
                                 {include file='table/checkbox.tpl'}
                             </p>
                         </div>
@@ -35,19 +35,19 @@
                         <div class="modal-content">
                             <div class="modal-heading">
                                 <a class="modal-close" data-dismiss="modal">×</a>
-                                <h2 class="modal-title">确认要下架？</h2>
+                                <h2 class="modal-title">Confirm to the shelves?</h2>
                             </div>
                             <div class="modal-inner">
-                                <p>提示：下架会关闭所有购买过的此套餐的自动续费！</p>
-                                <p>请您确认。</p>
+                                <p>Tip: the shelves will close all bought automatic renewal of this package!</p>
+                                <p>Please confirm.</p>
                             </div>
                             <div class="modal-footer">
                                 <p class="text-right">
                                     <button class="btn btn-flat btn-brand-accent waves-attach waves-effect"
-                                            data-dismiss="modal" type="button">取消
+                                            data-dismiss="modal" type="button">cancel
                                     </button>
                                     <button class="btn btn-flat btn-brand-accent waves-attach" data-dismiss="modal"
-                                            id="delete_input" type="button">确定
+                                            id="delete_input" type="button">determine
                                     </button>
                                 </p>
                             </div>
@@ -89,7 +89,7 @@
                 },
                 error: jqXHR => {
                     $("#result").modal();
-                    $$.getElementById('msg').innerHTML = `${ldelim}data.msg{rdelim} 发生了错误。`;
+                    $$.getElementById('msg').innerHTML = `${ldelim}data.msg{rdelim} An error has occurred.`;
                 }
             });
         }

@@ -9,17 +9,17 @@
             <div class="row align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        <span class="home-title">创建节点</span>
+                        <span class="home-title">Create a node</span>
                     </h2>
                     <div class="page-pretitle my-3">
-                        <span class="home-subtitle">创建各类节点</span>
+                        <span class="home-subtitle">Create all kinds of nodes</span>
                     </div>
                 </div>
                 <div class="col-auto ms-auto d-print-none">
                     <div class="btn-list">
                         <a id="create-node" href="#" class="btn btn-primary">
                             <i class="icon ti ti-device-floppy"></i>
-                            保存
+                            save
                         </a>
                     </div>
                 </div>
@@ -32,36 +32,36 @@
                 <div class="col-md-6 col-sm-12">
                     <div class="card">
                         <div class="card-header card-header-light">
-                            <h3 class="card-title">基础信息</h3>
+                            <h3 class="card-title">Basic information</h3>
                         </div>
                         <div class="card-body">
                             <div class="form-group mb-3 row">
-                                <label class="form-label col-3 col-form-label">名称</label>
+                                <label class="form-label col-3 col-form-label">The name of the</label>
                                 <div class="col">
                                     <input id="name" type="text" class="form-control" value="">
                                 </div>
                             </div>
                             <div class="form-group mb-3 row">
-                                <label class="form-label col-3 col-form-label">连接地址</label>
+                                <label class="form-label col-3 col-form-label">Connection address</label>
                                 <div class="col">
                                     <input id="server" type="text" class="form-control" value=""></input>
                                 </div>
                             </div>
                             <div class="form-group mb-3 row">
-                                <label class="form-label col-3 col-form-label">服务器IP</label>
+                                <label class="form-label col-3 col-form-label">The serverIP</label>
                                 <div class="col">
                                     <input id="node_ip" type="text" class="form-control" value="">
                                 </div>
                             </div>
                             <div class="form-group mb-3 row">
-                                <label class="form-label col-3 col-form-label">流量倍率</label>
+                                <label class="form-label col-3 col-form-label">The flow rate</label>
                                 <div class="col">
                                     <input id="traffic_rate" type="text" class="form-control"
                                         value="">
                                 </div>
                             </div>
                             <div class="form-group mb-3 row">
-                                <label class="form-label col-3 col-form-label">接入类型</label>
+                                <label class="form-label col-3 col-form-label">Access type</label>
                                 <div class="col">
                                     <select id="sort" class="col form-select">
                                         <option value="11">V2Ray</option>
@@ -71,17 +71,17 @@
                                 </div>
                             </div>
                             <div class="form-group mb-3 row">
-                                <label class="form-label col-3 col-form-label">自定义配置</label>
+                                <label class="form-label col-3 col-form-label">Custom configuration</label>
                                 <dev id="custom_config"></dev>
                                 <label class="form-label col-form-label">
-                                    请参考 <a href="//wiki.sspanel.org/#/setup-custom-config" target="_blank">wiki.sspanel.org/#/setup-custom-config</a> 修改节点自定义配置
+                                    Please refer to the <a href="//wiki.sspanel.org/#/setup-custom-config" target="_blank">wiki.sspanel.org/#/setup-custom-config</a> Modify the node custom configurations
                                 </label>
                             </div>
                             <div class="mb-3">
                                 <div class="divide-y">
                                     <div>
                                         <label class="row">
-                                            <span class="col">显示此节点</span>
+                                            <span class="col">According to the node</span>
                                             <span class="col-auto">
                                                 <label class="form-check form-check-single form-switch">
                                                     <input id="type" class="form-check-input" type="checkbox"
@@ -98,46 +98,46 @@
                 <div class="col-md-6 col-sm-12">
                     <div class="card">
                         <div class="card-header card-header-light">
-                            <h3 class="card-title">其他信息</h3>
+                            <h3 class="card-title">Other information</h3>
                         </div>
                         <div class="card-body">
                             <div class="form-group mb-3 row">
-                                <label class="form-label col-3 col-form-label">备注</label>
+                                <label class="form-label col-3 col-form-label">note</label>
                                 <div class="col">
                                     <input id="info" type="text" class="form-control" value="">
                                 </div>
                             </div>
                             <div class="form-group mb-3 row">
-                                <label class="form-label col-3 col-form-label">等级</label>
+                                <label class="form-label col-3 col-form-label">level</label>
                                 <div class="col">
                                     <input id="node_class" type="text" class="form-control" value="">
                                 </div>
                             </div>
                             <div class="form-group mb-3 row">
-                                <label class="form-label col-3 col-form-label">组别</label>
+                                <label class="form-label col-3 col-form-label">group</label>
                                 <div class="col">
                                     <input id="node_group" type="text" class="form-control" value="">
                                 </div>
                             </div>
                             <div class="hr-text">
-                                <span>流量设置</span>
+                                <span>Traffic Settings</span>
                             </div>
                             <div class="form-group mb-3 row">
-                                <label class="form-label col-3 col-form-label">可用流量 (GB)</label>
+                                <label class="form-label col-3 col-form-label">The available flow (GB)</label>
                                 <div class="col">
                                     <input id="node_bandwidth_limit" type="text" class="form-control"
                                         value="">
                                 </div>
                             </div>
                             <div class="form-group mb-3 row">
-                                <label class="form-label col-3 col-form-label">流量重置日</label>
+                                <label class="form-label col-3 col-form-label">Traffic reset,</label>
                                 <div class="col">
                                     <input id="bandwidthlimit_resetday" type="text" class="form-control"
                                         value="">
                                 </div>
                             </div>
                             <div class="form-group mb-3 row">
-                                <label class="form-label col-3 col-form-label">速率限制 (Mbps)</label>
+                                <label class="form-label col-3 col-form-label">Rate limit (Mbps)</label>
                                 <div class="col">
                                     <input id="node_speedlimit" type="text" class="form-control"
                                         value="">

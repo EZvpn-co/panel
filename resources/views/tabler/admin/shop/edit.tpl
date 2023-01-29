@@ -3,7 +3,7 @@
 <main class="content">
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading">编辑商品</h1>
+            <h1 class="content-heading">Edit commodity</h1>
         </div>
     </div>
     <div class="container">
@@ -13,18 +13,18 @@
                     <div class="card-main">
                         <div class="card-inner">
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="name">名称</label>
+                                <label class="floating-label" for="name">The name of the</label>
                                 <input class="form-control maxwidth-edit" id="name" type="text" value="{$shop->name}">
                             </div>
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="price">价格</label>
+                                <label class="floating-label" for="price">The price</label>
                                 <input class="form-control maxwidth-edit" id="price" type="text" value="{$shop->price}">
                             </div>
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="auto_renew">自动续订天数</label>
+                                <label class="floating-label" for="auto_renew">Automatically renew the number of days</label>
                                 <input class="form-control maxwidth-edit" id="auto_renew" type="text"
                                        value="{$shop->auto_renew}">
-                                <p class="form-control-guide"><i class="mdi mdi-information"></i>0为不允许自动续订，其他为到了那么多天之后就会自动从用户的账户上划钱抵扣
+                                <p class="form-control-guide"><i class="mdi mdi-information"></i>0To not allow automatic renewal, as in so many other days will automatically delimit money deduction from the user's account
                                 </p>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                     <div class="card-main">
                         <div class="card-inner">
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="bandwidth">流量（GB）</label>
+                                <label class="floating-label" for="bandwidth">Flow (GB)</label>
                                 <input class="form-control maxwidth-edit" id="bandwidth" type="text"
                                        value="{$shop->bandwidth()}">
                             </div>
@@ -43,7 +43,7 @@
                                     <label for="auto_reset_bandwidth">
                                         <input {if $shop->auto_reset_bandwidth==1}checked{/if} class="access-hide"
                                                id="auto_reset_bandwidth" type="checkbox"><span
-                                                class="switch-toggle"></span>续费时自动重置用户流量为上面这个流量值
+                                                class="switch-toggle"></span>Continue time consuming automatic reset user flow for the above flow value
                                     </label>
                                 </div>
                             </div>
@@ -54,12 +54,12 @@
                     <div class="card-main">
                         <div class="card-inner">
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="traffic-package-min">最低可购买用户等级</label>
+                                <label class="floating-label" for="traffic-package-min">Minimum can buy user level</label>
                                 <input class="form-control maxwidth-edit" id="traffic-package-min" type="text"
                                 value="{if $shop->trafficPackage()}{$shop->content['traffic_package']['class']['min']}{else}0{/if}">
                             </div>
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="traffic-package-max">最高可购买用户等级</label>
+                                <label class="floating-label" for="traffic-package-max">Could buy user level</label>
                                 <input class="form-control maxwidth-edit" id="traffic-package-max" type="text"
                                 value="{if $shop->trafficPackage()}{$shop->content['traffic_package']['class']['max']}{else}0{/if}">
                             </div>
@@ -67,11 +67,11 @@
                                 <div class="checkbox switch">
                                     <label for="traffic-package-enable">
                                         <input {if $shop->trafficPackage()}checked{/if} class="access-hide" id="traffic-package-enable" type="checkbox">
-                                        <span class="switch-toggle"></span>是否设置此商品为流量叠加包
+                                        <span class="switch-toggle"></span>Whether to set up this goods for traffic overlay package
                                     </label>
                                     <p class="form-control-guide">
                                         <i class="mdi mdi-information"></i>
-                                        设置为流量叠加包后除购买时获得流量外的设置无效
+                                        After the bag is set to flow superposition except get traffic when buying setting is invalid
                                     </p>
                                 </div>
                             </div>
@@ -82,7 +82,7 @@
                     <div class="card-main">
                         <div class="card-inner">
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="expire">账户有效期天数</label>
+                                <label class="floating-label" for="expire">Validity of account number</label>
                                 <input class="form-control maxwidth-edit" id="expire" type="text"
                                        value="{$shop->expire()}">
                             </div>
@@ -93,16 +93,16 @@
                     <div class="card-main">
                         <div class="card-inner">
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="class">等级</label>
+                                <label class="floating-label" for="class">level</label>
                                 <input class="form-control maxwidth-edit" id="class" type="text"
                                        value="{$shop->userClass()}">
                             </div>
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="class_expire">等级有效期天数</label>
+                                <label class="floating-label" for="class_expire">Rating validity days</label>
                                 <input class="form-control maxwidth-edit" id="class_expire" type="text"
                                        value="{$shop->classExpire()}">
                             </div>
-                            <p class="form-control-guide"><i class="mdi mdi-information"></i>如需使用等级功能，请同时填写【等级】和【等级有效期天数】这两个项目</p>
+                            <p class="form-control-guide"><i class="mdi mdi-information"></i>If you want to use level function, at the same time, please fill out the grade and level days validity 】 【 】 the two projects</p>
                         </div>
                     </div>
                 </div>
@@ -110,17 +110,17 @@
                     <div class="card-main">
                         <div class="card-inner">
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="reset_exp">多少天内</label>
+                                <label class="floating-label" for="reset_exp">How many days</label>
                                 <input class="form-control maxwidth-edit" id="reset_exp" type="number"
                                        value="{$shop->resetExp()}">
                             </div>
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="reset">每多少天</label>
+                                <label class="floating-label" for="reset">How many days per</label>
                                 <input class="form-control maxwidth-edit" id="reset" type="number"
                                        value="{$shop->reset()}">
                             </div>
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="reset_value">重置流量为多少G</label>
+                                <label class="floating-label" for="reset_value">How much for reset flowG</label>
                                 <input class="form-control maxwidth-edit" id="reset_value" type="number"
                                        value="{$shop->resetValue()}">
                             </div>
@@ -131,12 +131,12 @@
                     <div class="card-main">
                         <div class="card-inner">
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="speedlimit">端口限速</label>
+                                <label class="floating-label" for="speedlimit">Port speed limit</label>
                                 <input class="form-control maxwidth-edit" id="speedlimit" type="number"
                                        value="{$shop->speedlimit()}">
                             </div>
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="connector">IP限制</label>
+                                <label class="floating-label" for="connector">IPlimit</label>
                                 <input class="form-control maxwidth-edit" id="connector" type="number"
                                        value="{$shop->connector()}">
                             </div>
@@ -147,12 +147,12 @@
                     <div class="card-main">
                         <div class="card-inner">
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="content_extra">服务支持</label>
+                                <label class="floating-label" for="content_extra">Service support</label>
                                 <input class="form-control maxwidth-edit" id="content_extra" type="text"
                                        value="{foreach $shop->contentExtra() as $service}{$service[0]}-{$service[1]}{if $service@last}{else};{/if}{/foreach}">
-                                <p class="form-control-guide"><i class="mdi mdi-information"></i>例：<code>check-全球节点分布;clear-快速客服响应</code>，减号左边为icon代号右边为文字,以;隔开
+                                <p class="form-control-guide"><i class="mdi mdi-information"></i>Ex. :<code>check-Global node distribution;clear-Quick customer response</co, a minus sign is on the leftOn the left foriconCode name for the text on the right,In order to;separated
                                 </p>
-                                <p class="form-control-guide">icon代号参阅：<a
+                                <p class="form-control-guide">iconCode refer to:<a
                                             href="https://materialdesignicons.com/">Material Design Icons</a>
                                 </p>
                             </div>
@@ -167,7 +167,7 @@
                                 <div class="row">
                                     <div class="col-md-10 col-md-push-1">
                                         <button id="submit" type="submit"
-                                                class="btn btn-block btn-brand waves-attach waves-light">保存
+                                                class="btn btn-block btn-brand waves-attach waves-light">save
                                         </button>
                                     </div>
                                 </div>
@@ -192,7 +192,7 @@
             }
             let contentExtra = $$getValue('content_extra');
             if (contentExtra === '' || contentExtra === '-') {
-                contentExtra = 'check-全球节点分布;check-快速客服响应;check-全平台客户端';
+                contentExtra = 'check-Global node distribution;check-Quick customer response;check-The platform to the client';
             }
             let data = {
                 name: $$getValue('name'),
@@ -235,7 +235,7 @@
                 },
                 error: jqXHR => {
                     $("#result").modal();
-                    $$.getElementById('msg').innerHTML = `发生错误：${
+                    $$.getElementById('msg').innerHTML = `An error occurred:${
                             jqXHR.status
                             }`;
                 }

@@ -35,7 +35,7 @@
             <ul class="dropdown-menu dropdown-menu-right">
                 <li>
                     <a class="padding-right-cd waves-attach" href="/user/logout">
-                        <span class="mdi mdi-exit-to-app icon-lg margin-right"></span>登出
+                        <span class="mdi mdi-exit-to-app icon-lg margin-right"></span>logout
                     </a>
                 </li>
             </ul>
@@ -48,66 +48,66 @@
             <a class="menu-logo" href="/">&nbsp;{$config['appName']}</a>
             <ul class="nav">
                 <li>
-                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_me">我的</a>
+                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_me">my</a>
                     <ul class="menu-collapse collapse in" id="ui_menu_me">
                         <li>
-                            <a href="/user"><i class="mdi mdi-home icon-lg"></i>&nbsp;用户中心</a>
+                            <a href="/user"><i class="mdi mdi-home icon-lg"></i>&nbsp;The user center</a>
                         </li>
                         <li>
-                            <a href="/user/profile"><i class="mdi mdi-account-box icon-lg"></i>&nbsp;账户信息</a>
+                            <a href="/user/profile"><i class="mdi mdi-account-box icon-lg"></i>&nbsp;Account information</a>
                         </li>
                         <li>
-                            <a href="/user/edit"><i class="mdi mdi-account-edit icon-lg"></i>&nbsp;资料编辑</a>
+                            <a href="/user/edit"><i class="mdi mdi-account-edit icon-lg"></i>&nbsp;Data editor</a>
                         </li>
                         {if $config['subscribeLog']===true && $config['subscribeLog_show']===true}
                         <li>
-                            <a href="/user/subscribe_log"><i class="mdi mdi-file-find icon-lg"></i>&nbsp;订阅记录</a>
+                            <a href="/user/subscribe_log"><i class="mdi mdi-file-find icon-lg"></i>&nbsp;Subscribe to the record</a>
                         </li>
                         {/if}
                         {if $config['enable_ticket']===true}
                             <li>
-                                <a href="/user/ticket"><i class="mdi mdi-comment-question icon-lg"></i>&nbsp;工单系统</a>
+                                <a href="/user/ticket"><i class="mdi mdi-comment-question icon-lg"></i>&nbsp;The work order system</a>
                             </li>
                         {/if}
                         <li>
-                            <a href="/user/invite"><i class="mdi mdi-account-multiple-plus icon-lg"></i>&nbsp;邀请链接</a>
+                            <a href="/user/invite"><i class="mdi mdi-account-multiple-plus icon-lg"></i>&nbsp;Invite link</a>
                         </li>
                     </ul>
-                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_use">使用</a>
+                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_use">use</a>
                     <ul class="menu-collapse collapse in" id="ui_menu_use">
                         <li>
-                            <a href="/user/server"><i class="mdi mdi-server icon-lg"></i>&nbsp;节点列表</a>
+                            <a href="/user/server"><i class="mdi mdi-server icon-lg"></i>&nbsp;The node list</a>
                         </li>
                         <li>
-                            <a href="/user/media"><i class="mdi mdi-multimedia icon-lg"></i>&nbsp;流媒体解锁</a>
+                            <a href="/user/media"><i class="mdi mdi-multimedia icon-lg"></i>&nbsp;Streaming media unlock</a>
                         </li>
                         <li>
-                            <a href="/user/announcement"><i class="mdi mdi-bullhorn-variant icon-lg"></i>&nbsp;站点公告</a>
+                            <a href="/user/announcement"><i class="mdi mdi-bullhorn-variant icon-lg"></i>&nbsp;Site announcement</a>
                         </li>
                         <li>
-                            <a href="/user/detect"><i class="mdi mdi-account-filter icon-lg"></i>&nbsp;审计规则</a>
+                            <a href="/user/detect"><i class="mdi mdi-account-filter icon-lg"></i>&nbsp;Auditing rules</a>
                         </li>
                         <li>
-                            <a href="/user/detect/log"><i class="mdi mdi-calendar-filter icon-lg"></i>&nbsp;审计记录</a>
+                            <a href="/user/detect/log"><i class="mdi mdi-calendar-filter icon-lg"></i>&nbsp;Audit records</a>
                         </li>
                     </ul>
-                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_help">商店</a>
+                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_help">The store</a>
                     <ul class="menu-collapse collapse in" id="ui_menu_help">
                         <li>
-                            <a href="/user/code"><i class="mdi mdi-wallet-plus icon-lg"></i>&nbsp;充值</a>
+                            <a href="/user/code"><i class="mdi mdi-wallet-plus icon-lg"></i>&nbsp;top-up</a>
                         </li>
                         <li>
-                            <a href="/user/shop"><i class="mdi mdi-wallet-travel icon-lg"></i>&nbsp;套餐购买</a>
+                            <a href="/user/shop"><i class="mdi mdi-wallet-travel icon-lg"></i>&nbsp;Plan to buy</a>
                         </li>
                         <li>
-                            <a href="/user/bought"><i class="mdi mdi-list-box icon-lg"></i>&nbsp;购买记录</a>
+                            <a href="/user/bought"><i class="mdi mdi-list-box icon-lg"></i>&nbsp;Purchase records</a>
                         </li>
                     </ul>
                     {if $user->is_admin}
-                        <a href="/admin"><i class="mdi mdi-account-tie icon-lg"></i>&nbsp;管理面板</a>
+                        <a href="/admin"><i class="mdi mdi-account-tie icon-lg"></i>&nbsp;Administration panel</a>
                     {/if}
                     {if $can_backtoadmin}
-                        <a href="/user/backtoadmin"><i class="mdi mdi-keyboard-return icon-lg"></i>&nbsp;返回管理员身份</a>
+                        <a href="/user/backtoadmin"><i class="mdi mdi-keyboard-return icon-lg"></i>&nbsp;Returns an administrator</a>
                     {/if}
                 </li>
             </ul>

@@ -3,7 +3,7 @@
 <main class="content">
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading">充值结果</h1>
+            <h1 class="content-heading">Top-up results</h1>
         </div>
     </div>
     <div class="container">
@@ -13,9 +13,9 @@
                     <div class="card-main">
                         <div class="card-inner">
                             {if ($success == 1)}
-                                <p>已充值成功 {$money} 元！请进入 <a href="/user/shop">套餐购买</a> 页面来选购您的套餐。</p>
+                                <p>Have top-up success {$money} Yuan!Please enter the <a href="/user/shop">Plan to buy</a> Page to choose your meal.</p>
                             {else}
-                                <p>正在处理您的支付，请您稍等。此页面会自动刷新，或者您可以选择关闭此页面，余额将自动到账</p>
+                                <p>Is processing your payment, please wait a moment.This page will automatically refresh, or you can choose to shut down the page, the balance will automatically to the bill</p>
                                 <script>
                                     setTimeout('window.location.reload()', 5000);
                                 </script>

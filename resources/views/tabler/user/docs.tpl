@@ -6,10 +6,10 @@
             <div class="row align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        <span class="home-title">文档中心</span>
+                        <span class="home-title">Document center</span>
                     </h2>
                     <div class="page-pretitle my-3">
-                        <span class="home-subtitle">在这里查看安装和使用教程</span>
+                        <span class="home-subtitle">Install and use the tutorial in here to see</span>
                     </div>
                 </div>
             </div>
@@ -25,8 +25,8 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>文档标题</th>
-                                        <th>文档内容</th>
+                                        <th>Document title</th>
+                                        <th>The document content</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -10,29 +10,29 @@
             </div>
             <div class="card card-md">
                 <div class="card-body">
-                    <h2 class="card-title text-center mb-4">设置新密码</h2>
+                    <h2 class="card-title text-center mb-4">Set a new password</h2>
                     <p class="text-muted mb-4">
-                        请在下方设置账户新的登录密码
+                        Please set up a new login account password below
                     </p>
                     <div class="mb-3">
-                        <label class="form-label">新密码</label>
-                        <input id="password" type="password" class="form-control" placeholder="请输入新密码">
+                        <label class="form-label">The new password</label>
+                        <input id="password" type="password" class="form-control" placeholder="Please enter a new password">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">再次输入新密码</label>
-                        <input id="repasswd" type="password" class="form-control" placeholder="请再次输入新密码">
+                        <label class="form-label">To enter a new password again</label>
+                        <input id="repasswd" type="password" class="form-control" placeholder="Please enter a new password again">
                     </div>
                     <div class="form-footer">
                         <button id="reset" class="btn btn-primary w-100">
                         <i class="ti ti-key icon"></i>
-                            重置
+                            reset
                         </button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="text-center text-muted mt-3">
-            已有账户？ <a href="/auth/login" tabindex="-1">点击登录</a>
+            Existing account? <a href="/auth/login" tabindex="-1">Click login</a>
         </div>
     </div>
 

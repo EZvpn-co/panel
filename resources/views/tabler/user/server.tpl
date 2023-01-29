@@ -136,7 +136,7 @@
     <script>
         var clipboard = new ClipboardJS(".ti-copy");
         clipboard.on("success", function(e) {
-            $("#success-message").text("已复制到剪切板");
+            $("#success-message").text("Has been copied to the clipboard");
             $("#success-dialog").modal("show");
         });
     </script>

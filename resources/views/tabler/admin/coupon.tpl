@@ -10,11 +10,11 @@
             <div class="row align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        <span class="home-title">优惠码</span>
+                        <span class="home-title">Promo code</span>
                     </h2>
                     <div class="page-pretitle my-3">
                         <span class="home-subtitle">
-                            查看并管理优惠码
+                            Promo code review and management
                         </span>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                         <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal"
                             data-bs-target="#create-dialog">
                             <i class="icon ti ti-plus"></i>
-                            创建
+                            create
                         </a>
                         <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
                             data-bs-target="#create-dialog">
@@ -60,7 +60,7 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">优惠码内容</h5>
+                    <h5 class="modal-title">Promo code content</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -95,7 +95,7 @@
                         {/if}
                     {/foreach}
                     <div class="form-group mb-3 row">
-                        <label class="form-label col-3 col-form-label">过期时间</label>
+                        <label class="form-label col-3 col-form-label">Expiration time</label>
                         <div class="col">
                             <input id="expire_time" type="text" class="form-control"
                                 placeholder="">
@@ -103,9 +103,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn me-auto" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn me-auto" data-bs-dismiss="modal">cancel</button>
                     <button id="create-button" onclick="createCoupon()"
-                        type="button" class="btn btn-primary" data-bs-dismiss="modal">创建</button>
+                        type="button" class="btn btn-primary" data-bs-dismiss="modal">create</button>
                 </div>
             </div>
         </div>
@@ -144,27 +144,27 @@
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row card-footer d-flex d-flexalign-items-center'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
             language: {
-                "sProcessing": "处理中...",
-                "sLengthMenu": "显示 _MENU_ 条",
-                "sZeroRecords": "没有匹配结果",
-                "sInfo": "第 _START_ 至 _END_ 项结果，共 _TOTAL_项",
-                "sInfoEmpty": "第 0 至 0 项结果，共 0 项",
-                "sInfoFiltered": "(在 _MAX_ 项中查找)",
+                "sProcessing": "In the processing...",
+                "sLengthMenu": "According to _MENU_ article",
+                "sZeroRecords": "No matching results",
+                "sInfo": "The first _START_ to _END_ A result, altogether _TOTAL_item",
+                "sInfoEmpty": "The first 0 to 0 A result, altogether 0itemitem",
+                "sInfoFiltered": "(in _MAX_ Find the item)",
                 "sInfoPostFix": "",
                 "sSearch": "<i class=\"ti ti-search\"></i> ",
                 "sUrl": "",
-                "sEmptyTable": "表中数据为空",
-                "sLoadingRecords": "载入中...",
+                "sEmptyTable": "The data in the table is empty",
+                "sLoadingRecords": "In the load...",
                 "sInfoThousands": ",",
                 "oPaginate": {
-                    "sFirst": "首页",
+                    "sFirst": "Home page",
                     "sPrevious": "<i class=\"titi-arrow-left\"></i>",
                     "sNext": "<i class=\"ti ti-arrow-right\"><i>",
-                    "sLast": "末页"
+                    "sLast": "At the end of the page"
                 },
                 "oAria": {
-                    "sSortAscending": ": 以升序排列此列",
-                    "sSortDescending": ": 以降序排列此列"
+                    "sSortAscending": ": In ascending order",
+                    "sSortDescending": ": In descending order"
                 }
             },
         });
@@ -198,7 +198,7 @@
         };
 
         function deleteCoupon(coupon_id) {
-            $('#notice-message').text('确定删除此优惠码？');
+            $('#notice-message').text('Sure to delete this coupon code?');
             $('#notice-dialog').modal('show');
             $('#notice-confirm').on('click', function() {
                 $.ajax({

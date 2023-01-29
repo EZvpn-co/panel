@@ -6,10 +6,10 @@
             <div class="row align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        <span class="home-title">订单列表</span>
+                        <span class="home-title">The order list</span>
                     </h2>
                     <div class="page-pretitle my-3">
-                        <span class="home-subtitle">管理客户订单</span>
+                        <span class="home-subtitle">Manage customer order</span>
                     </div>
                 </div>
             </div>
@@ -62,27 +62,27 @@
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row card-footer d-flex d-flexalign-items-center'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
             language: {
-                "sProcessing": "处理中...",
-                "sLengthMenu": "显示 _MENU_ 条",
-                "sZeroRecords": "没有匹配结果",
-                "sInfo": "第 _START_ 至 _END_ 项结果，共 _TOTAL_项",
-                "sInfoEmpty": "第 0 至 0 项结果，共 0 项",
-                "sInfoFiltered": "(在 _MAX_ 项中查找)",
+                "sProcessing": "In the processing...",
+                "sLengthMenu": "According to _MENU_ article",
+                "sZeroRecords": "No matching results",
+                "sInfo": "The first _START_ to _END_ A result, altogether _TOTAL_item",
+                "sInfoEmpty": "The first 0 to 0 A result, altogether 0 item",
+                "sInfoFiltered": "(in _MAX_ Find the item)",
                 "sInfoPostFix": "",
                 "sSearch": "<i class=\"ti ti-search\"></i> ",
                 "sUrl": "",
-                "sEmptyTable": "表中数据为空",
-                "sLoadingRecords": "载入中...",
+                "sEmptyTable": "The data in the table is empty",
+                "sLoadingRecords": "In the load...",
                 "sInfoThousands": ",",
                 "oPaginate": {
-                    "sFirst": "首页",
+                    "sFirst": "Home page",
                     "sPrevious": "<i class=\"titi-arrow-left\"></i>",
                     "sNext": "<i class=\"ti ti-arrow-right\"><i>",
-                    "sLast": "末页"
+                    "sLast": "At the end of the page"
                 },
                 "oAria": {
-                    "sSortAscending": ": 以升序排列此列",
-                    "sSortDescending": ": 以降序排列此列"
+                    "sSortAscending": ": In ascending order",
+                    "sSortDescending": ": In descending order"
                 }
             },
         });
@@ -92,7 +92,7 @@
         }
 
         function deleteOrder(order_id) {
-            $('#notice-message').text('确定删除此订单？');
+            $('#notice-message').text('Sure to delete this order?');
             $('#notice-dialog').modal('show');
             $('#notice-confirm').on('click', function() {
                 $.ajax({
@@ -114,7 +114,7 @@
         };
 
         function cancelOrder(order_id) {
-            $('#notice-message').text('确定取消此订单？');
+            $('#notice-message').text('Sure cancel this order?');
             $('#notice-dialog').modal('show');
             $('#notice-confirm').on('click', function() {
                 $.ajax({

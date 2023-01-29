@@ -55,11 +55,11 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                             {if $user->is_dark_mode}
-                            <a id="switch_theme_mode" class="dropdown-item">切换至浅色模式</a>
+                            <a id="switch_theme_mode" class="dropdown-item">Switch to the light color mode</a>
                             {else}
-                            <a id="switch_theme_mode" class="dropdown-item">切换至深色模式</a>
+                            <a id="switch_theme_mode" class="dropdown-item">Switch to the dark mode</a>
                             {/if}
-                            <a href="/user/logout" class="dropdown-item">登出</a>
+                            <a href="/user/logout" class="dropdown-item">logout</a>
                         </div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                                         <i class="ti ti-home icon"></i>
                                     </span>
                                     <span class="nav-link-title">
-                                        概况
+                                        General situation of
                                     </span>
                                 </a>
                             </li>
@@ -83,7 +83,7 @@
                                         <i class="ti ti-settings icon"></i>
                                     </span>
                                     <span class="nav-link-title">
-                                        管理
+                                        management
                                     </span>
                                 </a>
                                 <div class="dropdown-menu">
@@ -91,15 +91,15 @@
                                         <div class="dropdown-menu-column">
                                             <a class="dropdown-item" href="/admin/setting">
                                                 <i class="ti ti-tool"></i>&nbsp;
-                                                设置
+                                                Set up the
                                             </a>
                                             <a class="dropdown-item" href="/admin/user">
                                                 <i class="ti ti-users"></i>&nbsp;
-                                                用户
+                                                The user
                                             </a>
                                             <a class="dropdown-item" href="/admin/node">
                                                 <i class="ti ti-server-2"></i>&nbsp;
-                                                节点
+                                                node
                                             </a>
                                         </div>
                                     </div>
@@ -112,17 +112,17 @@
                                         <i class="ti ti-brand-hipchat icon"></i>
                                     </span>
                                     <span class="nav-link-title">
-                                        运营
+                                        operating
                                     </span>
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="/admin/announcement">
                                         <i class="ti ti-speakerphone"></i>&nbsp;
-                                        公告
+                                        The announcement
                                     </a>
                                     <a class="dropdown-item" href="/admin/ticket">
                                         <i class="ti ti-messages"></i>&nbsp;
-                                        工单
+                                        The repair order
                                     </a>
                                 </div>
                             </li>
@@ -133,29 +133,29 @@
                                         <i class="ti ti-address-book icon"></i>
                                     </span>
                                     <span class="nav-link-title">
-                                        日志
+                                        The log
                                     </span>
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="/admin/login">
                                         <i class="ti ti-login"></i>&nbsp;
-                                        登录
+                                        The login
                                     </a>
                                     <a class="dropdown-item" href="/admin/subscribe">
                                         <i class="ti ti-rss"></i>&nbsp;
-                                        订阅
+                                        To subscribe to
                                     </a>
                                     <a class="dropdown-item" href="/admin/invite">
                                         <i class="ti ti-friends"></i>&nbsp;
-                                        邀请
+                                        The invitation
                                     </a>
                                     <a class="dropdown-item" href="/admin/alive">
                                         <i class="ti ti-router"></i>&nbsp;
-                                        在线IP
+                                        onlineIP
                                     </a>
                                     <a class="dropdown-item" href="/admin/trafficlog">
                                         <i class="ti ti-arrows-up-down"></i>&nbsp;
-                                        流量使用
+                                        Flow using
                                     </a>
                                 </div>
                             </li>
@@ -166,17 +166,17 @@
                                         <i class="ti ti-shield-check icon"></i>
                                     </span>
                                     <span class="nav-link-title">
-                                        审计
+                                        The audit
                                     </span>
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="/admin/detect">
                                         <i class="ti ti-barrier-block"></i>&nbsp;
-                                        规则
+                                        The rules
                                     </a>
                                     <a class="dropdown-item" href="/admin/detect/log">
                                         <i class="ti ti-notes"></i>&nbsp;
-                                        记录
+                                        record
                                     </a>
                                 </div>
                             </li>
@@ -187,7 +187,7 @@
                                         <i class="ti ti-coin icon"></i>
                                     </span>
                                     <span class="nav-link-title">
-                                        财务
+                                        financial
                                     </span>
                                 </a>
                                 <div class="dropdown-menu">
@@ -195,23 +195,23 @@
                                         <div class="dropdown-menu-column">
                                             <a class="dropdown-item" href="/admin/product">
                                                 <i class="ti ti-list-details"></i>&nbsp;
-                                                商品
+                                                goods
                                             </a>
                                             <a class="dropdown-item" href="/admin/order">
                                                 <i class="ti ti-receipt"></i>&nbsp;
-                                                订单
+                                                The order
                                             </a>
                                             <a class="dropdown-item" href="/admin/invoice">
                                                 <i class="ti ti-file-dollar"></i>&nbsp;
-                                                账单
+                                                bill
                                             </a>
                                             <a class="dropdown-item" href="/admin/coupon">
                                                 <i class="ti ti-ticket"></i>&nbsp;
-                                                优惠码
+                                                Promo code
                                             </a>
                                             <a class="dropdown-item" href="/admin/giftcard">
                                                 <i class="ti ti-gift"></i>&nbsp;
-                                                礼品卡
+                                                The gift card
                                             </a>
                                         </div>
                                     </div>
@@ -223,7 +223,7 @@
                                         <i class="ti ti-arrow-back-up icon"></i>
                                     </span>
                                     <span class="nav-link-title">
-                                        返回
+                                        return
                                     </span>
                                 </a>
                             </li>

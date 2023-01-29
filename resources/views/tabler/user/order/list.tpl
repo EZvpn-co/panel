@@ -6,10 +6,10 @@
             <div class="row align-items-center">
                 <div class="col">                   
                     <h2 class="page-title">
-                        <span class="home-title my-3">账单列表</span>
+                        <span class="home-title my-3">The bill list</span>
                     </h2>
                     <div class="page-pretitle">
-                        <span class="home-subtitle">在这里查看账单列表</span>
+                        <span class="home-subtitle">Check the bill list here</span>
                     </div>
                 </div>
                 <div class="col-auto ms-auto d-print-none">
@@ -27,7 +27,7 @@
                                     d="M7.5 8a2.5 2.5 0 0 1 0 -5a4.8 8 0 0 1 4.5 5a4.8 8 0 0 1 4.5 -5a2.5 2.5 0 0 1 0 5">
                                 </path>
                             </svg>
-                            兑换礼品卡
+                            Cash gift CARDS
                         </a>
                         <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
                             data-bs-target="#redeem-dialog">
@@ -57,24 +57,24 @@
                             <table id="data_table" class="table card-table table-vcenter text-nowrap datatable">
                                 <thead>
                                     <tr>
-                                        <th>操作</th>
-                                        <th>商品名称</th>
-                                        <th>账单状态</th>
-                                        <th>支付方式</th>
-                                        <th>账单编号</th>
-                                        <th>商品类型</th>
-                                        <th>商品售价</th>
-                                        <th>优惠码</th>
-                                        <th>账单金额</th>
-                                        <th>创建时间</th>
-                                        <th>支付时间</th>
+                                        <th>operation</th>
+                                        <th>Name of commodity</th>
+                                        <th>The billing state</th>
+                                        <th>Method of payment</th>
+                                        <th>The bill number</th>
+                                        <th>Commodity type</th>
+                                        <th>Commodity price</th>
+                                        <th>Promo code</th>
+                                        <th>The bill amount</th>
+                                        <th>Creation time</th>
+                                        <th>Payment time</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {foreach $orders as $order}
                                         <tr>
                                             <td>
-                                                <a href="/user/order/{$order->no}">详情</a>
+                                                <a href="/user/order/{$order->no}">details</a>
                                             </td>
                                             <td>{$order->product_name}</td>
                                             <td>{$order->judgmentOrderStatus($order->order_status, $order->expired_at, true)}</td>
@@ -105,20 +105,20 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">兑换礼品卡</h5>
+                    <h5 class="modal-title">Cash gift CARDS</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group mb-3 row">
-                        <label class="form-label col-3 col-form-label">礼品卡</label>
+                        <label class="form-label col-3 col-form-label">The gift card</label>
                         <div class="col">
-                            <input id="card" type="text" class="form-control" placeholder="在此输入或粘贴礼品码">
+                            <input id="card" type="text" class="form-control" placeholder="Enter or paste the gift code here">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn me-auto" data-bs-dismiss="modal">取消</button>
-                    <button id="redeem-button" type="button" class="btn btn-primary" data-bs-dismiss="modal">兑换</button>
+                    <button type="button" class="btn me-auto" data-bs-dismiss="modal">cancel</button>
+                    <button id="redeem-button" type="button" class="btn btn-primary" data-bs-dismiss="modal">exchange</button>
                 </div>
             </div>
         </div>
@@ -135,27 +135,27 @@
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row card-footer d-flex align-items-center'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
             language: {
-                "sProcessing": "处理中...",
-                "sLengthMenu": "显示 _MENU_ 条",
-                "sZeroRecords": "没有匹配结果",
-                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
-                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
-                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sProcessing": "In the processing...",
+                "sLengthMenu": "According articleo _MENU_ article",
+                "sZeroRecords": "No matching results",
+                "sInfo": "According to the first _START_ to _END_ A result, altogether _TOTAL_itemitem",
+                "sInfoEmpty": "According to the first 0 to 0 A result, altogether 0 item",
+                "sInfoFiltered": "(by _MAX_In the filterThe filter)",
                 "sInfoPostFix": "",
                 "sSearch": "<i class=\"ti ti-search\"></i> ",
                 "sUrl": "",
-                "sEmptyTable": "表中数据为空",
-                "sLoadingRecords": "载入中...",
+                "sEmptyTable": "The data in the table is empty",
+                "sLoadingRecords": "In the load...",
                 "sInfoThousands": ",",
                 "oPaginate": {
-                    "sFirst": "首页",
+                    "sFirst": "Home page",
                     "sPrevious": "<i class=\"ti ti-arrow-left\"></i>",
                     "sNext": "<i class=\"ti ti-arrow-right\"></i>",
-                    "sLast": "末页"
+                    "sLast": "At the end of the page"
                 },
                 "oAria": {
-                    "sSortAscending": ": 以升序排列此列",
-                    "sSortDescending": ": 以降序排列此列"
+                    "sSortAscending": ": In ascending order",
+                    "sSortDescending": ": In descending order"
                 }
             },
             fnRowCallback: adjustStyle,
@@ -186,9 +186,9 @@
         });
 
         function adjustStyle() {
-            $("td:contains('已支付')").css("color", "green");
-            $("td:contains('异常')").css("color", "red");
-            $("td:contains('等待支付')").css("color", "orange");
+            $("td:contains('Have to pay')").css("color", "green");
+            $("td:contains('abnormal')").css("color", "red");
+            $("td:contains('Waiting for the payment')").css("color", "orange");
             $("td:contains('null')").css("font-style", "italic");
         }
     </script>

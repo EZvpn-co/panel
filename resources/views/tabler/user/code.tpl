@@ -3,7 +3,7 @@
 <main class="content">
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading">充值</h1>
+            <h1 class="content-heading">top-up</h1>
         </div>
     </div>
     <div class="container">
@@ -14,10 +14,10 @@
                         <div class="card-main">
                             <div class="card-inner">
                                 <div class="card-inner">
-                                    <p class="card-heading">注意事项</p>
-                                    <p>充值完成后需刷新网页以查看余额，通常一分钟内到账。因余额不足而未能完成的自动续费，在余额足够时会自动划扣续费。</p>
+                                    <p class="card-heading">Matters needing attention</p>
+                                    <p>Prepaid phone after the completion of the need to refresh the page to view the balance, usually arrive within one minute.Was not completed due to insufficient automatic renewal, in enough balance automatically draw a renewal.</p>
                                     {if $config['enable_admin_contact'] == true}
-                                        <p class="card-heading">如充值未到账，请联系：</p>
+                                        <p class="card-heading">If prepaid phone did not arrive, please contact:</p>
                                         {if $config['admin_contact1'] != ''}
                                             <li>{$config['admin_contact1']}</li>
                                         {/if}
@@ -29,7 +29,7 @@
                                         {/if}
                                     {/if}
                                     <br/>
-                                    <p><i class="mdi mdi-currency-usd icon-lg"></i>当前余额：<font color="#399AF2" size="5">{$user->money}</font> 元</p>
+                                    <p><i class="mdi mdi-currency-usd icon-lg"></i>Current balance:<font color="#399AF2" size="5">{$user->money}</font> yuan</p>
                                 </div>
                             </div>
                         </div>
@@ -54,13 +54,13 @@
                             <div class="card-inner">
                                 <div class="card-inner">
                                     <div class="cardbtn-edit">
-                                        <div class="card-heading">充值码</div>
+                                        <div class="card-heading">Top-up code</div>
                                         <button class="btn btn-flat" id="code-update">
                                             <span class="mdi mdi-check"></span>
                                         </button>
                                     </div>
                                     <div class="form-group form-group-label">
-                                        <label class="floating-label" for="code">充值码</label>
+                                        <label class="floating-label" for="code">Top-up code</label>
                                         <input class="form-control maxwidth-edit" id="code" type="text">
                                     </div>
                                 </div>
@@ -78,10 +78,10 @@
                                         <table class="table table-hover">
                                             <tr>
                                                 <!--<th>ID</th> -->
-                                                <th>代码</th>
-                                                <th>类型</th>
-                                                <th>操作</th>
-                                                <th>使用时间</th>
+                                                <th>code</th>
+                                                <th>type</th>
+                                                <th>operation</th>
+                                                <th>Use your time</th>
                                             </tr>
                                             {foreach $codes as $code}
                                                 {if $code->type!=-2}
@@ -89,28 +89,28 @@
                                                         <!--	<td>#{$code->id}</td>  -->
                                                         <td>{$code->code}</td>
                                                         {if $code->type==-1}
-                                                            <td>金额充值</td>
+                                                            <td>The amount of prepaid phone</td>
                                                         {/if}
                                                         {if $code->type==10001}
-                                                            <td>流量充值</td>
+                                                            <td>Traffic top-up</td>
                                                         {/if}
                                                         {if $code->type==10002}
-                                                            <td>用户续期</td>
+                                                            <td>The user to renew</td>
                                                         {/if}
                                                         {if $code->type>=1&&$code->type<=10000}
-                                                            <td>等级续期 - 等级{$code->type}</td>
+                                                            <td>Level of renewal - level{$code->type}</td>
                                                         {/if}
                                                         {if $code->type==-1}
-                                                            <td>充值 {$code->number} 元</td>
+                                                            <td>top-up {$code->number} yuan</td>
                                                         {/if}
                                                         {if $code->type==10001}
-                                                            <td>充值 {$code->number} GB 流量</td>
+                                                            <td>top-up {$code->number} GB traffic</td>
                                                         {/if}
                                                         {if $code->type==10002}
-                                                            <td>延长账户有效期 {$code->number} 天</td>
+                                                            <td>Extending the account {$code->number} day</td>
                                                         {/if}
                                                         {if $code->type>=1&&$code->type<=10000}
-                                                            <td>延长等级有效期 {$code->number} 天</td>
+                                                            <td>Extending the level {$code->number} day</td>
                                                         {/if}
                                                         <td>{$code->usedatetime}</td>
                                                     </tr>
@@ -129,10 +129,10 @@
                         <div class="modal-content">
                             <div class="modal-heading">
                                 <a class="modal-close" data-dismiss="modal">×</a>
-                                <h2 class="modal-title">正在连接支付网关</h2>
+                                <h2 class="modal-title">Payment gateway is connected</h2>
                             </div>
                             <div class="modal-inner">
-                                <p id="title">感谢您对我们的支持，请耐心等待</p>
+                                <p id="title">Thank you for your support to us, please be patient</p>
                             </div>
                         </div>
                     </div>
@@ -166,7 +166,7 @@
                 error: (jqXHR) => {
                     $("#result").modal();
 {literal}
-                    $$.getElementById('msg').innerHTML = `发生错误：${jqXHR.status}`;
+                    $$.getElementById('msg').innerHTML = `An error occurred:${jqXHR.status}`;
 {/literal}
                 }
             })

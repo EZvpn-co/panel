@@ -11,16 +11,16 @@
 <body>
 <div class="container">
     <div class="copy-container center-xy">
-        <h1>用户服务协议（Terms of Service）</h1>
-        <p>{$config['appName']}，以下简称本站。</p>
+        <h1>The user service agreement (Terms of Service)</h1>
+        <p>{$config['appName']}, hereinafter referred to as the site.</p>
         <br>
-        <h2>隐私安全</h2>
-        <p>邮箱为本站服务的唯一凭证，请妥善保管。</p>
+        <h2>privacy</h2>
+        <p>Email the only instrument for the site service, please safekeeping.</p>
         <br>
-        <h2>使用条款</h2>
-        <p>在使用服务时，需遵循站点和节点所在国家的相关法律。</p>
-        <p>对于免费用户，我们有权在不通知的情况下删除账户。</p>
-        <p>任何违反使用条款的用户，我们将会删除违规账户并收回使用本站服务的权利。</p>
+        <h2>Terms of use</h2>
+        <p>When using the service, need to follow the site and the node where the laws of the country.</p>
+        <p>For free users, we have the right to delete account without notice.</p>
+        <p>Any violation of the terms of use of the user, we will delete the offending account and withdraw the right to use this site services.</p>
     </div>
 </div>
 </body>

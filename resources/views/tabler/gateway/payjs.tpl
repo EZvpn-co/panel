@@ -1,7 +1,7 @@
 <div class="card-inner">
-    <p class="card-heading">输入充值金额后，点击下方的图标进行充值</p>
+    <p class="card-heading">After input top-up amount, click on the icon below for prepaid phone</p>
     <div class="form-group form-group-label">
-        <label class="floating-label" for="amount-payjs">金额</label>
+        <label class="floating-label" for="amount-payjs">The amount of</label>
         <input class="form-control" id="amount-payjs" type="text">
     </div>
 </div>
@@ -17,11 +17,11 @@
     var flag = false;
     function payjs(type) {
         var price = parseFloat($$getValue('amount-payjs'));
-        //console.log("将要使用 " + type + " 充值" + price + "元");
+        //console.log("You will use " + type + " top-up" + price + "yuan");
         if (isNaN(price)) {
             $("#readytopay").modal('hide');
             $("#result").modal();
-            $$.getElementById('msg').innerHTML = '非法的金额！'
+            $$.getElementById('msg').innerHTML = 'The amount of illegal!'
             return;
         }
         $('#readytopay').modal();
@@ -39,16 +39,16 @@
                     $("#readytopay").modal('hide');
                     {
                         pid = data.pid;
-                        $$.getElementById('qrarea').innerHTML = '<div class="text-center"><p>使用支付宝扫描二维码支付.</p><div align="center" id="qrcode" style="padding-top:10px;"></div><p>充值完毕后会自动跳转</p></div>';
+                        $$.getElementById('qrarea').innerHTML = '<div class="text-center"><p>Use pay treasure to scan the qr code.</p><div align="center" id="qrcode" style="paddAfter the top-up automatically jumppx;"></div><p>After the top-up automatically jump</p></div>';
                         var qrcode = new QRCode("qrcode", {
-                            correctLevel: 3,  //解决超过200字符的二维码生成问题
+                            correctLevel: 3,  //To solve more than200The character of the qr code generation problems
                             render: "canvas",
                             width: 200,
                             height: 200,
-                            text: data.url      //使用encodeURI()函数报会调低至错误
+                            text: data.url      //useencodeURI()Function to downgrade to error
                         });
                         if(flag == false){
-                            tid = setTimeout(fpayjs, 1000); //循环调用触发setTimeout
+                            tid = setTimeout(fpayjs, 1000); //Call to triggersetTimeout
                             flag = true;
                         }else{
                             return 0;
@@ -74,7 +74,7 @@
                 if (data.result) {
                     //console.log(data);
                     $("#result").modal();
-                    $$.getElementById('msg').innerHTML = '充值成功！';
+                    $$.getElementById('msg').innerHTML = 'Top-up success!';
                     window.setTimeout("location.href=window.location.href", {$config['jump_delay']});
                 }
             },
@@ -82,6 +82,6 @@
                 //console.log(jqXHR);
             }
         });
-        tid = setTimeout(fpayjs, 1000); //循环调用触发setTimeout
+        tid = setTimeout(fpayjs, 1000); //Call to triggersetTimeout
     }
 </script>

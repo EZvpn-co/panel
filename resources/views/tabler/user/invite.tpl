@@ -6,10 +6,10 @@
             <div class="row align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        <span class="home-title">邀请注册</span>
+                        <span class="home-title">Invitation to register</span>
                     </h2>
                     <div class="page-pretitle my-3">
-                        <span class="home-subtitle">查看邀请注册链接和邀请返利记录</span>
+                        <span class="home-subtitle">Check the invitation registration link and invite rebate record</span>
                     </div>
                 </div>
             </div>
@@ -21,30 +21,30 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="card-title">邀请规则</h3>
+                            <h3 class="card-title">Invite rules</h3>
                             <ul>
-                                <li>邀请注册的用户在账单确认后，您可获得其账单金额的 <code>{$config['code_payback'] * 100} %</code>
-                                    作为返利</li>
-                                <li>具体邀请返利规则请查看公告，或通过工单系统询问管理员</li>
-                                <li>部分商品的返利比例可能不遵循上面的比例</li>
+                                <li>Invite registered user confirmed to the bill, you can get the bill amount <code>{$config['code_payback'] * 100} %</code>
+                                    As a rebate</li>
+                                <li>Specific please see the announcement invited rebate rules, or ask the administrator by work order system</li>
+                                <li>Part of the goods of the rebate rate may not follow the above</li>
                             </ul>
-                            <p>您目前通过邀请好友获得的总返利为 <code>{$paybacks_sum}</code> 元</p>
+                            <p>Your current total rebate by inviting friends <code>{$paybacks_sum}</code> yuan</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="card-title">邀请链接</h3>
+                            <h3 class="card-title">Invite link</h3>
                             {if $user->invite_num >= 0}
-                                <p>邀请链接可用次数：<code>{$user->invite_num}</code></p>
+                                <p>Invite link number available:<code>{$user->invite_num}</code></p>
                             {/if}
                             <input class="form-control" value="{$invite_url}" disabled />
                         </div>
                         <div class="card-footer">
                             <div class="d-flex">
-                                <a id="reset-url" class="btn text-red btn-link">重置</a>
-                                <a data-clipboard-text="{$invite_url}" class="copy btn btn-primary ms-auto">复制</a>
+                                <a id="reset-url" class="btn text-red btn-link">reset</a>
+                                <a data-clipboard-text="{$invite_url}" class="copy btn btn-primary ms-auto">copy</a>
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">返利记录</h3>
+                            <h3 class="card-title">Rebate record</h3>
                         </div>
                         {if $paybacks->count() != '0'}
                             <div class="table-responsive">
@@ -60,10 +60,10 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>邀请用户昵称</th>
-                                            <th>返利金额</th>
-                                            <th>结算审核</th>
-                                            <th>返利时间</th>
+                                            <th>Invite the user nickname</th>
+                                            <th>The rebate amount</th>
+                                            <th>Settlement audit</th>
+                                            <th>Rebate time</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -73,9 +73,9 @@
                                                 {if $payback->user()!=null}
                                                     <td>{$payback->user()->user_name}</td>
                                                 {else}
-                                                    <td>已注销</td>
+                                                    <td>Has been cancelled</td>
                                                 {/if}
-                                                <td>{$payback->ref_get} 元</td>
+                                                <td>{$payback->ref_get} yuan</td>
                                                 <td>{$payback->fraud_detect}</td>
                                                 <td>{$payback->datetime}</td>
                                             </tr>
@@ -85,7 +85,7 @@
                             </div>
                         {else}
                             <div class="card-body">
-                                <p>没有找到记录</p>
+                                <p>Found no record</p>
                             </div>
                         {/if}
                     </div>
@@ -95,12 +95,12 @@
     </div>
 
     <script>
-        $("td:contains('通过')").css("color", "green");
-        $("td:contains('欺诈')").css("color", "red");
+        $("td:contains('through')").css("color", "green");
+        $("td:contains('fraud')").css("color", "red");
 
         var clipboard = new ClipboardJS('.copy');
         clipboard.on('success', function(e) {
-            $('#success-message').text('已复制到剪切板');
+            $('#success-message').text('Has been copied to the clipboard');
             $('#success-dialog').modal('show');
         });
 

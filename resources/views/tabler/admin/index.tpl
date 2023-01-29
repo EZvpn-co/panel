@@ -6,10 +6,10 @@
             <div class="row align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        <span class="home-title">系统概况</span>
+                        <span class="home-title">System overview</span>
                     </h2>
                     <div class="page-pretitle my-3">
-                        <span class="home-subtitle">在这里查看系统的的各项运营指标</span>
+                        <span class="home-subtitle">Operating indicators of check system here</span>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                                                 ￥{$user->calIncome("today")}
                                             </div>
                                             <div class="text-muted">
-                                                今日流水
+                                                Today's water
                                             </div>
                                         </div>
                                     </div>
@@ -55,7 +55,7 @@
                                                 ￥{$user->calIncome("yesterday")}
                                             </div>
                                             <div class="text-muted">
-                                                昨日流水
+                                                Yesterday the water
                                             </div>
                                         </div>
                                     </div>
@@ -76,7 +76,7 @@
                                                 ￥{$user->calIncome("this month")}
                                             </div>
                                             <div class="text-muted">
-                                                这月流水
+                                                This month the water
                                             </div>
                                         </div>
                                     </div>
@@ -97,7 +97,7 @@
                                                 ￥{$user->calIncome("total")}
                                             </div>
                                             <div class="text-muted">
-                                                累计流水
+                                                The cumulative water
                                             </div>
                                         </div>
                                     </div>
@@ -109,7 +109,7 @@
                 <div class="col-sm-12 col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">{$sts->getTotalUser()} 位用户的签到情况</h3>
+                            <h3 class="card-title">{$sts->getTotalUser()} A user sign in</h3>
                         </div>
                         <div class="card-body">
                             <div id="check-in"></div>
@@ -119,7 +119,7 @@
                 <div class="col-sm-12 col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">{$sts->getTotalNodes()} 个服务器的在线情况</h3>
+                            <h3 class="card-title">{$sts->getTotalNodes()} A server online</h3>
                         </div>
                         <div class="card-body">
                             <div id="node-online"></div>
@@ -129,7 +129,7 @@
                 <div class="col-sm-12 col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">用户在线</h3>
+                            <h3 class="card-title">Users online</h3>
                         </div>
                         <div class="card-body">
                             <div id="user-online"></div>
@@ -139,7 +139,7 @@
                 <div class="col-sm-12 col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">流量用量</h3>
+                            <h3 class="card-title">Dosage of traffic</h3>
                         </div>
                         <div class="card-body">
                             <div id="traffic-usage"></div>
@@ -169,7 +169,7 @@
                     opacity: 1,
                 },
                 series: [{$sts->getTotalUser()-$sts->getCheckinUser()}, {$sts->getCheckinUser()-$sts->getTodayCheckinUser()}, {$sts->getTodayCheckinUser()}],
-                labels: ["没有签到", "曾经签到", "今日签到"],
+                labels: ["There isOnce signed insign in", "Once signed in", "Sign in today"],
                 grid: {
                     strokeDashArray: 3,
                 },
@@ -214,7 +214,7 @@
                     opacity: 1,
                 },
                 series: [{$sts->getAliveNodes()}, {$sts->getTotalNodes()-$sts->getAliveNodes()}],
-                labels: ["在线", "离线"],
+                labels: ["onlineoffline "offline"],
                 grid: {
                     strokeDashArray: 2,
                 },
@@ -259,7 +259,7 @@
                     opacity: 1,
                 },
                 series: [{$sts->getUnusedUser()}, {$sts->getTotalUser()-$sts->getOnlineUser(86400)-$sts->getUnusedUser()}, {$sts->getOnlineUser(86400)}, {$sts->getOnlineUser(3600)}, {$sts->getOnlineUser(60)}],
-                labels: ["从未在线", "一天前在线", "一天内在线", "一小时内在线", "一分钟内在线"],
+                labels: ["Never online", "Online one day ago", "Line within a day", "Internal line an hour", "Line within a minute"],
                 grid: {
                     strokeDashArray: 4,
                 },
@@ -304,7 +304,7 @@
                     opacity: 1,
                 },
                 series: [{$sts->getRawGbTodayTrafficUsage()}, {$sts->getRawGbLastTrafficUsage()}, {$sts->getRawGbUnusedTrafficUsage()}],
-                labels: ["今日已用({$sts->getTodayTrafficUsage()})", "过去已用({$sts->getLastTrafficUsage()})", "剩余流量({$sts->getUnusedTrafficUsage()})"],
+                labels: ["Today has been used({$sts->getTodayTraffThe past has been usedage()})", "The past has been used({$sts->getLastTrafficUsage()})", "The remaining traffic({$sts->getUnusedTrafficUsage()})"],
                 grid: {
                     strokeDashArray: 3,
                 },

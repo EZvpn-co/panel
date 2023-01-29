@@ -1,9 +1,9 @@
 <div class="card-inner">
     <div class="row">
         <div class="col-lg-6 col-md-6">
-            <p class="card-heading">支付宝/微信在线充值</p>
+            <p class="card-heading">Alipay/WeChat online top-up</p>
             <div class="form-group form-group-label">
-                <label class="floating-label" for="amount-theadpay">金额</label>
+                <label class="floating-label" for="amount-theadpay">The amount of</label>
                 <input class="form-control" id="amount-theadpay" type="text">
             </div>
         </div>
@@ -12,7 +12,7 @@
         </div>
     </div>
 </div>
-<a class="btn btn-flat waves-attach" id="theadpay" onclick="theadpay();"><span class="mdi mdi-check"></span>&nbsp;立即充值</a>
+<a class="btn btn-flat waves-attach" id="theadpay" onclick="theadpay();"><span class="mdi mdi-check"></span>&nbsp;Prepaid phone immediately</a>
 <script>
     var pid = 0;
     var flag = false;
@@ -29,7 +29,7 @@
                 if (data.ret) {
                     //console.log(data);
                     pid = data.pid;
-                    $$.getElementById('qrarea').innerHTML = '<div class="text-center"><p>请使用<b>支付宝</b>或<b>微信</b>扫描二维码支付</p><a id="qrcode" style="padding-top:10px;display:inline-block"></a><p>手机可点击二维码进行快捷支付</p></div>'
+                    $$.getElementById('qrarea').innerHTML = '<div class="text-center"><p>Please use the<b>Alipay</b>or<b>WeChat</b>Scan the qr code to pay</p><a id="qrcode" style="padding-top:10px;display:inline-block"></a><p>Mobile phones can click the qr code quickly payment</p></div>'
                     $("#readytopay").modal('hide');
                     new QRCode("qrcode", {
                         render: "canvas",
@@ -55,7 +55,7 @@
                 $("#result").modal();
                 $$.getElementById('msg').innerHTML = `${
                         jqXHR
-                        } 发生错误了`;
+                        } There was an error with`;
             }
         })
     }
@@ -72,7 +72,7 @@
                     //console.log(data);
                     $("#alipay").modal('hide');
                     $("#result").modal();
-                    $$.getElementById('msg').innerHTML = '充值成功';
+                    $$.getElementById('msg').innerHTML = 'Top-up success';
                     window.setTimeout("location.href=window.location.href", {$config['jump_delay']});
                 }
             },
@@ -80,6 +80,6 @@
                 //console.log(jqXHR);
             }
         });
-        tid = setTimeout(f, 1000); //循环调用触发setTimeout
+        tid = setTimeout(f, 1000); //Call to triggersetTimeout
     }
 </script>

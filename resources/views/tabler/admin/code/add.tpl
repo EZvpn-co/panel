@@ -3,7 +3,7 @@
 <main class="content">
     <div class="content-header ui-content-header">
         <div class="container">
-            <h1 class="content-heading">添加充值码</h1>
+            <h1 class="content-heading">Add a prepaid phone code</h1>
         </div>
     </div>
     <div class="container">
@@ -13,26 +13,26 @@
                     <div class="card-main">
                         <div class="card-inner">
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="amount">数目</label>
+                                <label class="floating-label" for="amount">The number of</label>
                                 <input class="form-control maxwidth-edit" id="amount" type="text" value="1">
                             </div>
                             <div class="form-group form-group-label">
-                                <label class="floating-label" for="face_value">面额</label>
+                                <label class="floating-label" for="face_value">denomination</label>
                                 <input class="form-control maxwidth-edit" id="face_value" type="text">
                             </div>
                             <div class="form-group form-group-label">
                                 <div class="form-group form-group-label">
-                                    <label class="floating-label" for="code_length">充值码长度</label>
+                                    <label class="floating-label" for="code_length">Top-up code length</label>
                                     <select id="code_length" class="form-control maxwidth-edit" name="code_length">
-                                        <option value="12">12 位</option>    
-                                        <option value="18" selected>18 位</option>
-                                        <option value="24">24 位</option>
-                                        <option value="30">30 位</option>
-                                        <option value="36">36 位</option>
+                                        <option value="12">12 position</option>    
+                                        <option value="18" selected>18 position</option>
+                                        <option value="24">24 position</option>
+                                        <option value="30">30 position</option>
+                                        <option value="36">36 position</option>
                                     </select>
                                 </div>
                             </div>
-                            <p class="form-control-guide"><i class="mdi mdi-information"></i>生成的充值码将会发送到你的邮箱中（需要提前设置好邮件发信参数，且测试发信能够成功）</p>
+                            <p class="form-control-guide"><i class="mdi mdi-information"></i>Generate top-up code will be sent to your mailbox (need to mail a letter parameters have been set, ahead of schedule and test mail to succeed)</p>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                                 <div class="row">
                                     <div class="col-md-10 col-md-push-1">
                                         <button id="submit" type="submit"
-                                            class="btn btn-block btn-brand waves-attach waves-light">添加
+                                            class="btn btn-block btn-brand waves-attach waves-light">add
                                         </button>
                                     </div>
                                 </div>
@@ -82,12 +82,12 @@
                     } else {
                         $("#msg-error").hide(10);
                         $("#msg-error").show(100);
-                        $$.getElementById('msg').innerHTML = `${ldelim}data.msg{rdelim} 发生错误了。`;
+                        $$.getElementById('msg').innerHTML = `${ldelim}data.msg{rdelim} An error occurred.`;
                     }
                 },
                 error: jqXHR => {
                     $("#result").modal();
-                    $$.getElementById('msg').innerHTML = `发生错误：${
+                    $$.getElementById('msg').innerHTML = `An error occurred:${
                         jqXHR.status
                     }`;
                 }

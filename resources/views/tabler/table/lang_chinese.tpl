@@ -1,24 +1,24 @@
 language: {
-"sProcessing": "处理中...",
-"sLengthMenu": "显示 _MENU_ 项结果",
-"sZeroRecords": "没有匹配结果",
-"sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
-"sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
-"sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+"sProcessing": "In the processing...",
+"sLengthMenu": "According to _MENU_ Study results",
+"sZeroRecords": "No matching results",
+"sInfo": "According to the first _START_ to _END_ A result, altogether _TOTAL_ item",
+"sInfoEmpty": "According to the first 0 to 0 A result, altogether 0 item",
+"sInfoFiltered": "(by _MAX_ In the filter)",
 "sInfoPostFix": "",
-"sSearch": "搜索:",
+"sSearch": "search:",
 "sUrl": "",
-"sEmptyTable": "表中数据为空",
-"sLoadingRecords": "载入中...",
+"sEmptyTable": "The data in the table is empty",
+"sLoadingRecords": "In the load...",
 "sInfoThousands": ",",
 "oPaginate": {
-"sFirst": "首页",
-"sPrevious": "上页",
-"sNext": "下页",
-"sLast": "末页"
+"sFirst": "Home page",
+"sPrevious": "On the page",
+"sNext": "On the next page",
+"sLast": "At the end of the page"
 },
 "oAria": {
-"sSortAscending": ": 以升序排列此列",
-"sSortDescending": ": 以降序排列此列"
+"sSortAscending": ": In ascending order",
+"sSortDescending": ": In descending order"
 }
 }

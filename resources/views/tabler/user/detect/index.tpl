@@ -1,16 +1,16 @@
 {include file='user/tabler_header.tpl'}
 
-<!-- 审计规则是用来防止DMCA和Spam，不是用来给用户建墙用的，不要以为把“违法网站”墙了，被抓了能少判哪怕一天的刑期 -->
+<!-- Auditing rules are used to preventDMCAandSpam, not to give the user to build a wall to use, do not think that the "illegal websites" wall, was caught prison sentence even less of a day -->
 <div class="page-wrapper">
     <div class="container-xl">
         <div class="page-header d-print-none text-white">
             <div class="row align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        <span class="home-title">审计规则</span>
+                        <span class="home-title">Auditing rules</span>
                     </h2>
                     <div class="page-pretitle my-3">
-                        <span class="home-subtitle">目前站点中所使用的审计规则</span>
+                        <span class="home-subtitle">Used in the current site audit rules</span>
                     </div>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="m-0 my-2">
-                                <p>为了防止滥用与确保站点可以稳定运行，特制定了如下过滤规则，当您使用节点执行这些动作时，您的通信就会被截断。</p>
+                                <p>In order to prevent abuse and to ensure that the site can stable operation, formulated the following filtering rules, when you use node performs these actions, your communication will be truncated.</p>
                             </div>
                         </div>
                     </div>
@@ -35,10 +35,10 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>名称</th>
-                                        <th>描述</th>
-                                        <th>正则表达式</th>
-                                        <th>类型</th>
+                                        <th>The name of the</th>
+                                        <th>describe</th>
+                                        <th>Regular expressions</th>
+                                        <th>type</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,10 +49,10 @@
                                         <td>{$rule->text}</td>
                                         <td>{$rule->regex}</td>
                                         {if $rule->type == 1}
-                                            <td>数据包明文匹配</td>
+                                            <td>Packet plaintext matches</td>
                                         {/if}
                                         {if $rule->type == 2}
-                                            <td>数据包 hex 匹配</td>
+                                            <td>The packet hex matching</td>
                                         {/if}
                                     </tr>
                                     {/foreach}

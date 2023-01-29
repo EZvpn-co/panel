@@ -41,34 +41,34 @@
                             success: (data) => {
                                 if (data.ret) {
                                     $("#result").modal();
-                                    $$.getElementById('msg').innerHTML = '登录成功！';
+                                    $$.getElementById('msg').innerHTML = 'Login successful!';
                                     window.setTimeout("location.href=/user/", {$config['jump_delay']});
                                 }
                             },
                             error: (jqXHR) => {
                                 $("#result").modal();
-                                $$.getElementById('msg').innerHTML = `发生错误：${
+                                $$.getElementById('msg').innerHTML = `An error occurred:${
                                         jqXHR.status
                                         }`;
                             }
                         });
                     } else {
                         if (data.ret === -1) {
-                            $('#telegram-qr').replaceWith('此二维码已经过期，请刷新页面后重试。');
-                            $('#code_number').replaceWith('<code id="code_number">此数字已经过期，请刷新页面后重试。</code>');
+                            $('#telegram-qr').replaceWith('The qr code has expired, please refresh the page and try again.');
+                            $('#code_number').replaceWith('<code id="code_number">This number has expired, please refresh the page and try again.</code>');
                         }
                     }
                 },
                 error: (jqXHR) => {
                     if (jqXHR.status !== 200 && jqXHR.status !== 0) {
                         $("#result").modal();
-                        $$.getElementById('msg').innerHTML = `发生错误：${
+                        $$.getElementById('msg').innerHTML = `An error occurred:${
                                 jqXHR.status
                                 }`;
                     }
                 }
             });
-            tid = setTimeout(f, 2500); //循环调用触发setTimeout
+            tid = setTimeout(f, 2500); //Call to triggersetTimeout
         }
     })
 </script>

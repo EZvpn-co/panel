@@ -6,10 +6,10 @@
             <div class="row align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        <span class="home-title">资料修改</span>
+                        <span class="home-title">Data modification</span>
                     </h2>
                     <div class="page-pretitle my-3">
-                        <span class="home-subtitle">修改账户的部分信息</span>
+                        <span class="home-subtitle">Modify part of account information</span>
                     </div>
                 </div>
             </div>
@@ -25,28 +25,28 @@
                                 <a href="#personal_information" class="nav-link active" data-bs-toggle="tab"
                                     aria-selected="true" role="tab">
                                     <i class="ti ti-chart-candle icon"></i>&nbsp;
-                                    资料
+                                    data
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a href="#login_security" class="nav-link" data-bs-toggle="tab" aria-selected="true"
                                     role="tab">
                                     <i class="ti ti-shield-lock icon"></i>&nbsp;
-                                    登录
+                                    The login
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a href="#use_safety" class="nav-link" data-bs-toggle="tab" aria-selected="false"
                                     tabindex="-1" role="tab">
                                     <i class="ti ti-brand-telegram icon"></i>&nbsp;
-                                    使用
+                                    use
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a href="#other_settings" class="nav-link" data-bs-toggle="tab" aria-selected="false"
                                     tabindex="-1" role="tab">
                                     <i class="ti ti-settings icon"></i>&nbsp;
-                                    其他
+                                    other
                                 </a>
                             </li>
                         </ul>
@@ -57,31 +57,31 @@
                                         <div class="col-sm-12 col-md-6">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h3 class="card-title">登录邮箱</h3>
-                                                    <p>当前邮箱：<code>{$user->email}</code></p>
+                                                    <h3 class="card-title">The login email</h3>
+                                                    <p>Current email:<code>{$user->email}</code></p>
                                                     <div class="mb-3">
                                                         <input id="new-email" type="email" class="form-control"
-                                                            placeholder="新邮箱" {if $config['enable_change_email'] == false}disabled=""{/if}>
+                                                            placeholder="The new email" {if $config['enable_change_email'] == false}disabled=""{/if}>
                                                     </div>
                                                     {if $config['enable_email_verify'] == true && $config['enable_change_email'] == true}
                                                     <div class="mb-3">
                                                         <input id="email-code" type="text" class="form-control"
-                                                            placeholder="验证码">
+                                                            placeholder="Verification code">
                                                     </div>
                                                     {/if}
                                                 </div>
                                                 <div class="card-footer">
                                                     <div class="d-flex">
                                                         {if $config['enable_email_verify'] == true && $config['enable_change_email'] == true}
-                                                        <a id="email-verify" class="btn btn-link">获取验证码</a>
+                                                        <a id="email-verify" class="btn btn-link">Get verification code</a>
                                                         <button id="modify-email"
-                                                            class="btn btn-primary ms-auto">修改</button>
+                                                            class="btn btn-primary ms-auto">Modify the</button>
                                                         {elseif $config['enable_change_email'] == true}
                                                         <button id="modify-email"
-                                                            class="btn btn-primary ms-auto">修改</button>
+                                                            class="btn btn-primary ms-auto">Modify the</button>
                                                         {else}
                                                         <button id="modify-email" class="btn btn-primary ms-auto"
-                                                            disabled>暂不允许修改</button>
+                                                            disabled>Not allowed to change</button>
                                                         {/if}
                                                     </div>
                                                 </div>
@@ -90,7 +90,7 @@
                                         <div class="col-sm-12 col-md-6">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h3 class="card-title">联系方式</h3>
+                                                    <h3 class="card-title">contact</h3>
                                                     <div class="mb-3">
                                                         <select id="imtype" class="form-select">
                                                             <option value="1" {if $user->im_type == '1'}selected{/if}>
@@ -108,12 +108,12 @@
                                                     <div class="mb-3">
                                                         <input id="imvalue" type="text" class="form-control" 
                                                             {if $user->im_type == '4'} disabled="" {/if}
-                                                            value="{$user->im_value}" placeholder="社交账户">
+                                                            value="{$user->im_value}" placeholder="Social account">
                                                     </div>
                                                 </div>
                                                 <div class="card-footer">
                                                     <div class="d-flex">
-                                                        <a id="modify-im" class="btn btn-primary ms-auto">修改</a>
+                                                        <a id="modify-im" class="btn btn-primary ms-auto">Modify the</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -121,16 +121,16 @@
                                         <div class="col-sm-12 col-md-6">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h3 class="card-title">用戶名</h3>
-                                                    <p>当前用戶名：<code>{$user->user_name}</code></p>
+                                                    <h3 class="card-title">The user name</h3>
+                                                    <p>The current user name:<code>{$user->user_name}</code></p>
                                                     <div class="mb-3">
                                                         <input id="new-nickname" type="text" class="form-control"
-                                                        placeholder="新用戶名" autocomplete="off">
+                                                        placeholder="A new user name" autocomplete="off">
                                                     </div>
                                                 </div>
                                                 <div class="card-footer">
                                                     <div class="d-flex">
-                                                        <a id="modify-username" class="btn btn-primary ms-auto">修改</a>
+                                                        <a id="modify-username" class="btn btn-primary ms-auto">Modify the</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -140,9 +140,9 @@
                                             {if $user->telegram_id != 0}
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h3 class="card-title">解绑 Telegram</h3>
-                                                    <p>当前绑定的 Telegram 账户：
-                                                        {if $user->im_value === "用戶名未设置"}
+                                                    <h3 class="card-title">unbundling Telegram</h3>
+                                                    <p>The binding of Telegram Account:
+                                                        {if $user->im_value === "User name is not set"}
                                                         <code>{$user->telegram_id}</code>
                                                         {else}
                                                         <a href="https://t.me/{$user->im_value}">@{$user->im_value}</a>
@@ -152,35 +152,35 @@
                                                 <div class="card-footer">
                                                     <div class="d-flex">
                                                         <a href="/user/telegram_reset"
-                                                            class="btn btn-red ms-auto">解绑</a>
+                                                            class="btn btn-red ms-auto">unbundling</a>
                                                     </div>
                                                 </div>
                                             </div>
                                             {else}
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h3 class="card-title">绑定 Telegram</h3>
+                                                    <h3 class="card-title">The binding Telegram</h3>
                                                     <div class="row">
                                                         <div class="col-6 col-sm-2 col-md-2 col-xl mb-3">
-                                                            手机电脑平板等如已安装 Telegram 可点击
+                                                            Mobile tablet computer has been installed Telegram clickable
                                                         </div>
                                                         <div class="col-6 col-sm-2 col-md-2 col-sm mb-3">
                                                             <a href="https://t.me/{$telegram_bot}?start={$bind_token}"
                                                                 class="btn btn-primary w-100">
-                                                                一键绑定
+                                                                A key bindings
                                                             </a>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-6 col-sm-2 col-md-2 col-xl mb-3">
-                                                            向机器人 <a
+                                                            To the robot <a
                                                                 href="https://t.me/{$telegram_bot}">@{$telegram_bot}</a>
-                                                            发送验证码绑定
+                                                            Send verification code binding
                                                         </div>
                                                         <div class="col-6 col-sm-2 col-md-2 col-sm mb-3">
                                                             <button data-clipboard-text="{$bind_token}"
                                                                 class="copy btn btn-primary w-100">
-                                                                复制验证码
+                                                                Copy the verification code
                                                             </button>
                                                         </div>
                                                     </div>
@@ -196,18 +196,18 @@
                                         <div class="col-sm-12 col-md-6">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h3 class="card-title">两步认证</h3>
+                                                    <h3 class="card-title">Two step certification</h3>
                                                     <div class="col-md-12">
                                                         <div class="col-sm-6 col-md-6">
                                                             <p>
                                                                 <i class="ti ti-brand-apple"></i>
                                                                 <a target="view_window"
-                                                                    href="https://apps.apple.com/us/app/google-authenticator/id388497605">苹果客户端
+                                                                    href="https://apps.apple.com/us/app/google-authenticator/id388497605">Apple's client
                                                                 </a>
                                                                 &nbsp;&nbsp;&nbsp;
                                                                 <i class="ti ti-brand-android"></i>
                                                                 <a target="view_window"
-                                                                    href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=zh&gl=US">安卓客户端
+                                                                    href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=zh&gl=US">The android client
                                                                 </a>
                                                             </p>
                                                         </div>
@@ -219,28 +219,28 @@
                                                         <div class="col-md-9">
                                                             <div class="mb-3">
                                                                 <select id="ga-enable" class="form-select">
-                                                                    <option value="0">不使用</option>
+                                                                    <option value="0">Do not use</option>
                                                                     <option value="1"
                                                                         {if $user->ga_enable == '1'}selected{/if}>
-                                                                        使用两步认证登录
+                                                                        Using two-step authentication to log in
                                                                     </option>
                                                                 </select>
                                                             </div>
                                                             <div class="mb-3">
                                                                 <input id="2fa-test-code" type="text"
-                                                                    class="form-control" placeholder="测试两步认证验证码">
+                                                                    class="form-control" placeholder="Testing two steps certification authentication code">
                                                             </div>
                                                             <div class="col-md-12">
-                                                                <p>密钥：<code>{$user->ga_token}</code></p>
+                                                                <p>Keys:<code>{$user->ga_token}</code></p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="card-footer">
                                                     <div class="d-flex">
-                                                        <a id="reset-2fa" class="btn btn-link">重置</a>
-                                                        <a id="test-2fa" class="btn btn-link">测试</a>
-                                                        <a id="save-2fa" class="btn btn-primary ms-auto">设置</a>
+                                                        <a id="reset-2fa" class="btn btn-link">reset</a>
+                                                        <a id="test-2fa" class="btn btn-link">test</a>
+                                                        <a id="save-2fa" class="btn btn-primary ms-auto">Set up the</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -248,24 +248,24 @@
                                         <div class="col-sm-12 col-md-6">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h3 class="card-title">修改登录密码</h3>
+                                                    <h3 class="card-title">Modify the login password</h3>
                                                     <div class="mb-3">
                                                         <form>
                                                             <input id="password" type="password" class="form-control"
-                                                                placeholder="当前登录密码" autocomplete="off">
+                                                                placeholder="The current password" autocomplete="off">
                                                         </form>
                                                     </div>
                                                     <div class="mb-3">
                                                         <form>
                                                             <input id="new-password" type="password"
-                                                                class="form-control" placeholder="输入新密码"
+                                                                class="form-control" placeholder="Enter a new password"
                                                                 autocomplete="off">
                                                         </form>
                                                     </div>
                                                     <div class="mb-3">
                                                         <form>
                                                             <input id="again-new-password" type="password"
-                                                                class="form-control" placeholder="再次输入新密码"
+                                                                class="form-control" placeholder="To enter a new password again"
                                                                 autocomplete="off">
                                                         </form>
                                                     </div>
@@ -273,7 +273,7 @@
                                                 <div class="card-footer">
                                                     <div class="d-flex">
                                                         <a id="modify-login-passwd"
-                                                            class="btn btn-primary ms-auto">修改</a>
+                                                            class="btn btn-primary ms-auto">Modify the</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -285,8 +285,8 @@
                                         <div class="col-sm-12 col-md-6">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h3 class="card-title">更换加密方式</h3>
-                                                    <p>不同的客户端支持的加密方式可能会有所不同，请参考客户端支持列表进行设置</p>
+                                                    <h3 class="card-title">Change the encryption</h3>
+                                                    <p>Different client support encryption methods may be different, please refer to the client support list Settings</p>
                                                     <div class="mb-3">
                                                         <select id="user-method" class="form-select">
                                                             {foreach $methods as $method}
@@ -300,7 +300,7 @@
                                                 </div>
                                                 <div class="card-footer">
                                                     <div class="d-flex">
-                                                        <a id="modify-user-method" class="btn btn-primary ms-auto">修改</a>
+                                                        <a id="modify-user-method" class="btn btn-primary ms-auto">Modify the</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -308,13 +308,13 @@
                                         <div class="col-sm-12 col-md-6">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h3 class="card-title">更换订阅地址</h3>
-                                                    <p>更换订阅地址后，旧的订阅地址将无法获取配置，但节点配置仍能使用。如果希望旧的节点配置不能使用，请配合修改连接密码操作</p>
+                                                    <h3 class="card-title">Replace the subscription address</h3>
+                                                    <p>After replace the subscription address, the old subscription address will not be able to access the configuration, but you still can use your node configuration.If you want the old node configuration can't use, please modify the connection password operation</p>
                                                 </div>
                                                 <div class="card-footer">
                                                     <div class="d-flex">
                                                         <a id="reset-sub-url"
-                                                            class="btn btn-primary ms-auto bg-red">更换</a>
+                                                            class="btn btn-primary ms-auto bg-red">replace</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -322,13 +322,13 @@
                                         <div class="col-sm-12 col-md-6">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h3 class="card-title">更换连接端口</h3>
-                                                    <p>随机分配一个连接端口，这将用于 Shadowsocks 客户端</p>
-                                                    <p>当前端口是：<code>{$user->port}</code></p>
+                                                    <h3 class="card-title">Change the connection</h3>
+                                                    <p>Randomly assigned to a connection port, this will be used Shadowsocks The client</p>
+                                                    <p>The current port is：<code>{$user->port}</code></p>
                                                 </div>
                                                 <div class="card-footer">
                                                     <div class="d-flex">
-                                                        <a id="reset-client-port" class="btn btn-red ms-auto">更换</a>
+                                                        <a id="reset-client-port" class="btn btn-red ms-auto">replace</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -336,15 +336,15 @@
                                         <div class="col-sm-12 col-md-6">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h3 class="card-title">重置连接密码</h3>
-                                                    <p>重置连接密码与UUID ，重置后需更新订阅，才能继续使用</p>
-                                                    <p>当前连接密码：<code>{$user->passwd}</code></p>
-                                                    <p>当前UUID：<code>{$user->uuid}</code></p>
+                                                    <h3 class="card-title">Password reset link</h3>
+                                                    <p>Reset the pa, need to update subscription after a reset, can continue to usectionUUID , need to update subscription after a reset, can continue to use</p>
+                                                    <p>The current connection password:<code>{$user->passwd}</code></p>
+                                                    <p>The currentUUID:<code>{$user->uuid}</code></p>
                                                 </div>
                                                 <div class="card-footer">
                                                     <div class="d-flex">
                                                         <a id="reset-passwd"
-                                                            class="btn btn-primary ms-auto bg-red">重置</a>
+                                                            class="btn btn-primary ms-auto bg-red">reset</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -356,18 +356,18 @@
                                         <div class="col-sm-12 col-md-6">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h3 class="card-title">每日用量推送</h3>
+                                                    <h3 class="card-title">Daily dosage of push</h3>
                                                     <div class="mb-3">
                                                         <select id="daily-report" class="form-select">
                                                             <option value="0"
-                                                                {if $user->sendDailyMail == '0'}selected{/if}>不发送
+                                                                {if $user->sendDailyMail == '0'}selected{/if}>Don't send
                                                             </option>
                                                             <option value="1"
-                                                                {if $user->sendDailyMail == '1'}selected{/if}>邮件接收
+                                                                {if $user->sendDailyMail == '1'}selected{/if}>Receive emails
                                                             </option>
                                                             <option value="2"
                                                                 {if $user->sendDailyMail == '2'}selected{/if}>Telegram
-                                                                Bot 接收
+                                                                Bot receive
                                                             </option>
                                                         </select>
                                                     </div>
@@ -375,7 +375,7 @@
                                                 <div class="card-footer">
                                                     <div class="d-flex">
                                                         <a id="modify-daily-report"
-                                                            class="btn btn-primary ms-auto">修改</a>
+                                                            class="btn btn-primary ms-auto">Modify the</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -383,7 +383,7 @@
                                         <div class="col-sm-12 col-md-6">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h3 class="card-title">修改主题</h3>
+                                                    <h3 class="card-title">Modify the theme</h3>
                                                     <div class="mb-3">
                                                         <select id="user-theme" class="form-select">
                                                             {foreach $themes as $theme}
@@ -396,7 +396,7 @@
                                                 </div>
                                                 <div class="card-footer">
                                                     <div class="d-flex">
-                                                        <a id="modify-user-theme" class="btn btn-primary ms-auto">修改</a>
+                                                        <a id="modify-user-theme" class="btn btn-primary ms-auto">Modify the</a>
                                                     </div>
                                                 </div>
                                             </div>   
@@ -410,13 +410,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="card-body">
-                                                    <h3 class="card-title">删除账户数据</h3>
+                                                    <h3 class="card-title">Delete the account data</h3>
                                                 </div>    
                                                 <div class="card-footer">
                                                     <a href="#" class="btn btn-red d-none d-sm-inline-block" data-bs-toggle="modal"
                                                         data-bs-target="#destroy-account">
                                                         <i class="ti ti-trash icon"></i>
-                                                        确认删除
+                                                        Confirm the deletion
                                                     </a>
                                                 </div>
                                             </div>  
@@ -440,11 +440,11 @@
                 <div class="modal-status bg-danger"></div>
                 <div class="modal-body text-center py-4">
                     <i class="ti ti-alert-circle icon mb-2 text-danger icon-lg" style="font-size:3.5rem;"></i>
-                    <h3>删除确认</h3>
-                    <div class="text-muted">请确认是否真的要删除你的账户，此操作无法撤销，你的所有账户数据将会被从服务器上彻底删除</div>
+                    <h3>Delete confirmation</h3>
+                    <div class="text-muted">Please confirm whether really want to delete your account, this operation cannot be withdrawn, all of your account data will be completely deleted from the server</div>
                     <div class="py-3">
                         <form>
-                            <input id="confirm-passwd" type="password" class="form-control" placeholder="输入登录密码"
+                            <input id="confirm-passwd" type="password" class="form-control" placeholder="Enter login password"
                                 autocomplete="off">
                         </form>
                     </div>
@@ -454,12 +454,12 @@
                         <div class="row">
                             <div class="col">
                                 <a href="#" class="btn w-100" data-bs-dismiss="modal">
-                                    取消
+                                    cancel
                                 </a>
                             </div>
                             <div class="col">
                                 <a href="#" id="confirm-destroy" class="btn btn-danger w-100" data-bs-dismiss="modal">
-                                    确认
+                                    confirm
                                 </a>
                             </div>
                         </div>
@@ -476,15 +476,15 @@
                 <div class="modal-status bg-success"></div>
                 <div class="modal-body text-center py-4">
                     <i class="ti ti-circle-check icon mb-2 text-green icon-lg" style="font-size:3.5rem;"></i>
-                    <h3>删除成功</h3>
-                    <p id="success-message" class="text-muted">删除成功</p>
+                    <h3>Delete the success</h3>
+                    <p id="success-message" class="text-muted">Delete the success</p>
                 </div>
                 <div class="modal-footer">
                     <div class="w-100">
                         <div class="row">
                             <div class="col">
                                 <a href="#" class="btn w-100" data-bs-dismiss="modal">
-                                    好
+                                    good
                                 </a>
                             </div>
                         </div>
@@ -501,15 +501,15 @@
                 <div class="modal-status bg-danger"></div>
                 <div class="modal-body text-center py-4">
                     <i class="ti ti-circle-x icon mb-2 text-danger icon-lg" style="font-size:3.5rem;"></i>
-                    <h3>删除失败</h3>
-                    <p id="error-message" class="text-muted">删除失败</p>
+                    <h3>Delete failed</h3>
+                    <p id="error-message" class="text-muted">Delete failed</p>
                 </div>
                 <div class="modal-footer">
                     <div class="w-100">
                         <div class="row">
                             <div class="col">
                                 <a href="#" class="btn btn-danger w-100" data-bs-dismiss="modal">
-                                    确认
+                                    confirm
                                 </a>
                             </div>
                         </div>
@@ -532,7 +532,7 @@
 
         var clipboard = new ClipboardJS('.copy');
         clipboard.on('success', function(e) {
-            $('#success-message').text('已复制到剪切板');
+            $('#success-message').text('Has been copied to the clipboard');
             $('#success-dialog').modal('show');
         });
 

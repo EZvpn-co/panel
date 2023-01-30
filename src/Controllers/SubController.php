@@ -509,7 +509,7 @@ final class SubController extends BaseController
 
         $ProxyGroup = "SelectGroup = select, Turkey-10-DY-TJ01, AutoTestGroup, DIRECT, REJECT
 AutoTestGroup = url-test, Turkey-10-DY-TJ01, url=http://www.gstatic.com/generate_204, interval=600, tolerance=100, timeout=5, hidden=true";
-        $Rule = "";
+        $Rule = "FINAL,Proxy";
 
         // $ProxyGroups = self::getSurgeConfProxyGroup(
         //     $nodes,

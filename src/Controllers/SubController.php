@@ -555,13 +555,13 @@ final class SubController extends BaseController
                 $return = ($item['name'] . ' = custom, ' . $item['server'] . ', ' . $item['port'] . ', ' . $item['cipher'] . ', ' . $item['password'] . ', https://raw.githubusercontent.com/lhie1/Rules/master/SSEncrypt.module' . self::getSurgeObfs($item));
                 break;
             case 'vmess':
-                if (!in_array($item['net'], ['ws', 'tcp'])) {
+                if (!in_array($item['network'], ['ws', 'tcp'])) {
                     break;
                 }
                 $return = $item['name'] . ' = vmess, '
-                    . $item['add'] . ', '
+                    . $item['server'] . ', '
                     . $item['port']
-                    . ', username = ' . $item['id']
+                    . ', username = ' . $item['uuid']
                     . ', vmess-aead = true, tfo = true, udp-relay = true';
 
                 if ($item['tls'] == 'tls') {
@@ -573,7 +573,7 @@ final class SubController extends BaseController
                         $return .= ', sni=' . $item['sni'];
                     }
                 }
-                if ($item['net'] == 'ws') {
+                if ($item['network'] == 'ws') {
                     $return .= ', ws=true';
                     if (isset($item['path']) && $item['path']) {
                         $return .= ', ws-path=' . $item['path'];

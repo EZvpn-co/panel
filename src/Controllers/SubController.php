@@ -546,7 +546,7 @@ final class SubController extends BaseController
                 if ($item['obfs'] == 'v2ray') {
                     break;
                 }
-                $return = ($item['remark'] . ' = custom, ' . $item['address'] . ', ' . $item['port'] . ', ' . $item['method'] . ', ' . $item['passwd'] . ', https://raw.githubusercontent.com/lhie1/Rules/master/SSEncrypt.module' . self::getSurgeObfs($item));
+                $return = ($item['name'] . ' = custom, ' . $item['server'] . ', ' . $item['port'] . ', ' . $item['cipher'] . ', ' . $item['password'] . ', https://raw.githubusercontent.com/lhie1/Rules/master/SSEncrypt.module' . self::getSurgeObfs($item));
                 break;
                 // case 'vmess':
                 //     if (!in_array($item['net'], ['ws', 'tcp'])) {

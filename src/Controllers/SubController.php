@@ -366,6 +366,13 @@ final class SubController extends BaseController
 
         $General = (isset($Configs['General']) ? self::getSurgeConfGeneral($Configs['General']) : '');
         $Proxies = (isset($Configs['Proxy']) ? self::getSurgeConfProxy($Configs['Proxy']) : '');
+        $NodesProxies = "ProxyHTTP = http, 1.2.3.4, 443, username, password
+ProxyHTTPS = https, 1.2.3.4, 443, username, password, skip-cert-verify=true, sni=www.google.com
+ProxySOCKS5 = socks5, 1.2.3.4, 443, username, password, udp-relay=false
+ProxySOCKS5TLS = socks5-tls, 1.2.3.4, 443, username, password, skip-cert-verify=true, sni=www.google.com
+ProxySS = ss, 1.2.3.4, 8000, encrypt-method=chacha20-ietf-poly1305, password=abcd1234, udp-relay=false, obfs=http, obfs-host=www.google.com, obfs-uri=/
+ProxyVMess = vmess, 1.2.3.4, 8000, username=0233d11c-15a4-47d3-ade3-48ffca0ce119, udp-relay=false, ws=true, tls=true, ws-path=/v2, ws-headers=X-Header-1:value|X-Header-2:value, skip-cert-verify=true, sni=www.google.com, vmess-aead=true
+ProxyTrojan = trojan, 192.168.20.6, 443, password=password1, udp-relay=false, skip-cert-verify=true, sni=www.google.com";
         $ProxyGroup = "";
         $Rule = "";
 
@@ -387,7 +394,11 @@ final class SubController extends BaseController
             $General,
             '',
             '[Proxy]',
+            '# Build in policy',
             $Proxies,
+            '',
+            '# Supported proxies',
+            $NodesProxies,
             '',
             '[Proxy Group]',
             $ProxyGroup,

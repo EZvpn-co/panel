@@ -285,8 +285,6 @@
                                                     class="btn btn-primary">
                                                     The import Clash
                                                 </a>
-                                            </div>
-                                            <div class="btn-list justify-content-start">
                                                 <a data-clipboard-text="{$getUniversalSub}/surfboard" class="copy btn btn-primary">
                                                     Copy Surfboard
                                                 </a>

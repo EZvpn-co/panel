@@ -33,7 +33,9 @@ $_ENV['Clash_Config'] = [
 
 
 $_ENV['Surfboard_Config'] = [
-    'proxy-groups' => [
+    'Checks' => [],
+    'General' => [],
+    'ProxyGroups' => [
         [
             'name' => '🔰 Select',
             'type' => 'select',
@@ -49,7 +51,7 @@ $_ENV['Surfboard_Config'] = [
             'proxies' => [],
         ],
     ],
-    'rules' => [
+    'Rules' => [
         'MATCH,🔰 Select'
     ],
     // 'default' => [

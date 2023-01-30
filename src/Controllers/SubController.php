@@ -353,7 +353,7 @@ final class SubController extends BaseController
     public static function getSurfboard($user): string
     {
         $nodes = [];
-        $surf_config = $_ENV['Surfboard_Config'];
+        $Configs = $_ENV['Surfboard_Config'];
 
         //篩選出用戶能連接的節點
         $nodes_raw = Node::where('type', 1)
@@ -364,10 +364,17 @@ final class SubController extends BaseController
             })
             ->get();
 
-        $General = "";
-        $Proxies = "";
+        $General = (isset($Configs['General']) ? self::getSurgeConfGeneral($Configs['General']) : '');
+        $Proxies = (isset($Configs['Proxy']) ? self::getSurgeConfProxy($Configs['Proxy']) : '');
         $ProxyGroup = "";
         $Rule = "";
+
+        $ProxyGroups = self::getSurgeConfProxyGroup(
+            $nodes,
+            $Configs['ProxyGroups']
+        );
+        $ProxyGroup = self::fixSurgeProxyGroup($ProxyGroups, $Configs['Checks']);
+        $ProxyGroup = self::getSurgeProxyGroup2String($ProxyGroups);
 
         $Conf = [
             '# EZvpn ' . $_ENV['subUrl'] . $_SERVER['REQUEST_URI'],
@@ -390,6 +397,208 @@ final class SubController extends BaseController
         ];
 
         return implode(PHP_EOL, $Conf);
+    }
+
+    public static function getSurgeConfGeneral($General)
+    {
+        $return = '';
+        if (count($General) != 0) {
+            foreach ($General as $key => $value) {
+                $return .= $key . ' = ' . $value . PHP_EOL;
+            }
+        }
+        return $return;
+    }
+
+    /**
+     * Surge 配置中的 Proxy
+     *
+     * @param array $Proxys 自定义配置中的额外 Proxy
+     *
+     * @return string
+     */
+    public static function getSurgeConfProxy($Proxys)
+    {
+        $return = '';
+        if (count($Proxys) != 0) {
+            foreach ($Proxys as $value) {
+                if (!preg_match('/(\[General|Replica|Proxy|Proxy\sGroup|Rule|Host|URL\sRewrite|Header\sRewrite|MITM|Script\])/', $value)) {
+                    $return .= $value . PHP_EOL;
+                }
+            }
+        }
+        return $return;
+    }
+
+
+
+    public static function getMatchProxy($Proxy, $Rule)
+    {
+        $return = null;
+        switch (true) {
+            case (isset($Rule['content']['class'])):
+                if (in_array($Proxy['class'], $Rule['content']['class'])) {
+                    if (isset($Rule['content']['regex'])) {
+                        if (preg_match('/' . $Rule['content']['regex'] . '/i', $Proxy['remark'])) {
+                            $return = $Proxy;
+                        }
+                    } else {
+                        $return = $Proxy;
+                    }
+                }
+                break;
+            case (isset($Rule['content']['noclass'])):
+                if (!in_array($Proxy['class'], $Rule['content']['noclass'])) {
+                    if (isset($Rule['content']['regex'])) {
+                        if (preg_match('/' . $Rule['content']['regex'] . '/i', $Proxy['remark'])) {
+                            $return = $Proxy;
+                        }
+                    } else {
+                        $return = $Proxy;
+                    }
+                }
+                break;
+            case (!isset($Rule['content']['class'])
+                && !isset($Rule['content']['noclass'])
+                && isset($Rule['content']['regex'])
+                && preg_match('/' . $Rule['content']['regex'] . '/i', $Proxy['remark'])
+            ):
+                $return = $Proxy;
+                break;
+        }
+
+        return $return;
+    }
+
+    /**
+     * Surge 配置中的 ProxyGroup
+     *
+     * @param array $Nodes       全部节点数组
+     * @param array $ProxyGroups Surge 策略组定义
+     *
+     * @return array
+     */
+    public static function getSurgeConfProxyGroup($Nodes, $ProxyGroups)
+    {
+        $return = [];
+        foreach ($ProxyGroups as $ProxyGroup) {
+            if (in_array($ProxyGroup['type'], ['select', 'url-test', 'fallback', 'load-balance'])) {
+                $proxies = [];
+                if (
+                    isset($ProxyGroup['content']['left-proxies'])
+                    && count($ProxyGroup['content']['left-proxies']) != 0
+                ) {
+                    $proxies = $ProxyGroup['content']['left-proxies'];
+                }
+                foreach ($Nodes as $item) {
+                    $item = self::getMatchProxy($item, $ProxyGroup);
+                    if ($item !== null && !in_array($item['remark'], $proxies)) {
+                        $proxies[] = $item['remark'];
+                    }
+                }
+                if (isset($ProxyGroup['content']['right-proxies'])) {
+                    $proxies = array_merge($proxies, $ProxyGroup['content']['right-proxies']);
+                }
+                $ProxyGroup['proxies'] = $proxies;
+            }
+            $return[] = $ProxyGroup;
+        }
+
+        return $return;
+    }
+
+    /**
+     * Surge ProxyGroup 去除无用策略组
+     *
+     * @param array $ProxyGroups 策略组
+     * @param array $checks      要检查的策略组名
+     *
+     * @return array
+     */
+    public static function fixSurgeProxyGroup($ProxyGroups, $checks)
+    {
+        if (count($checks) == 0) {
+            return $ProxyGroups;
+        }
+        $clean_names = [];
+        $newProxyGroups = [];
+        foreach ($ProxyGroups as $ProxyGroup) {
+            if (in_array($ProxyGroup['name'], $checks) && count($ProxyGroup['proxies']) == 0) {
+                $clean_names[] = $ProxyGroup['name'];
+                continue;
+            }
+            $newProxyGroups[] = $ProxyGroup;
+        }
+        if (count($clean_names) >= 1) {
+            $ProxyGroups = $newProxyGroups;
+            $newProxyGroups = [];
+            foreach ($ProxyGroups as $ProxyGroup) {
+                if (!in_array($ProxyGroup['name'], $checks) && $ProxyGroup['type'] != 'ssid') {
+                    $newProxies = [];
+                    foreach ($ProxyGroup['proxies'] as $proxie) {
+                        if (!in_array($proxie, $clean_names)) {
+                            $newProxies[] = $proxie;
+                        }
+                    }
+                    $ProxyGroup['proxies'] = $newProxies;
+                }
+                $newProxyGroups[] = $ProxyGroup;
+            }
+        }
+
+        return $newProxyGroups;
+    }
+
+    /**
+     * Surge ProxyGroup 转字符串
+     *
+     * @param array $ProxyGroups Surge 策略组定义
+     *
+     * @return string
+     */
+    public static function getSurgeProxyGroup2String($ProxyGroups)
+    {
+        $return = '';
+        foreach ($ProxyGroups as $ProxyGroup) {
+            $str = '';
+            if (in_array($ProxyGroup['type'], ['select', 'url-test', 'fallback', 'load-balance'])) {
+                $proxies = implode(', ', $ProxyGroup['proxies']);
+                if (in_array($ProxyGroup['type'], ['url-test', 'fallback', 'load-balance'])) {
+                    $str .= ($ProxyGroup['name']
+                        . ' = '
+                        . $ProxyGroup['type']
+                        . ', '
+                        . $proxies
+                        . ', url = ' . $ProxyGroup['url']
+                        . ', interval = ' . $ProxyGroup['interval']);
+                } else {
+                    $str .= ($ProxyGroup['name']
+                        . ' = '
+                        . $ProxyGroup['type']
+                        . ', '
+                        . $proxies);
+                }
+            } elseif ($ProxyGroup['type'] == 'ssid') {
+                $wifi = '';
+                foreach ($ProxyGroup['content'] as $key => $value) {
+                    $wifi .= ', "' . $key . '" = ' . $value;
+                }
+                $cellular = (isset($ProxyGroup['cellular'])
+                    ? ', cellular = ' . $ProxyGroup['cellular']
+                    : '');
+                $str .= ($ProxyGroup['name']
+                    . ' = '
+                    . $ProxyGroup['type']
+                    . ', default = '
+                    . $ProxyGroup['default']
+                    . $cellular
+                    . $wifi);
+            } else {
+                $str .= '';
+            }
+            $return .= $str . PHP_EOL;
+        }
+        return $return;
     }
 
     // SIP008 SS

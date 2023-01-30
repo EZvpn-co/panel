@@ -10,6 +10,7 @@ use App\Models\UserSubscribeLog;
 use App\Utils\Tools;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\Yaml\Yaml;
+use App\Services\Config;
 
 /**
  *  SubController
@@ -352,7 +353,7 @@ final class SubController extends BaseController
     // getSurfboard
     public static function getSurfboard($user): string
     {
-        $nodes = [];
+
         $Configs = $_ENV['Surfboard_Config'];
 
         //篩選出用戶能連接的節點
@@ -364,15 +365,122 @@ final class SubController extends BaseController
             })
             ->get();
 
+        $nodes = [];
+        foreach ($nodes_raw as $node_raw) {
+            $node_custom_config = \json_decode($node_raw->custom_config, true);
+            //檢查是否配置“前端/订阅中下发的服务器地址”
+            if (!\array_key_exists('server_user', $node_custom_config)) {
+                $server = $node_raw->server;
+            } else {
+                $server = $node_custom_config['server_user'];
+            }
+            switch ($node_raw->sort) {
+                case '0':
+                    $plugin = $node_custom_config['plugin'] ?? '';
+                    $plugin_option = $node_custom_config['plugin_option'] ?? null;
+                    // Clash 特定配置
+                    $udp = $node_custom_config['udp'] ?? true;
+
+                    $node = [
+                        'name' => $node_raw->name,
+                        'type' => 'ss',
+                        'server' => $server,
+                        // 'port' => (int) $user->port,
+                        'port' => (int) $node_custom_config['mu_port'],
+                        'password' => $user->passwd,
+                        // 'cipher' => $user->method,
+                        'cipher' => $node_custom_config['mu_encryption'],
+                        'udp' => $udp,
+                        'plugin' => $plugin,
+                        'plugin-opts' => $plugin_option,
+                    ];
+
+                    break;
+                case '11':
+                    $v2_port = $node_custom_config['v2_port'] ?? ($node_custom_config['offset_port_user'] ?? ($node_custom_config['offset_port_node'] ?? 443));
+                    $alter_id = $node_custom_config['alter_id'] ?? '0';
+                    $security = $node_custom_config['security'] ?? 'none';
+                    $encryption = $node_custom_config['encryption'] ?? 'auto';
+                    $network = $node_custom_config['network'] ?? '';
+                    $host = $node_custom_config['host'] ?? '';
+                    $allow_insecure = $node_custom_config['allow_insecure'] ?? false;
+                    $tls = \in_array($security, ['tls', 'xtls']) ? true : false;
+                    // Clash 特定配置
+                    $udp = $node_custom_config['udp'] ?? true;
+                    $ws_opts = $node_custom_config['ws-opts'] ?? $node_custom_config['ws_opts'] ?? null;
+                    $h2_opts = $node_custom_config['h2-opts'] ?? $node_custom_config['h2_opts'] ?? null;
+                    $http_opts = $node_custom_config['http-opts'] ?? $node_custom_config['http_opts'] ?? null;
+                    $grpc_opts = $node_custom_config['grpc-opts'] ?? $node_custom_config['grpc_opts'] ?? null;
+
+                    $node = [
+                        'name' => $node_raw->name,
+                        'type' => 'vmess',
+                        'server' => $server,
+                        'port' => (int) $v2_port,
+                        'uuid' => $user->uuid,
+                        'alterId' => (int) $alter_id,
+                        'cipher' => $encryption,
+                        'udp' => $udp,
+                        'tls' => $tls,
+                        'skip-cert-verify' => $allow_insecure,
+                        'servername' => $host,
+                        'network' => $network,
+                        'ws-opts' => $ws_opts,
+                        'h2-opts' => $h2_opts,
+                        'http-opts' => $http_opts,
+                        'grpc-opts' => $grpc_opts,
+                    ];
+
+                    break;
+                case '14':
+                    $trojan_port = $node_custom_config['trojan_port'] ?? ($node_custom_config['offset_port_user'] ?? ($node_custom_config['offset_port_node'] ?? 443));
+                    $network = $node_custom_config['network'] ?? \array_key_exists('grpc', $node_custom_config) && $node_custom_config['grpc'] === '1' ? 'grpc' : 'tcp';
+                    $host = $node_custom_config['host'] ?? '';
+                    $allow_insecure = $node_custom_config['allow_insecure'] ?? false;
+                    // Clash 特定配置
+                    $udp = $node_custom_config['udp'] ?? true;
+                    $ws_opts = $node_custom_config['ws-opts'] ?? $node_custom_config['ws_opts'] ?? null;
+                    $grpc_opts = $node_custom_config['grpc-opts'] ?? $node_custom_config['grpc_opts'] ?? null;
+
+                    $node = [
+                        'name' => $node_raw->name,
+                        'type' => 'trojan',
+                        'server' => $server,
+                        'sni' => $host,
+                        'port' => (int) $trojan_port,
+                        'password' => $user->uuid,
+                        'network' => $network,
+                        'udp' => $udp,
+                        'skip-cert-verify' => $allow_insecure,
+                        'ws-opts' => $ws_opts,
+                        'grpc-opts' => $grpc_opts,
+                    ];
+
+                    break;
+            }
+            if ($node === null) {
+                continue;
+            }
+            $nodes[] = $node;
+
+            // $indexes = [0, 1];
+            // foreach ($indexes as $index) {
+            //     $clash_config['proxy-groups'][$index]['proxies'][] = $node_raw->name;
+            // }
+        }
+
+        $Nodes = [];
         $General = (isset($Configs['General']) ? self::getSurgeConfGeneral($Configs['General']) : '');
         $Proxies = (isset($Configs['Proxy']) ? self::getSurgeConfProxy($Configs['Proxy']) : '');
-        $NodesProxies = "ProxyHTTP = http, 1.2.3.4, 443, username, password
-ProxyHTTPS = https, 1.2.3.4, 443, username, password, skip-cert-verify=true, sni=www.google.com
-ProxySOCKS5 = socks5, 1.2.3.4, 443, username, password, udp-relay=false
-ProxySOCKS5TLS = socks5-tls, 1.2.3.4, 443, username, password, skip-cert-verify=true, sni=www.google.com
-ProxySS = ss, 1.2.3.4, 8000, encrypt-method=chacha20-ietf-poly1305, password=abcd1234, udp-relay=false, obfs=http, obfs-host=www.google.com, obfs-uri=/
-ProxyVMess = vmess, 1.2.3.4, 8000, username=0233d11c-15a4-47d3-ade3-48ffca0ce119, udp-relay=false, ws=true, tls=true, ws-path=/v2, ws-headers=X-Header-1:value|X-Header-2:value, skip-cert-verify=true, sni=www.google.com, vmess-aead=true
-ProxyTrojan = trojan, 192.168.20.6, 443, password=password1, udp-relay=false, skip-cert-verify=true, sni=www.google.com";
+        $NodesProxies = "";
+        foreach ($nodes as $item) {
+            $out = self::getSurfboardURI($item);
+            if ($out !== null) {
+                $Nodes[] = $item;
+                $NodesProxies .= $out . PHP_EOL;
+            }
+        }
+
         $ProxyGroup = "";
         $Rule = "";
 
@@ -408,6 +516,73 @@ ProxyTrojan = trojan, 192.168.20.6, 443, password=password1, udp-relay=false, sk
         ];
 
         return implode(PHP_EOL, $Conf);
+    }
+
+    public static function getSurgeObfs(array $item): string
+    {
+        $ss_obfs_list = Config::getSupportParam('ss_obfs');
+        $plugin = '';
+        if (in_array($item['obfs'], $ss_obfs_list)) {
+            if (strpos($item['obfs'], 'http') !== false) {
+                $plugin .= ', obfs=http';
+            } else {
+                $plugin .= ', obfs=tls';
+            }
+            if ($item['obfs_param'] != '') {
+                $plugin .= ', obfs-host=' . $item['obfs_param'];
+            } else {
+                $plugin .= ', obfs-host=wns.windows.com';
+            }
+        }
+        return $plugin;
+    }
+
+    // getSurfboardURI
+    public static function getSurfboardURI(array $item)
+    {
+        $return = null;
+        switch ($item['type']) {
+            case 'ss':
+                if ($item['obfs'] == 'v2ray') {
+                    break;
+                }
+                $return = ($item['remark'] . ' = custom, ' . $item['address'] . ', ' . $item['port'] . ', ' . $item['method'] . ', ' . $item['passwd'] . ', https://raw.githubusercontent.com/lhie1/Rules/master/SSEncrypt.module' . self::getSurgeObfs($item));
+                break;
+                // case 'vmess':
+                //     if (!in_array($item['net'], ['ws', 'tcp'])) {
+                //         break;
+                //     }
+                //     $return = $item['remark'] . ' = vmess, '
+                //         . $item['add'] . ', '
+                //         . $item['port']
+                //         . ', username = ' . $item['id']
+                //         . ', vmess-aead = true, tfo = true, udp-relay = true';
+
+                //     if ($item['tls'] == 'tls') {
+                //         $return .= ', tls=true';
+                //         if ($item['verify_cert'] == false) {
+                //             $return .= ', skip-cert-verify=true';
+                //         }
+                //         if (isset($item['sni']) && $item['sni']) {
+                //             $return .= ', sni=' . $item['sni'];
+                //         }
+                //     }
+                //     if ($item['net'] == 'ws') {
+                //         $return .= ', ws=true';
+                //         if (isset($item['path']) && $item['path']) {
+                //             $return .= ', ws-path=' . $item['path'];
+                //         }
+                //         if (isset($item['host']) && $item['host']) {
+                //             $return .= ', ws-headers=host:' . $item['host'];
+                //         }
+                //     }
+                //     break;
+                // case 'trojan':
+                //     $return = $item['remark'] . ' = trojan,' . $item['address'] . ', ' . $item['port'] . ', password=' . $item['passwd'] . ',sni=' . $item['host'];
+                //     break;
+
+        }
+        return $return;
     }
 
     public static function getSurgeConfGeneral($General)

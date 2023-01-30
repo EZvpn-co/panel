@@ -104,6 +104,11 @@ final class LinkController extends BaseController
         );
     }
 
+
+
+
+
+
     // 传统 SS 订阅
     public static function getSS($user): string
     {

@@ -41,7 +41,7 @@ final class SubController extends BaseController
             ]);
         }
 
-        $subtype_list = ['json', 'clash', 'sip008'];
+        $subtype_list = ['json', 'clash', 'sip008', 'surfboard'];
         if (!\in_array($subtype, $subtype_list)) {
             return $response->withJson([
                 'ret' => 0,
@@ -58,7 +58,7 @@ final class SubController extends BaseController
             $sub_info = self::getClash($user);
         }
 
-        if ($subtype === 'surf' || $subtype === 'surfboard') {
+        if ($subtype === 'surfboard') {
             $sub_info = self::getSurfboard($user);
         }
 
@@ -86,7 +86,7 @@ final class SubController extends BaseController
             );
         }
 
-        if ($subtype === 'surf' || $subtype === 'surfboard') {
+        if ($subtype === 'surfboard') {
             return $response->write(
                 $sub_info
             );

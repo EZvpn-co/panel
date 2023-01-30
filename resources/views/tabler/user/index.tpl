@@ -267,7 +267,10 @@
                                         </div>
                                         <div class="tab-pane" id="android">
                                             <p>
-                                                Apply to Clash Subscriptions:<code>{$getUniversalSub}/clash</code>
+                                                Clash Subscriptions:<code>{$getUniversalSub}/clash</code>
+                                            </p>
+                                            <p>
+                                                Surfboard Subscriptions:<code>{$getUniversalSub}/surfboard</code>
                                             </p>
                                             <div class="btn-list justify-content-start">
                                                 <a data-clipboard-text="{$getUniversalSub}/clash"
@@ -281,6 +284,15 @@
                                                 <a href="clash://install-config?url={$getUniversalSub}/clash&name={$config['appName']}"
                                                     class="btn btn-primary">
                                                     The import Clash
+                                                </a>
+                                            </div>
+                                            <div class="btn-list justify-content-start">
+                                                <a data-clipboard-text="{$getUniversalSub}/surfboard" class="copy btn btn-primary">
+                                                    Copy Surfboard
+                                                </a>
+                                                <a href="/clients/Surfboard-Android.apk"
+                                                    class="btn btn-primary">
+                                                    Download Surfboard
                                                 </a>
                                             </div>
                                         </div>

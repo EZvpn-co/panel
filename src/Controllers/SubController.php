@@ -58,6 +58,10 @@ final class SubController extends BaseController
             $sub_info = self::getClash($user);
         }
 
+        if ($subtype === 'surf' || $subtype === 'surfboard') {
+            $sub_info = self::getSurfboard($user);
+        }
+
         if ($subtype === 'sip008') {
             $sub_info = self::getSIP008($user);
         }
@@ -338,7 +342,51 @@ final class SubController extends BaseController
         return Yaml::dump(\array_merge($clash, $clash_config), 3, 1);
     }
 
-    // SIP008 SS 订阅
+
+    // getSurfboard
+    public static function getSurfboard($user): string
+    {
+        $nodes = [];
+        $surf_config = $_ENV['Surfboard_Config'];
+
+        //篩選出用戶能連接的節點
+        $nodes_raw = Node::where('type', 1)
+            ->where('node_class', '<=', $user->class)
+            ->whereIn('node_group', [0, $user->node_group])
+            ->where(static function ($query): void {
+                $query->where('node_bandwidth_limit', '=', 0)->orWhereRaw('node_bandwidth < node_bandwidth_limit');
+            })
+            ->get();
+
+        $General = "";
+        $Proxies = "";
+        $ProxyGroup = "";
+        $Rule = "";
+
+        $Conf = [
+            '# EZvpn ' . $_ENV['subUrl'] . $_SERVER['REQUEST_URI'],
+            '',
+            '#---------------------------------------------------#',
+            '# Last update:' . date("Y-m-d h:i:s"),
+            '#---------------------------------------------------#',
+            '',
+            '[General]',
+            $General,
+            '',
+            '[Proxy]',
+            $Proxies,
+            '',
+            '[Proxy Group]',
+            $ProxyGroup,
+            '',
+            '[Rule]',
+            $Rule
+        ];
+
+        return implode(PHP_EOL, $Conf);
+    }
+
+    // SIP008 SS
     public static function getSIP008($user): void
     {
     }

@@ -282,14 +282,14 @@ final class SubController extends BaseController
                     $vless = $node_custom_config['enable_vless'];
                     $header = $node_custom_config['header'];
 
-                    if ($vless || $header) {
-                        break;
-                    }
+                    // if ($vless || $header) {
+                    //     break;
+                    // }
 
 
                     $node = [
                         'name' => $node_raw->name,
-                        'type' => $vless ? 'vless' : 'vmess',
+                        'type' => 'vmess',
                         'server' => $server,
                         'port' => (int) $v2_port,
                         'uuid' => $user->uuid,

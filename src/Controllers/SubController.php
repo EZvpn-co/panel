@@ -537,7 +537,7 @@ final class SubController extends BaseController
             $Rule,
             '',
             '[Panel]',
-            'EZvpn = title="EZvpn.co", content="EZvpn Panel", style=info'
+            'EZvpn = title="EZvpn", content="www.EZvpn.co\nt.me/ezvpn_co", style=info'
         ];
 
         return implode(PHP_EOL, $Conf);

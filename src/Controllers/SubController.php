@@ -379,7 +379,6 @@ final class SubController extends BaseController
         $nodes = [];
         foreach ($nodes_raw as $node_raw) {
             $node_custom_config = \json_decode($node_raw->custom_config, true);
-            //檢查是否配置“前端/订阅中下发的服务器地址”
             if (!\array_key_exists('server_user', $node_custom_config)) {
                 $server = $node_raw->server;
             } else {
@@ -389,7 +388,6 @@ final class SubController extends BaseController
                 case '0':
                     $plugin = $node_custom_config['plugin'] ?? '';
                     $plugin_option = $node_custom_config['plugin_option'] ?? null;
-                    // Clash 特定配置
                     $udp = $node_custom_config['udp'] ?? true;
 
                     $node = [
@@ -416,7 +414,6 @@ final class SubController extends BaseController
                     $host = $node_custom_config['host'] ?? '';
                     $allow_insecure = $node_custom_config['allow_insecure'] ?? false;
                     $tls = \in_array($security, ['tls', 'xtls']) ? true : false;
-                    // Clash 特定配置
                     $udp = $node_custom_config['udp'] ?? true;
                     $ws_opts = $node_custom_config['ws-opts'] ?? $node_custom_config['ws_opts'] ?? null;
                     $h2_opts = $node_custom_config['h2-opts'] ?? $node_custom_config['h2_opts'] ?? null;
@@ -510,7 +507,8 @@ final class SubController extends BaseController
             }
         }
 
-        $ProxyGroup = "";
+        $ProxyGroup = "SelectGroup = select, AutoTestGroup, DIRECT, REJECT
+AutoTestGroup = url-test, url=http://www.gstatic.com/generate_204, interval=600, tolerance=100, timeout=5, hidden=true";
         $Rule = "";
 
         // $ProxyGroups = self::getSurgeConfProxyGroup(

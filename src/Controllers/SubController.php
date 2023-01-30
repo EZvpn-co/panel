@@ -283,7 +283,7 @@ final class SubController extends BaseController
                     $header = $node_custom_config['header'];
 
                     if ($vless || $header) {
-
+                        $node = null;
                         break;
                     }
 
@@ -427,6 +427,7 @@ final class SubController extends BaseController
                     $header = $node_custom_config['header'];
 
                     if ($vless || $header) {
+                        $node = null;
                         break;
                     }
 

@@ -39,9 +39,7 @@ $_ENV['Surfboard_Config'] = [
         [
             'name' => '🔰 Select',
             'type' => 'select',
-            'proxies' => [
-                '⚡️ Best',
-            ],
+            'proxies' => [],
         ],
         [
             'name' => '⚡️ Best',

@@ -514,7 +514,7 @@ final class SubController extends BaseController
         $Rule = "FINAL, 🔓 EZvpn.co (" . $levelName . ")";
 
         $Conf = [
-            '#!MANAGED-CONFIG ' . $_ENV['subUrl'] . $_SERVER['REQUEST_URI'] . ' interval=60 strict=true',
+            '#!MANAGED-CONFIG ' . $_ENV['subUrl'] . $_SERVER['REQUEST_URI'] . ' interval=900 strict=true',
             '',
             '#---------------------------------------------------#',
             '# Last update:' . date("Y-m-d h:i:s"),
@@ -534,7 +534,10 @@ final class SubController extends BaseController
             $ProxyGroup,
             '',
             '[Rule]',
-            $Rule
+            $Rule,
+            '',
+            '[Panel]',
+            'EZvpn = title="EZvpn.co", content="EZvpn Panel", style=info'
         ];
 
         return implode(PHP_EOL, $Conf);

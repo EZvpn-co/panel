@@ -507,9 +507,9 @@ final class SubController extends BaseController
             }
         }
 
-        $ProxyGroup = "EZvpn = select, Turkey-10-DY-TJ01, AutoTestGroup, DIRECT, REJECT
-AutoTestGroup = url-test, Turkey-10-DY-TJ01, url=http://www.gstatic.com/generate_204, interval=600, tolerance=100, timeout=5, hidden=true";
-        $Rule = "FINAL,EZvpn";
+        $ProxyGroup = "🔓 EZvpn.co = select, Turkey-10-DY-TJ01, ⚡️ Best, DIRECT, REJECT
+        ⚡️ Best = url-test, Turkey-10-DY-TJ01, url=http://www.gstatic.com/generate_204, interval=600, tolerance=100, timeout=5, hidden=true";
+        $Rule = "FINAL, 🔓 EZvpn.co";
 
         // $ProxyGroups = self::getSurgeConfProxyGroup(
         //     $nodes,

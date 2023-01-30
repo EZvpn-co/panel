@@ -502,7 +502,7 @@ final class SubController extends BaseController
         foreach ($nodes as $item) {
             $out = self::getSurfboardURI($item);
             if ($out !== null) {
-                $NodesGroup[] = $item->name;
+                $NodesGroup[] = $item['name'];
                 $NodesProxies .= $out . PHP_EOL;
             }
         }

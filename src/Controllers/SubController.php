@@ -88,9 +88,29 @@ final class SubController extends BaseController
         }
 
         if ($subtype === 'surfboard') {
-            return $response->write(
-                $sub_info
-            );
+            return
+                $response->withHeader(
+                    'Content-type',
+                    ' application/octet-stream; charset=utf-8'
+                )
+                ->withHeader(
+                    'Cache-Control',
+                    'no-store, no-cache, must-revalidate'
+                )
+                ->withHeader(
+                    'Content-Disposition',
+                    ' attachment; filename=' . "EZvpn.co_" . time()
+                )
+                ->withHeader(
+                    'Subscription-Userinfo',
+                    (' upload=' . $user->u
+                        . '; download=' . $user->d
+                        . '; total=' . $user->transfer_enable
+                        . '; expire=' . strtotime($user->class_expire)
+                    )
+                )->write(
+                    $sub_info
+                );
         }
     }
 

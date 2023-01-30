@@ -32,6 +32,13 @@ $_ENV['streaming_media_unlock_multiplexing'] = [
 ];
 
 
+$_ENV['user_levels_name'] = [
+    0 => "Free",
+    1 => "Daily",
+    2 => "Daily+"
+];
+
+
 //E-Mail settings---------------------------------------------- ----------------------------------------------
 $_ENV['mail_filter'] = 0; //0: off; 1: whitelist mode; 2; blacklist mode;
 $_ENV['mail_filter_list'] = array("qq.com", "vip.qq.com", "foxmail.com");

@@ -369,12 +369,12 @@ final class SubController extends BaseController
         $ProxyGroup = "";
         $Rule = "";
 
-        $ProxyGroups = self::getSurgeConfProxyGroup(
-            $nodes,
-            $Configs['ProxyGroups']
-        );
-        $ProxyGroup = self::fixSurgeProxyGroup($ProxyGroups, $Configs['Checks']);
-        $ProxyGroup = self::getSurgeProxyGroup2String($ProxyGroups);
+        // $ProxyGroups = self::getSurgeConfProxyGroup(
+        //     $nodes,
+        //     $Configs['ProxyGroups']
+        // );
+        // $ProxyGroup = self::fixSurgeProxyGroup($ProxyGroups, $Configs['Checks']);
+        // $ProxyGroup = self::getSurgeProxyGroup2String($ProxyGroups);
 
         $Conf = [
             '# EZvpn ' . $_ENV['subUrl'] . $_SERVER['REQUEST_URI'],

@@ -41,21 +41,6 @@ $_ENV['Surfboard_Config'] = [
         'proxy-test-url' => 'http://www.gstatic.com/generate_204',
     ],
     'Proxy' => [],
-    'ProxyGroups' => [
-        // [
-        //     'name' => '🔰 Select',
-        //     'type' => 'select',
-        //     'proxies' => [],
-        // ],
-        [
-            'name' => '⚡️ Best',
-            'type' => 'url-test',
-            'url' => 'http://www.gstatic.com/generate_204',
-            'interval' => 300,
-            'proxies' => [],
-        ],
-    ],
-    'Rules' => [
-        'FINAL,Proxy'
-    ],
+    'ProxyGroups' => [],
+    'Rules' => [],
 ];

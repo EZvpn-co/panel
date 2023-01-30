@@ -502,23 +502,16 @@ final class SubController extends BaseController
         foreach ($nodes as $item) {
             $out = self::getSurfboardURI($item);
             if ($out !== null) {
-                $Nodes[] = $item;
+                $NodesGroup[] = $item->name;
                 $NodesProxies .= $out . PHP_EOL;
             }
         }
 
 
         $levelName = $_ENV['user_levels_name'][$user->class];
-        $ProxyGroup = "🔓 EZvpn.co (" . $levelName . ") = select, ⚡️ Best, Turkey-10-DY-TJ01
-        ⚡️ Best = url-test, Turkey-10-DY-TJ01, url=http://www.gstatic.com/generate_204, interval=600, tolerance=100, timeout=5, hidden=true";
+        $ProxyGroup = "🔓 EZvpn.co (" . $levelName . ") = select, ⚡️ Best, " . implode(",", $NodesGroup) . "
+        ⚡️ Best = url-test, " . implode(",", $NodesGroup) . ", url=http://www.gstatic.com/generate_204, interval=600, tolerance=100, timeout=5, hidden=true";
         $Rule = "FINAL, 🔓 EZvpn.co (" . $levelName . ")";
-
-        // $ProxyGroups = self::getSurgeConfProxyGroup(
-        //     $nodes,
-        //     $Configs['ProxyGroups']
-        // );
-        // $ProxyGroup = self::fixSurgeProxyGroup($ProxyGroups, $Configs['Checks']);
-        // $ProxyGroup = self::getSurgeProxyGroup2String($ProxyGroups);
 
         $Conf = [
             '#!MANAGED-CONFIG ' . $_ENV['subUrl'] . $_SERVER['REQUEST_URI'] . ' interval=60 strict=true',

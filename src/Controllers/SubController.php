@@ -530,9 +530,9 @@ final class SubController extends BaseController
 
 
         $levelName = $_ENV['user_levels_name'][$user->class];
-        $ProxyGroup = "🔓 EZvpn.co (" . $levelName . ") = select, ⚡️ Best, " . implode(",", $NodesGroup) . "
+        $ProxyGroup = "🔓 EZvpn.co (" . $levelName . ") [" . date("YYYYMMDD", strtotime($user->class_expire)) . "] = select, ⚡️ Best, " . implode(",", $NodesGroup) . "
         ⚡️ Best = url-test, " . implode(",", $NodesGroup) . ", url=http://www.gstatic.com/generate_204, interval=600, tolerance=100, timeout=5, hidden=true";
-        $Rule = "FINAL, 🔓 EZvpn.co (" . $levelName . ")";
+        $Rule = "FINAL, 🔓 EZvpn.co (" . $levelName . ") [" . date("YYYYMMDD", strtotime($user->class_expire)) . "]";
 
         $Conf = [
             '#!MANAGED-CONFIG ' . $_ENV['subUrl'] . $_SERVER['REQUEST_URI'] . ' interval=900 strict=true',

@@ -86,7 +86,7 @@ final class SubController extends BaseController
             );
         }
 
-        if ($subtype === 'surfboard') {
+        if ($subtype === 'surf' || $subtype === 'surfboard') {
             return $response->write(
                 $sub_info
             );

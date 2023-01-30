@@ -85,6 +85,12 @@ final class SubController extends BaseController
                 $sub_info
             );
         }
+
+        if ($subtype === 'surfboard') {
+            return $response->write(
+                $sub_info
+            );
+        }
     }
 
     public static function getJson($user)

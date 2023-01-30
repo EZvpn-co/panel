@@ -367,7 +367,7 @@ final class SubController extends BaseController
         $General = (isset($Configs['General']) ? self::getSurgeConfGeneral($Configs['General']) : '');
         $Proxies = (isset($Configs['Proxy']) ? self::getSurgeConfProxy($Configs['Proxy']) : '');
         $ProxyGroup = "";
-        $Rule = "FINAL,Proxy";
+        $Rule = "";
 
         // $ProxyGroups = self::getSurgeConfProxyGroup(
         //     $nodes,

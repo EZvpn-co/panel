@@ -509,7 +509,7 @@ final class SubController extends BaseController
 
 
         $levelName = $_ENV['user_levels_name'][$user->class];
-        $ProxyGroup = "🔓 EZvpn.co (" . $levelName . ") = select, ⚡️ Best, Turkey-10-DY-TJ01, DIRECT, REJECT
+        $ProxyGroup = "🔓 EZvpn.co (" . $levelName . ") = select, ⚡️ Best, Turkey-10-DY-TJ01
         ⚡️ Best = url-test, Turkey-10-DY-TJ01, url=http://www.gstatic.com/generate_204, interval=600, tolerance=100, timeout=5, hidden=true";
         $Rule = "FINAL, 🔓 EZvpn.co (" . $levelName . ")";
 

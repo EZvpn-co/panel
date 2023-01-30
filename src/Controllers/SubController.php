@@ -279,9 +279,12 @@ final class SubController extends BaseController
                     $http_opts = $node_custom_config['http-opts'] ?? $node_custom_config['http_opts'] ?? null;
                     $grpc_opts = $node_custom_config['grpc-opts'] ?? $node_custom_config['grpc_opts'] ?? null;
 
+                    $vless = $node_custom_config['enable_vless'];
+
+
                     $node = [
                         'name' => $node_raw->name,
-                        'type' => 'vmess',
+                        'type' => $vless ? 'vless' : 'vmess',
                         'server' => $server,
                         'port' => (int) $v2_port,
                         'uuid' => $user->uuid,
@@ -412,9 +415,12 @@ final class SubController extends BaseController
                     $http_opts = $node_custom_config['http-opts'] ?? $node_custom_config['http_opts'] ?? null;
                     $grpc_opts = $node_custom_config['grpc-opts'] ?? $node_custom_config['grpc_opts'] ?? null;
 
+                    $vless = $node_custom_config['enable_vless'];
+
+
                     $node = [
                         'name' => $node_raw->name,
-                        'type' => 'vmess',
+                        'type' => $vless ? 'vless' : 'vmess',
                         'server' => $server,
                         'port' => (int) $v2_port,
                         'uuid' => $user->uuid,
@@ -422,6 +428,7 @@ final class SubController extends BaseController
                         'cipher' => $encryption,
                         'udp' => $udp,
                         'tls' => $tls,
+
                         'skip-cert-verify' => $allow_insecure,
                         'servername' => $host,
                         'network' => $network,

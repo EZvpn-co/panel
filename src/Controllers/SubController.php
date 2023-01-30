@@ -282,9 +282,10 @@ final class SubController extends BaseController
                     $vless = $node_custom_config['enable_vless'];
                     $header = $node_custom_config['header'];
 
-                    // if ($vless || $header) {
-                    //     break;
-                    // }
+                    if ($vless || $header) {
+
+                        break;
+                    }
 
 
                     $node = [

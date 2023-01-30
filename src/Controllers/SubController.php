@@ -485,6 +485,7 @@ final class SubController extends BaseController
 
                     // surge
                     if ($network == 'grpc') {
+                        $node = null;
                         break;
                     }
 
@@ -515,7 +516,7 @@ final class SubController extends BaseController
             // }
         }
 
-        $Nodes = [];
+
         $General = (isset($Configs['General']) ? self::getSurgeConfGeneral($Configs['General']) : '');
         $Proxies = (isset($Configs['Proxy']) ? self::getSurgeConfProxy($Configs['Proxy']) : '');
         $NodesProxies = "";

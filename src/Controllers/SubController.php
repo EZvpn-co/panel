@@ -577,10 +577,9 @@ final class SubController extends BaseController
                 //         }
                 //     }
                 //     break;
-                // case 'trojan':
-                //     $return = $item['remark'] . ' = trojan,' . $item['address'] . ', ' . $item['port'] . ', password=' . $item['passwd'] . ',sni=' . $item['host'];
-                //     break;
-
+            case 'trojan':
+                $return = $item['name'] . ' = trojan,' . $item['server'] . ', ' . $item['port'] . ', password=' . $item['password'] . ',sni=' . $item['host'];
+                break;
         }
         return $return;
     }

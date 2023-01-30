@@ -554,35 +554,35 @@ final class SubController extends BaseController
                 }
                 $return = ($item['name'] . ' = custom, ' . $item['server'] . ', ' . $item['port'] . ', ' . $item['cipher'] . ', ' . $item['password'] . ', https://raw.githubusercontent.com/lhie1/Rules/master/SSEncrypt.module' . self::getSurgeObfs($item));
                 break;
-                // case 'vmess':
-                //     if (!in_array($item['net'], ['ws', 'tcp'])) {
-                //         break;
-                //     }
-                //     $return = $item['remark'] . ' = vmess, '
-                //         . $item['add'] . ', '
-                //         . $item['port']
-                //         . ', username = ' . $item['id']
-                //         . ', vmess-aead = true, tfo = true, udp-relay = true';
+            case 'vmess':
+                if (!in_array($item['net'], ['ws', 'tcp'])) {
+                    break;
+                }
+                $return = $item['name'] . ' = vmess, '
+                    . $item['add'] . ', '
+                    . $item['port']
+                    . ', username = ' . $item['id']
+                    . ', vmess-aead = true, tfo = true, udp-relay = true';
 
-                //     if ($item['tls'] == 'tls') {
-                //         $return .= ', tls=true';
-                //         if ($item['verify_cert'] == false) {
-                //             $return .= ', skip-cert-verify=true';
-                //         }
-                //         if (isset($item['sni']) && $item['sni']) {
-                //             $return .= ', sni=' . $item['sni'];
-                //         }
-                //     }
-                //     if ($item['net'] == 'ws') {
-                //         $return .= ', ws=true';
-                //         if (isset($item['path']) && $item['path']) {
-                //             $return .= ', ws-path=' . $item['path'];
-                //         }
-                //         if (isset($item['host']) && $item['host']) {
-                //             $return .= ', ws-headers=host:' . $item['host'];
-                //         }
-                //     }
-                //     break;
+                if ($item['tls'] == 'tls') {
+                    $return .= ', tls=true';
+                    if ($item['verify_cert'] == false) {
+                        $return .= ', skip-cert-verify=true';
+                    }
+                    if (isset($item['sni']) && $item['sni']) {
+                        $return .= ', sni=' . $item['sni'];
+                    }
+                }
+                if ($item['net'] == 'ws') {
+                    $return .= ', ws=true';
+                    if (isset($item['path']) && $item['path']) {
+                        $return .= ', ws-path=' . $item['path'];
+                    }
+                    if (isset($item['host']) && $item['host']) {
+                        $return .= ', ws-headers=host:' . $item['host'];
+                    }
+                }
+                break;
             case 'trojan':
                 $return = $item['name'] . ' = trojan,' . $item['server'] . ', ' . $item['port'] . ', password=' . $item['password'] . ',sni=' . $item['host'];
                 break;

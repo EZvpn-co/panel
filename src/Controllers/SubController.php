@@ -280,6 +280,11 @@ final class SubController extends BaseController
                     $grpc_opts = $node_custom_config['grpc-opts'] ?? $node_custom_config['grpc_opts'] ?? null;
 
                     $vless = $node_custom_config['enable_vless'];
+                    $header = $node_custom_config['header'];
+
+                    if ($vless || $header) {
+                        break;
+                    }
 
 
                     $node = [
@@ -292,6 +297,8 @@ final class SubController extends BaseController
                         'cipher' => $encryption,
                         'udp' => $udp,
                         'tls' => $tls,
+                        'header' => $header,
+
                         'skip-cert-verify' => $allow_insecure,
                         'servername' => $host,
                         'network' => $network,
@@ -416,6 +423,12 @@ final class SubController extends BaseController
                     $grpc_opts = $node_custom_config['grpc-opts'] ?? $node_custom_config['grpc_opts'] ?? null;
 
                     $vless = $node_custom_config['enable_vless'];
+                    $header = $node_custom_config['header'];
+
+                    if ($vless || $header) {
+                        break;
+                    }
+
 
 
                     $node = [
@@ -428,6 +441,7 @@ final class SubController extends BaseController
                         'cipher' => $encryption,
                         'udp' => $udp,
                         'tls' => $tls,
+                        'header' => $header,
 
                         'skip-cert-verify' => $allow_insecure,
                         'servername' => $host,

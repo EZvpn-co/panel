@@ -35,11 +35,14 @@ $_ENV['Clash_Config'] = [
 $_ENV['Surfboard_Config'] = [
     'Checks' => [],
     'General' => [],
+    'Proxy' => [
+        '🎃 Nothing = direct',
+    ],
     'ProxyGroups' => [
         [
             'name' => '🔰 Select',
             'type' => 'select',
-            'proxies' => [],
+            'proxies' => ['🎃 Nothing'],
         ],
         [
             'name' => '⚡️ Best',

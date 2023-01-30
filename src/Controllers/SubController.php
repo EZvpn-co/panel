@@ -367,7 +367,7 @@ final class SubController extends BaseController
         $General = (isset($Configs['General']) ? self::getSurgeConfGeneral($Configs['General']) : '');
         $Proxies = (isset($Configs['Proxy']) ? self::getSurgeConfProxy($Configs['Proxy']) : '');
         $ProxyGroup = "";
-        $Rule = "";
+        $Rule = "FINAL,Proxy";
 
         // $ProxyGroups = self::getSurgeConfProxyGroup(
         //     $nodes,
@@ -377,7 +377,7 @@ final class SubController extends BaseController
         // $ProxyGroup = self::getSurgeProxyGroup2String($ProxyGroups);
 
         $Conf = [
-            '# EZvpn ' . $_ENV['subUrl'] . $_SERVER['REQUEST_URI'],
+            '#!MANAGED-CONFIG ' . $_ENV['subUrl'] . $_SERVER['REQUEST_URI'] . ' interval=60 strict=true',
             '',
             '#---------------------------------------------------#',
             '# Last update:' . date("Y-m-d h:i:s"),

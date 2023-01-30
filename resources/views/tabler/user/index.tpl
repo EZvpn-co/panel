@@ -283,7 +283,7 @@
                                                 </a>
                                                 <a href="clash://install-config?url={$getUniversalSub}/clash&name={$config['appName']}"
                                                     class="btn btn-primary">
-                                                    The import Clash
+                                                    Import to Clash
                                                 </a>
                                                 <a data-clipboard-text="{$getUniversalSub}/surfboard" class="copy btn btn-primary">
                                                     Copy Surfboard
@@ -291,6 +291,10 @@
                                                 <a href="/clients/Surfboard-Android.apk"
                                                     class="btn btn-primary">
                                                     Download Surfboard
+                                                </a>
+                                                <a href="surfboard:///install-config?url={$getUniversalSub}/surfboard"
+                                                    class="btn btn-primary">
+                                                    Import to Surfboard
                                                 </a>
                                             </div>
                                         </div>

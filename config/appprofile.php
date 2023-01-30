@@ -34,16 +34,22 @@ $_ENV['Clash_Config'] = [
 
 $_ENV['Surfboard_Config'] = [
     'Checks' => [],
-    'General' => [],
+    'General' => [
+        'loglevel' => 'notify',
+        'dns-server' => 'system, 8.8.8.8, 8.8.4.4',
+        'skip-proxy' => '127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10, 17.0.0.0/8, localhost, *.local, *. crashlytics.com',
+        'proxy-test-url' => 'http://www.gstatic.com/generate_204',
+    ],
     'Proxy' => [
-        '🎃 Nothing = direct',
+        'On = direct',
+        'Off = reject',
     ],
     'ProxyGroups' => [
-        [
-            'name' => '🔰 Select',
-            'type' => 'select',
-            'proxies' => ['🎃 Nothing'],
-        ],
+        // [
+        //     'name' => '🔰 Select',
+        //     'type' => 'select',
+        //     'proxies' => [],
+        // ],
         [
             'name' => '⚡️ Best',
             'type' => 'url-test',
@@ -53,7 +59,7 @@ $_ENV['Surfboard_Config'] = [
         ],
     ],
     'Rules' => [
-        'MATCH,🔰 Select'
+        'FINAL,Proxy'
     ],
     // 'default' => [
     //     'Checks' => [],

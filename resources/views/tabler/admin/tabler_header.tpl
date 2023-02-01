@@ -40,12 +40,11 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3" style="filter: none;">
-                    <img src="/images/ez-logo-round_48x48.png" height="32" alt="SSPanel-UIM" class="navbar-brand-image">
+                    <img src="/images/ez-logo-round_96x96.png" height="65" alt="EZvpn" class="navbar-brand-image">
                 </h1>
                 <div class="navbar-nav flex-row order-md-last">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
-                            aria-label="Open user menu">
+                        <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
                             <span class="avatar avatar-sm"
                                 style="background-image: url({$user->gravatar})"></span>
                             <div class="d-none d-xl-block ps-2">
@@ -55,11 +54,11 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                             {if $user->is_dark_mode}
-                            <a id="switch_theme_mode" class="dropdown-item">Switch to the light color mode</a>
+                            <a id="switch_theme_mode" class="dropdown-item">Light mode</a>
                             {else}
-                            <a id="switch_theme_mode" class="dropdown-item">Switch to the dark mode</a>
+                            <a id="switch_theme_mode" class="dropdown-item">Dark mode</a>
                             {/if}
-                            <a href="/user/logout" class="dropdown-item">logout</a>
+                            <a href="/user/logout" class="dropdown-item">Logout</a>
                         </div>
                     </div>
                 </div>
@@ -72,7 +71,7 @@
                                         <i class="ti ti-home icon"></i>
                                     </span>
                                     <span class="nav-link-title">
-                                        General situation of
+                                        Home
                                     </span>
                                 </a>
                             </li>
@@ -83,7 +82,7 @@
                                         <i class="ti ti-settings icon"></i>
                                     </span>
                                     <span class="nav-link-title">
-                                        management
+                                        Management
                                     </span>
                                 </a>
                                 <div class="dropdown-menu">
@@ -91,15 +90,15 @@
                                         <div class="dropdown-menu-column">
                                             <a class="dropdown-item" href="/admin/setting">
                                                 <i class="ti ti-tool"></i>&nbsp;
-                                                Set up the
+                                                Settings
                                             </a>
                                             <a class="dropdown-item" href="/admin/user">
                                                 <i class="ti ti-users"></i>&nbsp;
-                                                The user
+                                                Users
                                             </a>
                                             <a class="dropdown-item" href="/admin/node">
                                                 <i class="ti ti-server-2"></i>&nbsp;
-                                                node
+                                                Nodes
                                             </a>
                                         </div>
                                     </div>
@@ -112,17 +111,17 @@
                                         <i class="ti ti-brand-hipchat icon"></i>
                                     </span>
                                     <span class="nav-link-title">
-                                        operating
+                                        Operating
                                     </span>
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="/admin/announcement">
                                         <i class="ti ti-speakerphone"></i>&nbsp;
-                                        The announcement
+                                        Announcement
                                     </a>
                                     <a class="dropdown-item" href="/admin/ticket">
                                         <i class="ti ti-messages"></i>&nbsp;
-                                        The repair order
+                                        Tickets
                                     </a>
                                 </div>
                             </li>
@@ -133,29 +132,29 @@
                                         <i class="ti ti-address-book icon"></i>
                                     </span>
                                     <span class="nav-link-title">
-                                        The log
+                                        Logs
                                     </span>
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="/admin/login">
                                         <i class="ti ti-login"></i>&nbsp;
-                                        The login
+                                        Login
                                     </a>
                                     <a class="dropdown-item" href="/admin/subscribe">
                                         <i class="ti ti-rss"></i>&nbsp;
-                                        To subscribe to
+                                        Subscription
                                     </a>
                                     <a class="dropdown-item" href="/admin/invite">
                                         <i class="ti ti-friends"></i>&nbsp;
-                                        The invitation
+                                        Invitation
                                     </a>
                                     <a class="dropdown-item" href="/admin/alive">
                                         <i class="ti ti-router"></i>&nbsp;
-                                        onlineIP
+                                        Onlines
                                     </a>
                                     <a class="dropdown-item" href="/admin/trafficlog">
                                         <i class="ti ti-arrows-up-down"></i>&nbsp;
-                                        Flow using
+                                        Traffic usages
                                     </a>
                                 </div>
                             </li>
@@ -166,17 +165,17 @@
                                         <i class="ti ti-shield-check icon"></i>
                                     </span>
                                     <span class="nav-link-title">
-                                        The audit
+                                        Audit
                                     </span>
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="/admin/detect">
                                         <i class="ti ti-barrier-block"></i>&nbsp;
-                                        The rules
+                                        Rules
                                     </a>
                                     <a class="dropdown-item" href="/admin/detect/log">
                                         <i class="ti ti-notes"></i>&nbsp;
-                                        record
+                                        Logs
                                     </a>
                                 </div>
                             </li>
@@ -187,7 +186,7 @@
                                         <i class="ti ti-coin icon"></i>
                                     </span>
                                     <span class="nav-link-title">
-                                        financial
+                                        Financial
                                     </span>
                                 </a>
                                 <div class="dropdown-menu">
@@ -195,23 +194,23 @@
                                         <div class="dropdown-menu-column">
                                             <a class="dropdown-item" href="/admin/product">
                                                 <i class="ti ti-list-details"></i>&nbsp;
-                                                goods
+                                                Products
                                             </a>
                                             <a class="dropdown-item" href="/admin/order">
                                                 <i class="ti ti-receipt"></i>&nbsp;
-                                                The order
+                                                Orders
                                             </a>
                                             <a class="dropdown-item" href="/admin/invoice">
                                                 <i class="ti ti-file-dollar"></i>&nbsp;
-                                                bill
+                                                Bills
                                             </a>
                                             <a class="dropdown-item" href="/admin/coupon">
                                                 <i class="ti ti-ticket"></i>&nbsp;
-                                                Promo code
+                                                Off code
                                             </a>
                                             <a class="dropdown-item" href="/admin/giftcard">
                                                 <i class="ti ti-gift"></i>&nbsp;
-                                                The gift card
+                                                Gift card
                                             </a>
                                         </div>
                                     </div>
@@ -223,7 +222,7 @@
                                         <i class="ti ti-arrow-back-up icon"></i>
                                     </span>
                                     <span class="nav-link-title">
-                                        return
+                                        User center
                                     </span>
                                 </a>
                             </li>

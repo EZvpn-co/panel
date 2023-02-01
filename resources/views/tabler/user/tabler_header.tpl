@@ -39,7 +39,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3" style="filter: none;">
-                    <img src="/images/ez-logo-round_48x48.png" height="32" alt="EZvpn" class="navbar-brand-image">
+                    <img src="/images/ez-logo-round_96x96.png" height="65" alt="EZvpn" class="navbar-brand-image">
                 </h1>
                 <div class="navbar-nav flex-row order-md-last">
                     <div class="nav-item dropdown">
@@ -54,11 +54,11 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                             {if $user->is_dark_mode}
-                            <a id="switch_theme_mode" class="dropdown-item">Switch to the light color mode</a>
+                            <a id="switch_theme_mode" class="dropdown-item">Light mode</a>
                             {else}
-                            <a id="switch_theme_mode" class="dropdown-item">Switch to the dark mode</a>
+                            <a id="switch_theme_mode" class="dropdown-item">Dark mode</a>
                             {/if}
-                            <a href="/user/logout" class="dropdown-item">logout</a>
+                            <a href="/user/logout" class="dropdown-item">Logout</a>
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                                         <i class="ti ti-home icon"></i>
                                     </span>
                                     <span class="nav-link-title">
-                                        The home page
+                                        Home
                                     </span>
                                 </a>
                             </li>
@@ -82,7 +82,7 @@
                                         <i class="ti ti-user icon"></i>
                                     </span>
                                     <span class="nav-link-title">
-                                        my
+                                        Account
                                     </span>
                                 </a>
                                 <div class="dropdown-menu">
@@ -90,21 +90,21 @@
                                         <div class="dropdown-menu-column">
                                             <a class="dropdown-item" href="/user/profile">
                                                 <i class="ti ti-info-square"></i>&nbsp;
-                                                Account information
+                                                Info
                                             </a>
                                             <a class="dropdown-item" href="/user/edit">
                                                 <i class="ti ti-edit"></i>&nbsp;
-                                                Data modification
+                                                Edit profile
                                             </a>
                                             {if $config['enable_ticket'] == true}
                                                 <a class="dropdown-item" href="/user/ticket">
                                                     <i class="ti ti-ticket"></i>&nbsp;
-                                                    The work order system
+                                                    Ticketing
                                                 </a>
                                             {/if}
                                             <a class="dropdown-item" href="/user/invite">
                                                 <i class="ti ti-friends"></i>&nbsp;
-                                                Invitation to register
+                                                Invitation
                                             </a>
                                         </div>
                                     </div>
@@ -117,17 +117,17 @@
                                         <i class="ti ti-brand-telegram icon"></i>
                                     </span>
                                     <span class="nav-link-title">
-                                        use
+                                        Use
                                     </span>
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="/user/server">
                                         <i class="ti ti-server"></i>&nbsp;
-                                        The node list
+                                        Servers
                                     </a>
                                     <a class="dropdown-item" href="/user/media">
                                         <i class="ti ti-key"></i>&nbsp;
-                                        Streaming media unlock
+                                        Media streaming
                                     </a>
                                 </div>
                             </li>
@@ -138,18 +138,18 @@
                                         <i class="ti ti-dots-circle-horizontal icon"></i>
                                     </span>
                                     <span class="nav-link-title">
-                                        More and more
+                                        EZvpn
                                     </span>
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="/user/announcement">
                                         <i class="ti ti-speakerphone"></i>&nbsp;
-                                        Site announcement
+                                        Announcement
                                     </a>
                                     {if $config['subscribeLog_show'] == true && $config['subscribeLog'] == true}
                                         <a class="dropdown-item" href="/user/subscribe_log">
                                             <i class="ti ti-rss"></i></i>&nbsp;
-                                            Subscribe to the journal
+                                            Subscribtion logs
                                         </a>
                                     {/if}
                                 </div>
@@ -161,17 +161,17 @@
                                         <i class="ti ti-shield-check icon"></i>
                                     </span>
                                     <span class="nav-link-title">
-                                        The audit
+                                        Audit
                                     </span>
                                 </a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="/user/detect">
                                         <i class="ti ti-barrier-block"></i>&nbsp;
-                                        Auditing rules
+                                        Rules
                                     </a>
                                     <a class="dropdown-item" href="/user/detect/log">
                                         <i class="ti ti-notes"></i>&nbsp;
-                                        The audit log
+                                        Logs
                                     </a>
                                 </div>
                             </li>
@@ -182,7 +182,7 @@
                                         <i class="ti ti-building-store icon"></i>
                                     </span>
                                     <span class="nav-link-title">
-                                        The store
+                                        Store
                                     </span>
                                 </a>
                                 <div class="dropdown-menu">
@@ -190,11 +190,11 @@
                                         <div class="dropdown-menu-column">
                                             <a class="dropdown-item" href="/user/shop">
                                                 <i class="ti ti-shopping-cart"></i>&nbsp;
-                                                Plan to buy
+                                                Buy plan
                                             </a>
                                             <a class="dropdown-item" href="/user/code">
                                                 <i class="ti ti-checklist"></i>&nbsp;
-                                                Accounts prepaid phone
+                                                Charge balance
                                             </a>
                                         </div>
                                     </div>
@@ -207,7 +207,7 @@
                                             <i class="ti ti-settings icon"></i>
                                         </span>
                                         <span class="nav-link-title">
-                                            management
+                                            Admin
                                         </span>
                                     </a>
                                 </li>

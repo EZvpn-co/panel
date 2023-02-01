@@ -14,7 +14,7 @@
                         <div class="card-inner">
                             <p>Goods not overlay, the effect of the new goods will cover the old goods.</p>
                             <p>When buying a new package, if not close the old set automatic renewal, the automatic renewal of the old package still take effect.</p>
-                            <p><i class="mdi mdi-currency-usd icon-lg"></i>Current balance:<font color="#399AF2" size="5">{$user->money}</font> yuan</p>
+                            <p><i class="mdi mdi-currency-usd icon-lg"></i>Current balance:<font color="#399AF2" size="5">{$user->money}</font> $</p>
                         </div>
                     </div>
                 </div>

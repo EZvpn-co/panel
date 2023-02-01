@@ -28,7 +28,7 @@
                                 <li>Specific please see the announcement invited rebate rules, or ask the administrator by work order system</li>
                                 <li>Part of the goods of the rebate rate may not follow the above</li>
                             </ul>
-                            <p>Your current total rebate by inviting friends <code>{$paybacks_sum}</code> yuan</p>
+                            <p>Your current total rebate by inviting friends <code>{$paybacks_sum}</code> $</p>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                                                 {else}
                                                     <td>Has been cancelled</td>
                                                 {/if}
-                                                <td>{$payback->ref_get} yuan</td>
+                                                <td>{$payback->ref_get}$</td>
                                                 <td>{$payback->fraud_detect}</td>
                                                 <td>{$payback->datetime}</td>
                                             </tr>

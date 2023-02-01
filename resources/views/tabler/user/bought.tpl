@@ -40,7 +40,7 @@
                                                 <td>{$shop->datetime()}</td>
                                                 <td>{$shop->shop()->name}</td>
                                                 <td>{$shop->shop()->content()}</td>
-                                                <td>{$shop->price} yuan</td>
+                                                <td>{$shop->price} $</td>
                                                 <td>{$shop->renew()}</td>
                                                 <td>{$shop->autoResetBandwidthString()}</td>
                                                 <td>

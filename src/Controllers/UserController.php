@@ -101,7 +101,7 @@ final class UserController extends BaseController
             ->where('usedatetime', '>', date('Y-m-d H:i:s', $time))
             ->first();
 
-        if ($codes !== null && strpos($codes->code, '充值') !== false) {
+        if ($codes !== null && strpos($codes->code, 'Recharge') !== false) {
             return $response->withJson([
                 'ret' => 1,
             ]);
@@ -118,12 +118,12 @@ final class UserController extends BaseController
     {
         $code = trim($request->getParam('code'));
         if ($code === '') {
-            return ResponseHelper::error($response, '请填写充值码');
+            return ResponseHelper::error($response, 'Please fill in the recharge code');
         }
 
         $codeq = Code::where('code', $code)->where('isused', 0)->first();
         if ($codeq === null) {
-            return ResponseHelper::error($response, '没有这个充值码');
+            return ResponseHelper::error($response, 'There is no such recharge code');
         }
 
         $user = $this->user;
@@ -143,7 +143,7 @@ final class UserController extends BaseController
 
             return $response->withJson([
                 'ret' => 1,
-                'msg' => '兑换成功，金额为 ' . $codeq->number . ' 元',
+                'msg' => 'Exchange successful, the amount is ' . $codeq->number . '$',
             ]);
         }
 
@@ -186,21 +186,21 @@ final class UserController extends BaseController
         if ($code === '') {
             return $response->withJson([
                 'ret' => 0,
-                'msg' => '二维码不能为空',
+                'msg' => 'QR code cannot be empty',
             ]);
         }
         $user = $this->user;
         $ga = new GA();
         $rcode = $ga->verifyCode($user->ga_token, $code);
-        if (! $rcode) {
+        if (!$rcode) {
             return $response->withJson([
                 'ret' => 0,
-                'msg' => '测试错误',
+                'msg' => 'test error',
             ]);
         }
         return $response->withJson([
             'ret' => 1,
-            'msg' => '测试成功',
+            'msg' => 'test was successful',
         ]);
     }
 
@@ -213,7 +213,7 @@ final class UserController extends BaseController
         if ($enable === '') {
             return $response->withJson([
                 'ret' => 0,
-                'msg' => '选项无效',
+                'msg' => 'Invalid option',
             ]);
         }
         $user = $this->user;
@@ -221,7 +221,7 @@ final class UserController extends BaseController
         $user->save();
         return $response->withJson([
             'ret' => 1,
-            'msg' => '设置成功',
+            'msg' => 'Successfully set',
         ]);
     }
 
@@ -272,10 +272,10 @@ final class UserController extends BaseController
             ->orderBy('datetime', 'desc')
             ->paginate(15, ['*'], 'page', $pageNum);
 
-        // 登录IP
+        // login IP
         $totallogin = LoginIp::where('userid', '=', $this->user->id)->where('type', '=', 0)->orderBy('datetime', 'desc')->take(10)->get();
 
-        // 使用IP
+        // use IP
         $userip = [];
         $iplocation = new QQWry();
         $total = Ip::where('datetime', '>=', \time() - 300)->where('userid', '=', $this->user->id)->get();
@@ -285,7 +285,7 @@ final class UserController extends BaseController
             if ($is_node) {
                 continue;
             }
-            if (! isset($userip[$single->ip])) {
+            if (!isset($userip[$single->ip])) {
                 $location = $iplocation->getlocation($single->ip);
                 $userip[$single->ip] = iconv('gbk', 'utf-8//IGNORE', $location['country'] . $location['area']);
             }
@@ -369,13 +369,13 @@ final class UserController extends BaseController
 
             $unlock = StreamMedia::where('node_id', $node_id)
                 ->orderBy('id', 'desc')
-                ->where('created_at', '>', \time() - 86460) // 只获取最近一天零一分钟内上报的数据
+                ->where('created_at', '>', \time() - 86460) // Only get the data reported within the last day and one minute
                 ->first();
 
             if ($unlock !== null && $node !== null) {
                 $details = \json_decode($unlock->result, true);
-                $details = str_replace('Originals Only', '仅限自制', $details);
-                $details = str_replace('Oversea Only', '仅限海外', $details);
+                // $details = str_replace('Originals Only', '仅限自制', $details);
+                // $details = str_replace('Oversea Only', '仅限海外', $details);
 
                 foreach ($details as $key => $value) {
                     $info = [
@@ -394,13 +394,13 @@ final class UserController extends BaseController
                 $key_node = Node::where('id', $key)->first();
                 $value_node = StreamMedia::where('node_id', $value)
                     ->orderBy('id', 'desc')
-                    ->where('created_at', '>', \time() - 86460) // 只获取最近一天零一分钟内上报的数据
+                    ->where('created_at', '>', \time() - 86460) // Only get the data reported within the last day and one minute
                     ->first();
 
                 if ($value_node !== null) {
                     $details = \json_decode($value_node->result, true);
-                    $details = str_replace('Originals Only', '仅限自制', $details);
-                    $details = str_replace('Oversea Only', '仅限海外', $details);
+                    // $details = str_replace('Originals Only', '仅限自制', $details);
+                    // $details = str_replace('Oversea Only', '仅限海外', $details);
 
                     $info = [
                         'node_name' => $key_node->name,
@@ -458,7 +458,7 @@ final class UserController extends BaseController
             ->paginate(15, ['*'], 'page', $pageNum);
 
         $paybacks_sum = Payback::where('ref_by', $this->user->id)->sum('ref_get');
-        if (! $paybacks_sum) {
+        if (!$paybacks_sum) {
             $paybacks_sum = 0;
         }
 
@@ -484,26 +484,26 @@ final class UserController extends BaseController
         $num = $request->getParam('num');
         $num = trim($num);
 
-        if (! Tools::isInt($num) || $price < 0 || $num <= 0) {
-            return ResponseHelper::error($response, '非法请求');
+        if (!Tools::isInt($num) || $price < 0 || $num <= 0) {
+            return ResponseHelper::error($response, 'Illegal request');
         }
 
         $amount = $price * $num;
 
         $user = $this->user;
 
-        if (! $user->isLogin) {
-            return $response->withJson([ 'ret' => -1 ]);
+        if (!$user->isLogin) {
+            return $response->withJson(['ret' => -1]);
         }
 
         if ($user->money < $amount) {
-            return ResponseHelper::error($response, '余额不足，总价为' . $amount . '元。');
+            return ResponseHelper::error($response, 'Insufficient balance, total price of' . $amount . '$');
         }
         $user->invite_num += $num;
         $user->money -= $amount;
         $user->save();
 
-        return ResponseHelper::successfully($response, '邀请次数添加成功');
+        return ResponseHelper::successfully($response, 'Invitations added successfully');
     }
 
     /**
@@ -518,24 +518,24 @@ final class UserController extends BaseController
         if (Tools::isSpecialChars($customcode) || $price < 0 || $customcode === '' || strlen($customcode) > 32) {
             return ResponseHelper::error(
                 $response,
-                '定制失败，邀请链接不能为空，后缀不能包含特殊符号且长度不能大于32字符'
+                'Customization failed, the invitation link cannot be empty, the suffix cannot contain special symbols and the length cannot exceed 32 characters'
             );
         }
 
         if (InviteCode::where('code', $customcode)->count() !== 0) {
-            return ResponseHelper::error($response, '此后缀名被抢注了');
+            return ResponseHelper::error($response, 'This suffix has been registered');
         }
 
         $user = $this->user;
 
-        if (! $user->isLogin) {
-            return $response->withJson([ 'ret' => -1 ]);
+        if (!$user->isLogin) {
+            return $response->withJson(['ret' => -1]);
         }
 
         if ($user->money < $price) {
             return ResponseHelper::error(
                 $response,
-                '余额不足，总价为' . $price . '元。'
+                'Insufficient balance, total price of' . $price . '$'
             );
         }
         $code = InviteCode::where('user_id', $user->id)->first();
@@ -543,7 +543,7 @@ final class UserController extends BaseController
         $user->money -= $price;
         $user->save();
         $code->save();
-        return ResponseHelper::successfully($response, '定制成功');
+        return ResponseHelper::successfully($response, 'Customized successfully');
     }
 
     /**
@@ -555,15 +555,15 @@ final class UserController extends BaseController
         $pwd = $request->getParam('pwd');
         $repwd = $request->getParam('repwd');
         $user = $this->user;
-        if (! Hash::checkPassword($user->pass, $oldpwd)) {
-            return ResponseHelper::error($response, '旧密码错误');
+        if (!Hash::checkPassword($user->pass, $oldpwd)) {
+            return ResponseHelper::error($response, 'The old password is wrong');
         }
         if ($pwd !== $repwd) {
-            return ResponseHelper::error($response, '两次输入不符合');
+            return ResponseHelper::error($response, 'The two inputs do not match');
         }
 
         if (strlen($pwd) < 8) {
-            return ResponseHelper::error($response, '密码太短啦');
+            return ResponseHelper::error($response, 'The password is too short');
         }
         $hashPwd = Hash::passwordHash($pwd);
         $user->pass = $hashPwd;
@@ -573,7 +573,7 @@ final class UserController extends BaseController
             $user->cleanLink();
         }
 
-        return ResponseHelper::successfully($response, '修改成功');
+        return ResponseHelper::successfully($response, 'Successfully modified');
     }
 
     /**
@@ -587,19 +587,19 @@ final class UserController extends BaseController
         $otheruser = User::where('email', $newemail)->first();
 
         if ($_ENV['enable_change_email'] !== true) {
-            return ResponseHelper::error($response, '此项不允许自行修改，请联系管理员操作');
+            return ResponseHelper::error($response, 'This item is not allowed to be modified by yourself, please contact the administrator for operation');
         }
 
         if (Setting::obtain('reg_email_verify')) {
             $emailcode = $request->getParam('emailcode');
             $mailcount = EmailVerify::where('email', '=', $newemail)->where('code', '=', $emailcode)->where('expire_in', '>', \time())->first();
             if ($mailcount === null) {
-                return ResponseHelper::error($response, '您的邮箱验证码不正确');
+                return ResponseHelper::error($response, 'Your email verification code is incorrect');
             }
         }
 
         if ($newemail === '') {
-            return ResponseHelper::error($response, '未填写邮箱');
+            return ResponseHelper::error($response, 'Email address not filled');
         }
 
         $check_res = Check::isEmailLegal($newemail);
@@ -608,18 +608,18 @@ final class UserController extends BaseController
         }
 
         if ($otheruser !== null) {
-            return ResponseHelper::error($response, '邮箱已经被使用了');
+            return ResponseHelper::error($response, 'Email is already in use');
         }
 
         if ($newemail === $oldemail) {
-            return ResponseHelper::error($response, '新邮箱不能和旧邮箱一样');
+            return ResponseHelper::error($response, 'The new mailbox cannot be the same as the old mailbox');
         }
 
         $antiXss = new AntiXSS();
         $user->email = $antiXss->xss_clean($newemail);
         $user->save();
 
-        return ResponseHelper::successfully($response, '修改成功');
+        return ResponseHelper::successfully($response, 'Successfully modified');
     }
 
     /**
@@ -633,7 +633,7 @@ final class UserController extends BaseController
         $user->user_name = $antiXss->xss_clean($newusername);
         $user->save();
 
-        return ResponseHelper::successfully($response, '修改成功');
+        return ResponseHelper::successfully($response, 'Successfully modified');
     }
 
     /**
@@ -670,17 +670,17 @@ final class UserController extends BaseController
         $shop = Bought::where('id', $id)->where('userid', $this->user->id)->first();
 
         if ($shop === null) {
-            return ResponseHelper::error($response, '关闭自动续费失败，订单不存在。');
+            return ResponseHelper::error($response, 'Failed to turn off automatic renewal, the order does not exist.');
         }
 
         if ($this->user->id === $shop->userid) {
             $shop->renew = 0;
         }
 
-        if (! $shop->save()) {
-            return ResponseHelper::error($response, '关闭自动续费失败');
+        if (!$shop->save()) {
+            return ResponseHelper::error($response, 'Failed to turn off auto-renewal');
         }
-        return ResponseHelper::successfully($response, '关闭自动续费成功');
+        return ResponseHelper::successfully($response, 'Turn off automatic renewal successfully');
     }
 
     /**
@@ -698,14 +698,14 @@ final class UserController extends BaseController
         if ($user->telegram_id !== null) {
             return $response->withJson([
                 'ret' => 0,
-                'msg' => '你的账户绑定了 Telegram ，所以此项并不能被修改',
+                'msg' => 'Your account is bound Telegram , so this item cannot be modified',
             ]);
         }
 
         if ($value === '' || $type === '') {
             return $response->withJson([
                 'ret' => 0,
-                'msg' => '联络方式不能为空',
+                'msg' => 'Contact information cannot be empty',
             ]);
         }
 
@@ -713,7 +713,7 @@ final class UserController extends BaseController
         if ($user_exist !== null) {
             return $response->withJson([
                 'ret' => 0,
-                'msg' => '此联络方式已经被注册',
+                'msg' => 'This contact has already been registered',
             ]);
         }
 
@@ -723,7 +723,7 @@ final class UserController extends BaseController
 
         return $response->withJson([
             'ret' => 1,
-            'msg' => '修改成功',
+            'msg' => 'Successfully modified',
         ]);
     }
 
@@ -740,7 +740,7 @@ final class UserController extends BaseController
         if ($theme === '') {
             return $response->withJson([
                 'ret' => 0,
-                'msg' => '主题不能为空',
+                'msg' => 'Theme cannot be empty',
             ]);
         }
 
@@ -749,7 +749,7 @@ final class UserController extends BaseController
 
         return $response->withJson([
             'ret' => 1,
-            'msg' => '修改成功',
+            'msg' => 'Successfully modified',
         ]);
     }
 
@@ -764,14 +764,14 @@ final class UserController extends BaseController
             if ($value === 2 && $_ENV['enable_telegram'] === false) {
                 return ResponseHelper::error(
                     $response,
-                    '修改失败，当前无法使用 Telegram 接收每日报告'
+                    'Modification failed, currently unavailable Telegram receive daily reports'
                 );
             }
             $user->sendDailyMail = $value;
             $user->save();
-            return ResponseHelper::successfully($response, '修改成功');
+            return ResponseHelper::successfully($response, 'Successfully modified');
         }
-        return ResponseHelper::error($response, '非法输入');
+        return ResponseHelper::error($response, 'Illegal input');
     }
 
     /**
@@ -786,14 +786,14 @@ final class UserController extends BaseController
         $existing_uuid = User::where('uuid', $new_uuid)->first();
 
         if ($existing_uuid !== null) {
-            return ResponseHelper::error($response, '目前出现一些问题，请稍后再试');
+            return ResponseHelper::error($response, 'There are some problems right now, please try again later');
         }
 
         $user->uuid = $new_uuid;
         $user->passwd = $pwd;
         $user->save();
 
-        return ResponseHelper::successfully($response, '修改成功');
+        return ResponseHelper::successfully($response, 'Successfully modified');
     }
 
     /**
@@ -808,16 +808,16 @@ final class UserController extends BaseController
         $method = strtolower($antiXss->xss_clean($request->getParam('method')));
 
         if ($method === '') {
-            ResponseHelper::error($response, '非法输入');
+            ResponseHelper::error($response, 'Illegal input');
         }
-        if (! Tools::isParamValidate('method', $method)) {
-            ResponseHelper::error($response, '加密无效');
+        if (!Tools::isParamValidate('method', $method)) {
+            ResponseHelper::error($response, 'Invalid encryption');
         }
 
         $user->method = $method;
         $user->save();
 
-        return ResponseHelper::successfully($response, '修改成功');
+        return ResponseHelper::successfully($response, 'Successfully modified');
     }
 
     /**
@@ -835,18 +835,18 @@ final class UserController extends BaseController
     public function doCheckIn(Request $request, Response $response, array $args)
     {
         if ($_ENV['enable_checkin'] === false) {
-            return ResponseHelper::error($response, '暂时还不能签到');
+            return ResponseHelper::error($response, 'Check-in is disabled');
         }
 
         if (Setting::obtain('enable_checkin_captcha') === true) {
             $ret = Captcha::verify($request->getParams());
-            if (! $ret) {
-                return ResponseHelper::error($response, '系统无法接受您的验证结果，请刷新页面后重试');
+            if (!$ret) {
+                return ResponseHelper::error($response, 'The system cannot accept your verification result, please refresh the page and try again');
             }
         }
 
         if (strtotime($this->user->expire_in) < \time()) {
-            return ResponseHelper::error($response, '没有过期的账户才可以签到');
+            return ResponseHelper::error($response, 'Only accounts that have not expired can sign in');
         }
 
         $checkin = $this->user->checkin();
@@ -883,16 +883,16 @@ final class UserController extends BaseController
         $user = $this->user;
 
         $passwd = $request->getParam('passwd');
-        if (! Hash::checkPassword($user->pass, $passwd)) {
-            return ResponseHelper::error($response, '密码错误');
+        if (!Hash::checkPassword($user->pass, $passwd)) {
+            return ResponseHelper::error($response, 'password error');
         }
 
         if ($_ENV['enable_kill'] === true) {
             Auth::logout();
             $user->killUser();
-            return ResponseHelper::successfully($response, '您的帐号已经从我们的系统中删除。欢迎下次光临');
+            return ResponseHelper::successfully($response, 'Your account has been deleted from our system. Hope to visit next time');
         }
-        return ResponseHelper::error($response, '管理员不允许删除，如需删除请联系管理员。');
+        return ResponseHelper::error($response, 'The administrator does not allow deletion, please contact the administrator if you need to delete.');
     }
 
     /**
@@ -914,18 +914,18 @@ final class UserController extends BaseController
         $user = $this->user;
         $user->telegramReset();
 
-        return ResponseHelper::successfully($response, '重置成功');
+        return ResponseHelper::successfully($response, 'Reset successfully');
     }
 
     /**
-     * @param array     $args
+     * @param array $args
      */
     public function resetURL(Request $request, Response $response, array $args)
     {
         $user = $this->user;
         $user->cleanLink();
 
-        return ResponseHelper::successfully($response, '重置成功');
+        return ResponseHelper::successfully($response, 'Reset successfully');
     }
 
     /**
@@ -936,7 +936,7 @@ final class UserController extends BaseController
         $user = $this->user;
         $user->clearInviteCodes();
 
-        return ResponseHelper::successfully($response, '重置成功');
+        return ResponseHelper::successfully($response, 'Reset successfully');
     }
 
     /**
@@ -949,7 +949,7 @@ final class UserController extends BaseController
         $user = User::find($userid);
         $admin = User::find($adminid);
 
-        if (! $admin->is_admin || ! $user) {
+        if (!$admin->is_admin || !$user) {
             Cookie::set([
                 'uid' => null,
                 'email' => null,
@@ -1019,7 +1019,7 @@ final class UserController extends BaseController
 
         return $response->withJson([
             'ret' => 1,
-            'msg' => '切换成功',
+            'msg' => 'Switch successfully',
         ]);
     }
 }

@@ -35,10 +35,10 @@ final class Code extends Model
     public function userName(): string
     {
         if ($this->userid === 0) {
-            return '未使用';
+            return 'Unused';
         }
         if ($this->user() === null) {
-            return '用户已不存在';
+            return 'User no longer exists';
         }
         return $this->user()->user_name;
     }
@@ -50,26 +50,26 @@ final class Code extends Model
     {
         switch ($this->type) {
             case -1:
-                return '充值金额';
+                return 'Recharge amount';
             case -2:
-                return '财务支出';
+                return 'Financial expenditure';
             default:
-                return '已经废弃';
+                return 'Obsolete';
         }
     }
 
     /**
-     * 操作
+     * operate
      */
     public function number(): string
     {
         switch ($this->type) {
             case -1:
-                return '充值 ' . $this->number . ' 元';
+                return 'Recharge ' . $this->number . ' $';
             case -2:
-                return '支出 ' . $this->number . ' 元';
+                return 'Expenditure ' . $this->number . ' $';
             default:
-                return '已经废弃';
+                return 'Obsolete';
         }
     }
 
@@ -78,7 +78,7 @@ final class Code extends Model
      */
     public function isused(): string
     {
-        return $this->isused === 1 ? '已使用' : '未使用';
+        return $this->isused === 1 ? 'Used' : 'Unused';
     }
 
     /**
@@ -86,6 +86,6 @@ final class Code extends Model
      */
     public function usedatetime(): string
     {
-        return $this->usedatetime > '2000-1-1 0:0:0' ? $this->usedatetime : '未使用';
+        return $this->usedatetime > '2000-1-1 0:0:0' ? $this->usedatetime : 'Unused';
     }
 }

@@ -201,13 +201,13 @@
                                                 </p>
                                                 <div class="btn-list justify-content-start">
                                                     <a data-clipboard-text="{$getTraditionalSub}?sub=2" class="copy btn btn-primary">
-                                                        Copy Shadowsocks sub:
+                                                        Copy Shadowsocks sub
                                                     </a>
                                                     <a data-clipboard-text="{$getTraditionalSub}?sub=3" class="copy btn btn-primary">
-                                                        Copy V2ray sub:
+                                                        Copy V2ray sub
                                                     </a>
                                                     <a data-clipboard-text="{$getTraditionalSub}?sub=4" class="copy btn btn-primary">
-                                                        Copy Trojan sub:
+                                                        Copy Trojan sub
                                                     </a>
                                                     <a href="/clients/v2rayN-Core.zip" class="btn btn-primary">
                                                         Download v2rayN (Windows)
@@ -357,42 +357,42 @@
                 <div class="col-lg-6 col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="card-title">Dosage of traffic</h3>
+                            <h3 class="card-title">Traffic usage</h3>
                             <div class="progress progress-separated mb-3">
                                 {if $user->LastusedTrafficPercent() < '1'}
                                     <div class="progress-bar bg-primary" role="progressbar" style="width: 1%"></div>
                                 {else}
-                                    <div class="progress-bar bg-primary" role="progressbar"
-                                        style="width: {$user->LastusedTrafficPercent()}%">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: {$user->LastusedTrafficPercent()}%">
                                     </div>
                                 {/if}
                                 {if $user->TodayusedTrafficPercent() < '1'}
                                     <div class="progress-bar bg-success" role="progressbar" style="width: 1%"></div>
                                 {else}
-                                    <div class="progress-bar bg-success" role="progressbar"
-                                        style="width: {$user->TodayusedTrafficPercent()}%"></div>
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: {$user->TodayusedTrafficPercent()}%"></div>
                                 {/if}
                             </div>
                             <div class="row">
                                 <div class="col-auto d-flex align-items-center pe-2">
                                     <span class="legend me-2 bg-primary"></span>
-                                    <span>Dosage of the past {$user->LastusedTraffic()}</span>
+                                    <span>Past usage {$user->LastusedTraffic()}</span>
                                 </div>
                                 <div class="col-auto d-flex align-items-center px-2">
                                     <span class="legend me-2 bg-success"></span>
-                                    <span>Today the dosage {$user->TodayusedTraffic()}</span>
+                                    <span>Today usage {$user->TodayusedTraffic()}</span>
                                 </div>
                                 <div class="col-auto d-flex align-items-center ps-2">
                                     <span class="legend me-2"></span>
-                                    <span>The remaining traffic {$user->unusedTraffic()}</span>
+                                    <span>Remaining traffic {$user->unusedTraffic()}</span>
                                 </div>
                             </div>
                             <p class="my-3">
                                 {if time() > strtotime($user->class_expire)}
-                                    Your package is out of date, can gThe storeto <a href="/user/shop">The store</a> Purchase plan
+                                    Your package expired, you can go to <a href="/user/shop">Store</a> to purchase a plan
                                 {else}
                                     {$diff = round((strtotime($user->class_expire) - time()) / 86400)}
-                                    your LV. {$user->class} Set about {$diff} Day maturity ({$user->class_expire}）
+                                    Your level: {$user->class}<br/>
+                                    Remaining Days: {$diff}<br/>
+                                    Expiration: {$user->class_expire}
                                 {/if}
                             </p>
                         </div>
@@ -430,10 +430,10 @@
                             <div class="card-body">
                                 <h3 class="card-title">Daily check</h3>
                                 <p class="text-muted">
-                                    Sign in to get
+                                    Check in to get
                                     {if $config['checkinMin'] !== $config['checkinMax']}
                                         &nbsp;<code>{$config['checkinMin']} MB</code> to <code>{$config['checkinMax']} MB</code>
-                                        Within the scope of the flow,
+                                        Within the scope of the flow
                                     {else}
                                         <code>{$config['checkinMin']} MB</code>
                                     {/if}
@@ -445,7 +445,7 @@
                             <div class="card-footer">
                                 <div class="d-flex">
                                     {if !$user->isAbleToCheckin()}
-                                    <button id="check-in" class="btn btn-primary ms-auto" disabled>Already signed in</button>
+                                    <button id="check-in" class="btn btn-primary ms-auto" disabled>Already checked in</button>
                                     {else}
                                     {if $config['enable_checkin_captcha'] === true && $config['captcha_provider'] === 'turnstile'}
                                     <div class="cf-turnstile" data-sitekey="{$captcha['turnstile_sitekey']}" data-theme="light"></div>
@@ -453,14 +453,13 @@
                                     {if $config['enable_checkin_captcha'] === true && $config['captcha_provider'] === 'geetest'}
                                     <div id="geetest"></div>
                                     {/if} 
-                                    <button id="check-in" class="btn btn-primary ms-auto">Sign in</button>
+                                    <button id="check-in" class="btn btn-primary ms-auto">Check in</button>
                                     {/if}
                                 </div>
                             </div>
                         </div>
                     </div>
                 {/if}
-                
             </div>
         </div>
     </div>
@@ -468,7 +467,7 @@
     <script>
         var clipboard = new ClipboardJS('.copy');
         clipboard.on('success', function(e) {
-            $('#success-message').text('Has been copied to the clipboard');
+            $('#success-message').text('Copied');
             $('#success-dialog').modal('show');
         });
 

@@ -54,7 +54,7 @@
                         <div class="card-body">
                             <div class="m-0 my-2">
                                 <div>
-                                    <p>Current account balance is:<code>{$uYuan, residual flow is:ey}</code> Yuan, residual flow is:<code>{$user->unusedTraffic()}</code>
+                                    <p>Current account balance is:<code>{$uYuan, residual flow is:ey}</code> $, residual flow is:<code>{$user->unusedTraffic()}</code>
                                         {if time() > strtotime($user->expire_in)}
                                             Your account has expired
                                         {else}

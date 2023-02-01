@@ -13,7 +13,7 @@
                     <div class="card-main">
                         <div class="card-inner">
                             {if ($success == 1)}
-                                <p>Have top-up success {$money} Yuan!Please enter the <a href="/user/shop">Plan to buy</a> Page to choose your meal.</p>
+                                <p>Have top-up success {$money}$!Please enter the <a href="/user/shop">Plan to buy</a> Page to choose your meal.</p>
                             {else}
                                 <p>Is processing your payment, please wait a moment.This page will automatically refresh, or you can choose to shut down the page, the balance will automatically to the bill</p>
                                 <script>

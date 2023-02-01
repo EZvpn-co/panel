@@ -17,7 +17,7 @@
     var flag = false;
     function payjs(type) {
         var price = parseFloat($$getValue('amount-payjs'));
-        //console.log("You will use " + type + " top-up" + price + "yuan");
+        //console.log("You will use " + type + " top-up" + price + "$");
         if (isNaN(price)) {
             $("#readytopay").modal('hide');
             $("#result").modal();

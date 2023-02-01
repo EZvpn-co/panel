@@ -26,12 +26,12 @@ final class Epay extends AbstractPayment
 
     public function __construct()
     {
-        $this->epay['apiurl'] = Setting::obtain('epay_url');//易支付API地址
-        $this->epay['partner'] = Setting::obtain('epay_pid');//易支付商户pid
-        $this->epay['key'] = Setting::obtain('epay_key');//易支付商户Key
+        $this->epay['apiurl'] = Setting::obtain('epay_url'); //易支付API地址
+        $this->epay['partner'] = Setting::obtain('epay_pid'); //易支付商户pid
+        $this->epay['key'] = Setting::obtain('epay_key'); //易支付商户Key
         $this->epay['sign_type'] = strtoupper('MD5'); //签名方式
-        $this->epay['input_charset'] = strtolower('utf-8');//字符编码
-        $this->epay['transport'] = 'https';//协议 http 或者https
+        $this->epay['input_charset'] = strtolower('utf-8'); //字符编码
+        $this->epay['transport'] = 'https'; //协议 http 或者https
     }
 
     public static function _name(): string
@@ -121,7 +121,7 @@ final class Epay extends AbstractPayment
     {
         $money = $_GET['money'];
         $html = <<<HTML
-        您已成功充值 ${money} 元，正在跳转..
+        您已成功充值 ${money} \$，正在跳转..
         <script>
             setTimeout(function() {
                 location.href="/user/code";

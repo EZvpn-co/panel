@@ -47,7 +47,7 @@ final class ShopController extends BaseController
                 'ret' => 1,
                 'name' => $shop->name,
                 'credit' => '0 %',
-                'total' => $shop->price . '元',
+                'total' => $shop->price . '$',
             ]);
         }
 
@@ -73,7 +73,7 @@ final class ShopController extends BaseController
             'ret' => 1,
             'name' => $shop->name,
             'credit' => $coupon->credit . ' %',
-            'total' => $shop->price * ((100 - $coupon->credit) / 100) . '元',
+            'total' => $shop->price * ((100 - $coupon->credit) / 100) . '$',
         ]);
     }
 
@@ -185,13 +185,13 @@ final class ShopController extends BaseController
             return ResponseHelper::error($response, '您当前的会员等级无法购买此流量包');
         }
 
-        if (! $user->isLogin) {
-            return $response->withJson([ 'ret' => -1 ]);
+        if (!$user->isLogin) {
+            return $response->withJson(['ret' => -1]);
         }
 
         if (bccomp((string) $user->money, (string) $price, 2) === -1) {
             return ResponseHelper::error($response, '喵喵喵~ 当前余额不足，总价为'
-                . $price . '元。</br><a href="/user/code">点击进入充值界面</a>');
+                . $price . '$</br><a href="/user/code">点击进入充值界面</a>');
         }
 
         $user->money = bcsub((string) $user->money, (string) $price, 2);

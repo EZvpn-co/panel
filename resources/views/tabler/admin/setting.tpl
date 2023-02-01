@@ -866,7 +866,7 @@
                                         </div>
                                         <!-- rebate_ratio -->
                                         <div class="form-group form-group-label">
-                                            <label class="floating-label">Rebate percentage.10 Yuan goods against 2 Yuan will fill 0.2</label>
+                                            <label class="floating-label">Rebate percentage.10$ goods against 2$ will fill 0.2</label>
                                             <input class="form-control maxwidth-edit" id="rebate_ratio" value="{$settings['rebate_ratio']}">
                                         </div>
                                         <h5>Rebates limits model</h5>
@@ -888,7 +888,7 @@
                                             <input class="form-control maxwidth-edit" id="rebate_amount_limit" value="{$settings['rebate_amount_limit']}">
                                         </div>
                                         <p class="form-control-guide"><i class="mdi mdi-information"></i>For examplWhen an invited user has bought for, a,The user has bought for, please 10,20,50,100 If goods, rebates is set to 20% , then buy rebate for the first time 2;The se;The third time fortime for 4；The third time for 4;For the fourth time and after the purchase, inviter can receive rebates are 0(assuming it is set to the rebate when buy)</p>
-                                        <p class="form-control-guide"><i class="mdi mdi-information"></i>When the rebates for the third time calculation, according to the Settings should be rebate order amount 20% , i.e., 10 Yuan.But because of history rebate, have been obtained 6 Yuan, can only get the rebate amount limit and the historical rebate</p>
+                                        <p class="form-control-guide"><i class="mdi mdi-information"></i>When the rebates for the third time calculation, according to the Settings should be rebate order amount 20% , i.e., 10 $.But because of history rebate, have been obtained 6 $, can only get the rebate amount limit and the historical rebate</p>
                                         
                                         <br/>
                                         

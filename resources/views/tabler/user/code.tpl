@@ -29,7 +29,7 @@
                                         {/if}
                                     {/if}
                                     <br/>
-                                    <p><i class="mdi mdi-currency-usd icon-lg"></i>Current balance:<font color="#399AF2" size="5">{$user->money}</font> yuan</p>
+                                    <p><i class="mdi mdi-currency-usd icon-lg"></i>Current balance:<font color="#399AF2" size="5">{$user->money}</font> $</p>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                                                             <td>Level of renewal - level{$code->type}</td>
                                                         {/if}
                                                         {if $code->type==-1}
-                                                            <td>top-up {$code->number} yuan</td>
+                                                            <td>top-up {$code->number} $</td>
                                                         {/if}
                                                         {if $code->type==10001}
                                                             <td>top-up {$code->number} GB traffic</td>

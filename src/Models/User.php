@@ -19,14 +19,14 @@ use Ramsey\Uuid\Uuid;
  *
  * @todo More property
  *
- * @property        bool    $is_admin           是否管理员
+ * @property        bool    $is_admin           Are you an administrator
  * @property        bool    $expire_notified    If user is notified for expire
  * @property        bool    $traffic_notified   If user is noticed for low traffic
  */
 final class User extends Model
 {
     /**
-     * 已登录
+     * logged
      *
      * @var bool
      */
@@ -36,7 +36,7 @@ final class User extends Model
     protected $table = 'user';
 
     /**
-     * 强制类型转换
+     * cast
      *
      * @var array
      */
@@ -49,7 +49,7 @@ final class User extends Model
     ];
 
     /**
-     * Gravatar 头像地址
+     * Gravatar Avatar address
      */
     public function getGravatarAttribute(): string
     {
@@ -58,13 +58,13 @@ final class User extends Model
     }
 
     /**
-     * 联系方式类型
+     * Contact type
      */
     public function imType(): string
     {
         switch ($this->im_type) {
             case 1:
-                return '微信';
+                return 'WeChat';
             case 2:
                 return 'QQ';
             case 5:
@@ -75,7 +75,7 @@ final class User extends Model
     }
 
     /**
-     * 联系方式
+     * Contact information
      */
     public function imValue(): string
     {
@@ -90,23 +90,23 @@ final class User extends Model
     }
 
     /**
-     * 最后使用时间
+     * last used time
      */
     public function lastSsTime(): string
     {
-        return $this->t === 0 || $this->t === null ? '从未使用喵' : Tools::toDateTime($this->t);
+        return $this->t === 0 || $this->t === null ? 'Never used meow' : Tools::toDateTime($this->t);
     }
 
     /**
-     * 最后签到时间
+     * Last check-in time
      */
     public function lastCheckInTime(): string
     {
-        return $this->last_check_in_time === 0 ? '从未签到' : Tools::toDateTime($this->last_check_in_time);
+        return $this->last_check_in_time === 0 ? 'Never checked in' : Tools::toDateTime($this->last_check_in_time);
     }
 
     /**
-     * 更新密码
+     * Update password
      */
     public function updatePassword(string $pwd): bool
     {
@@ -125,7 +125,7 @@ final class User extends Model
     }
 
     /**
-     * 生成邀请码
+     * Generate invitation code
      */
     public function addInviteCode(): string
     {
@@ -145,7 +145,7 @@ final class User extends Model
     }
 
     /**
-     * 添加邀请次数
+     * Add invites
      */
     public function addInviteNum(int $num): bool
     {
@@ -154,7 +154,7 @@ final class User extends Model
     }
 
     /**
-     * 生成新的 UUID
+     * generate new UUID
      */
     public function generateUUID($s): bool
     {
@@ -166,7 +166,7 @@ final class User extends Model
     }
 
     /**
-     * 生成新的 API Token
+     * generate new API Token
      */
     public function generateApiToken($s): bool
     {
@@ -178,7 +178,7 @@ final class User extends Model
     }
 
     /*
-     * 总流量[自动单位]
+     * Total flow [automatic unit]
      */
     public function enableTraffic(): string
     {
@@ -186,7 +186,7 @@ final class User extends Model
     }
 
     /*
-     * 总流量[GB]，不含单位
+     * Total traffic [GB], without unit
      */
     public function enableTrafficInGB(): float
     {
@@ -194,7 +194,7 @@ final class User extends Model
     }
 
     /*
-     * 已用流量[自动单位]
+     * Flow used [automatic unit]
      */
     public function usedTraffic(): string
     {
@@ -202,7 +202,7 @@ final class User extends Model
     }
 
     /*
-     * 已用流量占总流量的百分比
+     * Used traffic as a percentage of total traffic
      */
     public function trafficUsagePercent(): int
     {
@@ -215,7 +215,7 @@ final class User extends Model
     }
 
     /*
-     * 剩余流量[自动单位]
+     * Residual flow [automatic unit]
      */
     public function unusedTraffic(): string
     {
@@ -223,7 +223,7 @@ final class User extends Model
     }
 
     /*
-     * 剩余流量占总流量的百分比
+     * Percentage of remaining flow to total flow
      */
     public function unusedTrafficPercent(): float
     {
@@ -237,7 +237,7 @@ final class User extends Model
     }
 
     /*
-     * 今天使用的流量[自动单位]
+     * Traffic used today [automatic unit]
      */
     public function todayUsedTraffic(): string
     {
@@ -245,7 +245,7 @@ final class User extends Model
     }
 
     /*
-     * 今天使用的流量占总流量的百分比
+     * Traffic used today as a percentage of total traffic
      */
     public function todayUsedTrafficPercent(): float
     {
@@ -259,7 +259,7 @@ final class User extends Model
     }
 
     /*
-     * 今天之前已使用的流量[自动单位]
+     * Traffic used before today [auto unit]
      */
     public function lastUsedTraffic(): string
     {
@@ -267,7 +267,7 @@ final class User extends Model
     }
 
     /*
-     * 今天之前已使用的流量占总流量的百分比
+     * Percentage of total traffic used before today
      */
     public function lastUsedTrafficPercent(): float
     {
@@ -281,7 +281,7 @@ final class User extends Model
     }
 
     /*
-     * 是否可以签到
+     * Is it possible to sign in
      */
     public function isAbleToCheckin(): bool
     {
@@ -292,13 +292,13 @@ final class User extends Model
     {
         $ga = new GA();
         return $ga->getUrl(
-            urlencode($_ENV['appName'] . '-' . $this->user_name . '-两步验证码'),
+            urlencode($_ENV['appName'] . '-' . $this->user_name . '-2-step verification code'),
             $this->ga_token
         );
     }
 
     /**
-     * 获取用户的邀请码
+     * Get the user's invitation code
      */
     public function getInviteCodes(): ?InviteCode
     {
@@ -306,7 +306,7 @@ final class User extends Model
     }
 
     /**
-     * 用户的邀请人
+     * User's inviter
      */
     public function refByUser(): ?User
     {
@@ -314,24 +314,24 @@ final class User extends Model
     }
 
     /**
-     * 用户邀请人的用户名
+     * The username of the user inviter
      */
     public function refByUserName(): string
     {
         if ($this->ref_by === 0) {
-            return '系统邀请';
+            return 'System invitation';
         }
 
         $refUser = $this->refByUser();
 
         if ($refUser === null) {
-            return '邀请人已经被删除';
+            return 'The inviter has been removed';
         }
         return $refUser->user_name;
     }
 
     /**
-     * 删除用户的订阅链接
+     * Delete user's subscription link
      */
     public function cleanLink(): void
     {
@@ -339,7 +339,7 @@ final class User extends Model
     }
 
     /**
-     * 获取用户的订阅链接
+     * Get user's subscription link
      */
     public function getSublink()
     {
@@ -347,7 +347,7 @@ final class User extends Model
     }
 
     /**
-     * 删除用户的邀请码
+     * Delete user's invitation code
      */
     public function clearInviteCodes(): void
     {
@@ -355,11 +355,11 @@ final class User extends Model
     }
 
     /**
-     * 在线 IP 个数
+     * Number of online IPs
      */
     public function onlineIpCount(): int
     {
-        // 根据 IP 分组去重
+        // Deduplication based on IP grouping
         $total = Ip::where('datetime', '>=', \time() - 90)->where('userid', $this->id)->orderBy('userid', 'desc')->groupBy('ip')->get();
         $ip_list = [];
         foreach ($total as $single_record) {
@@ -373,7 +373,7 @@ final class User extends Model
     }
 
     /**
-     * 销户
+     * Cancel account
      */
     public function killUser(): bool
     {
@@ -400,7 +400,7 @@ final class User extends Model
     }
 
     /**
-     * 累计充值金额
+     * Cumulative recharge amount
      */
     public function getTopUp(): float
     {
@@ -409,7 +409,7 @@ final class User extends Model
     }
 
     /**
-     * 获取累计收入
+     * Get accumulated income
      */
     public function calIncome(string $req): float
     {
@@ -434,7 +434,7 @@ final class User extends Model
     }
 
     /**
-     * 获取付费用户总数
+     * Get the total number of paid users
      */
     public function paidUserCount(): int
     {
@@ -442,28 +442,28 @@ final class User extends Model
     }
 
     /**
-     * 获取用户被封禁的理由
+     * Get the reason why a user was banned
      */
     public function disableReason(): string
     {
         $reason_id = DetectLog::where('user_id', $this->id)->orderBy('id', 'DESC')->first();
         $reason = DetectRule::find($reason_id->list_id);
         if (is_null($reason)) {
-            return '特殊原因被禁用，了解详情请联系管理员';
+            return 'Disabled for special reasons, please contact the administrator for details';
         }
         return $reason->text;
     }
 
     /**
-     * 最后一次被封禁的时间
+     * Time of last ban
      */
     public function lastDetectBanTime(): string
     {
-        return $this->last_detect_ban_time === '1989-06-04 00:05:00' ? '未被封禁过' : $this->last_detect_ban_time;
+        return $this->last_detect_ban_time === '1989-06-04 00:05:00' ? 'Not banned' : $this->last_detect_ban_time;
     }
 
     /**
-     * 当前解封时间
+     * Current unblocking time
      */
     public function relieveTime(): string
     {
@@ -472,11 +472,11 @@ final class User extends Model
             $time = $logs->end_time + $logs->ban_time * 60;
             return date('Y-m-d H:i:s', $time);
         }
-        return '当前未被封禁';
+        return 'currently not banned';
     }
 
     /**
-     * 累计被封禁的次数
+     * Cumulative number of bans
      */
     public function detectBanNumber(): int
     {
@@ -484,7 +484,7 @@ final class User extends Model
     }
 
     /**
-     * 最后一次封禁的违规次数
+     * Number of violations for the last ban
      */
     public function userDetectBanNumber(): int
     {
@@ -493,7 +493,7 @@ final class User extends Model
     }
 
     /**
-     * 签到
+     * sign in
      */
     public function checkin(): array
     {
@@ -501,28 +501,28 @@ final class User extends Model
             'ok' => true,
             'msg' => '',
         ];
-        if (! $this->isAbleToCheckin()) {
+        if (!$this->isAbleToCheckin()) {
             $return['ok'] = false;
-            $return['msg'] = '您似乎已经签到过了...';
+            $return['msg'] = 'You seem to have signed in...';
         } else {
             $traffic = random_int((int) $_ENV['checkinMin'], (int) $_ENV['checkinMax']);
             $this->transfer_enable += Tools::toMB($traffic);
             $this->last_check_in_time = \time();
             $this->save();
-            $return['msg'] = '获得了 ' . $traffic . 'MB 流量.';
+            $return['msg'] = 'Got' . $traffic . 'MB flow.';
         }
 
         return $return;
     }
 
     /**
-     * 解绑 Telegram
+     * Unbind Telegram
      */
     public function telegramReset(): array
     {
         $return = [
             'ok' => true,
-            'msg' => '解绑成功.',
+            'msg' => 'Unbind successfully.',
         ];
         $telegram_id = $this->telegram_id;
         $this->telegram_id = 0;
@@ -534,7 +534,7 @@ final class User extends Model
                 &&
                 Setting::obtain('telegram_unbind_kick_member') === true
                 &&
-                ! $this->is_admin
+                !$this->is_admin
             ) {
                 \App\Utils\Telegram\TelegramTools::SendPost(
                     'kickChatMember',
@@ -547,7 +547,7 @@ final class User extends Model
         } else {
             $return = [
                 'ok' => false,
-                'msg' => '解绑失败.',
+                'msg' => 'Failed to unbind.',
             ];
         }
 
@@ -555,7 +555,7 @@ final class User extends Model
     }
 
     /**
-     * 更新端口
+     * update port
      */
     public function setPort(int $Port): array
     {
@@ -563,7 +563,7 @@ final class User extends Model
         if (\in_array($Port, $PortOccupied) === true) {
             return [
                 'ok' => false,
-                'msg' => '端口已被占用',
+                'msg' => 'The port is occupied',
             ];
         }
         $this->port = $Port;
@@ -575,7 +575,7 @@ final class User extends Model
     }
 
     /**
-     * 用户下次流量重置时间
+     * User's next traffic reset time
      */
     public function validUseLoop(): string
     {
@@ -588,24 +588,24 @@ final class User extends Model
             }
         }
         if (count($data) === 0) {
-            return '未购买套餐.';
+            return 'Package not purchased.';
         }
         if (count($data) === 1) {
             return $data[0];
         }
-        return '多个有效套餐无法显示.';
+        return 'Multiple valid packages cannot be displayed.';
     }
 
     /**
-     * 手动修改用户余额时增加充值记录，受限于 Config
+     * Add recharge record when manually modifying user balance, limited by Config
      *
-     * @param mixed $total 金额
+     * @param mixed $total amount
      */
     public function addMoneyLog($total): void
     {
         if ($_ENV['money_from_admin'] && $total !== 0.00) {
             $codeq = new Code();
-            $codeq->code = ($total > 0 ? '管理员赏赐' : '管理员惩戒');
+            $codeq->code = ($total > 0 ? 'admin reward' : 'admin punishment');
             $codeq->isused = 1;
             $codeq->type = -1;
             $codeq->number = $total;
@@ -616,50 +616,7 @@ final class User extends Model
     }
 
     /**
-     * 发送邮件
-     *
-     * @param array  $array
-     * @param array  $files
-     */
-    public function sendMail(string $subject, string $template, array $array = [], array $files = [], $is_queue = false): bool
-    {
-        if ($is_queue) {
-            $emailqueue = new EmailQueue();
-            $emailqueue->to_email = $this->email;
-            $emailqueue->subject = $subject;
-            $emailqueue->template = $template;
-            $emailqueue->time = \time();
-            $array = array_merge(['user' => $this], $array);
-            $emailqueue->array = \json_encode($array);
-            $emailqueue->save();
-            return true;
-        }
-        // 验证邮箱地址是否正确
-        if (Tools::isEmail($this->email)) {
-            // 发送邮件
-            try {
-                Mail::send(
-                    $this->email,
-                    $subject,
-                    $template,
-                    array_merge(
-                        [
-                            'user' => $this,
-                        ],
-                        $array
-                    ),
-                    $files
-                );
-                return true;
-            } catch (Exception $e) {
-                echo $e->getMessage();
-            }
-        }
-        return false;
-    }
-
-    /**
-     * 发送 Telegram 讯息
+     * Send Telegram message
      */
     public function sendTelegram(string $text): bool
     {
@@ -679,9 +636,9 @@ final class User extends Model
     }
 
     /**
-     * 发送每日流量报告
+     * Send daily traffic reports
      *
-     * @param string $ann 公告
+     * @param string $ann announcement
      */
     public function sendDailyNotification(string $ann = ''): void
     {
@@ -695,11 +652,11 @@ final class User extends Model
             case 1:
                 echo 'Send daily mail to user: ' . $this->id;
                 $this->sendMail(
-                    $_ENV['appName'] . '-每日流量报告以及公告',
+                    $_ENV['appName'] . '-Daily traffic reports and announcements',
                     'news/daily-traffic-report.tpl',
                     [
                         'user' => $this,
-                        'text' => '下面是系统中目前的最新公告:<br><br>' . $ann . '<br><br>晚安！',
+                        'text' => 'The following is the latest announcement in the system:<br><br>' . $ann . '<br><br>Good night! ',
                         'lastday_traffic' => $lastday_traffic,
                         'enable_traffic' => $enable_traffic,
                         'used_traffic' => $used_traffic,
@@ -711,11 +668,11 @@ final class User extends Model
                 break;
             case 2:
                 echo 'Send daily Telegram message to user: ' . $this->id;
-                $text = date('Y-m-d') . ' 流量使用报告' . PHP_EOL . PHP_EOL;
-                $text .= '流量总计：' . $enable_traffic . PHP_EOL;
-                $text .= '已用流量：' . $used_traffic . PHP_EOL;
-                $text .= '剩余流量：' . $unused_traffic . PHP_EOL;
-                $text .= '今日使用：' . $lastday_traffic;
+                $text = date('Y-m-d') . 'Data Usage Report' . PHP_EOL . PHP_EOL;
+                $text .= 'Traffic Total:' . $enable_traffic . PHP_EOL;
+                $text .= 'Used Traffic:' . $used_traffic . PHP_EOL;
+                $text .= 'Remaining traffic:' . $unused_traffic . PHP_EOL;
+                $text .= 'Today\'s usage:' . $lastday_traffic;
                 $this->sendTelegram(
                     $text
                 );
@@ -724,9 +681,9 @@ final class User extends Model
     }
 
     /**
-     * 记录登录 IP
+     * Record login IP
      *
-     * @param int    $type 登录失败为 1
+     * @param int $type login failure is 1
      */
     public function collectLoginIP(string $ip, int $type = 0): bool
     {

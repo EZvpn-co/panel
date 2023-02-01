@@ -46,7 +46,7 @@ final class QQWry
 
     public function getlocation($ip)
     {
-        if (! $this->fp) {
+        if (!$this->fp) {
             return null;
         }
 
@@ -147,7 +147,7 @@ final class QQWry
         }
 
         if ($location['country'] === ' CZ88.NET') {
-            $location['country'] = '未知';
+            $location['country'] = 'unknown';
         }
 
         if ($location['area'] === ' CZ88.NET') {

@@ -21,7 +21,7 @@ final class Tools
     {
         $iplocation = new QQWry();
         $location = $iplocation->getlocation($ip);
-        return $location['country'] . $location['area'];
+        return iconv('gbk', 'utf-8//IGNORE', $location['country'] . $location['area']);
     }
 
     /**

@@ -121,7 +121,7 @@
                                     </a>
                                     <a class="dropdown-item" href="/admin/ticket">
                                         <i class="ti ti-messages"></i>&nbsp;
-                                        Tickets
+                                        Ticketing
                                     </a>
                                 </div>
                             </li>

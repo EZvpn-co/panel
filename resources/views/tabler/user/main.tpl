@@ -35,7 +35,7 @@
             <ul class="dropdown-menu dropdown-menu-right">
                 <li>
                     <a class="padding-right-cd waves-attach" href="/user/logout">
-                        <span class="mdi mdi-exit-to-app icon-lg margin-right"></span>logout
+                        <span class="mdi mdi-exit-to-app icon-lg margin-right"></span>Logout
                     </a>
                 </li>
             </ul>
@@ -51,63 +51,63 @@
                     <a class="waves-attach" data-toggle="collapse" href="#ui_menu_me">my</a>
                     <ul class="menu-collapse collapse in" id="ui_menu_me">
                         <li>
-                            <a href="/user"><i class="mdi mdi-home icon-lg"></i>&nbsp;The user center</a>
+                            <a href="/user"><i class="mdi mdi-home icon-lg"></i>&nbsp;User center</a>
                         </li>
                         <li>
                             <a href="/user/profile"><i class="mdi mdi-account-box icon-lg"></i>&nbsp;Account information</a>
                         </li>
                         <li>
-                            <a href="/user/edit"><i class="mdi mdi-account-edit icon-lg"></i>&nbsp;Data editor</a>
+                            <a href="/user/edit"><i class="mdi mdi-account-edit icon-lg"></i>&nbsp;Edit profile</a>
                         </li>
                         {if $config['subscribeLog']===true && $config['subscribeLog_show']===true}
                         <li>
-                            <a href="/user/subscribe_log"><i class="mdi mdi-file-find icon-lg"></i>&nbsp;Subscribe to the record</a>
+                            <a href="/user/subscribe_log"><i class="mdi mdi-file-find icon-lg"></i>&nbsp;Subscription logs</a>
                         </li>
                         {/if}
                         {if $config['enable_ticket']===true}
                             <li>
-                                <a href="/user/ticket"><i class="mdi mdi-comment-question icon-lg"></i>&nbsp;The work order system</a>
+                                <a href="/user/ticket"><i class="mdi mdi-comment-question icon-lg"></i>&nbsp;Ticketing</a>
                             </li>
                         {/if}
                         <li>
-                            <a href="/user/invite"><i class="mdi mdi-account-multiple-plus icon-lg"></i>&nbsp;Invite link</a>
+                            <a href="/user/invite"><i class="mdi mdi-account-multiple-plus icon-lg"></i>&nbsp;Invitation</a>
                         </li>
                     </ul>
                     <a class="waves-attach" data-toggle="collapse" href="#ui_menu_use">use</a>
                     <ul class="menu-collapse collapse in" id="ui_menu_use">
                         <li>
-                            <a href="/user/server"><i class="mdi mdi-server icon-lg"></i>&nbsp;The node list</a>
+                            <a href="/user/server"><i class="mdi mdi-server icon-lg"></i>&nbsp;Servers</a>
                         </li>
                         <li>
-                            <a href="/user/media"><i class="mdi mdi-multimedia icon-lg"></i>&nbsp;Streaming media unlock</a>
+                            <a href="/user/media"><i class="mdi mdi-multimedia icon-lg"></i>&nbsp;Media streaming</a>
                         </li>
                         <li>
-                            <a href="/user/announcement"><i class="mdi mdi-bullhorn-variant icon-lg"></i>&nbsp;Site announcement</a>
+                            <a href="/user/announcement"><i class="mdi mdi-bullhorn-variant icon-lg"></i>&nbsp;Announcement</a>
                         </li>
                         <li>
                             <a href="/user/detect"><i class="mdi mdi-account-filter icon-lg"></i>&nbsp;Auditing rules</a>
                         </li>
                         <li>
-                            <a href="/user/detect/log"><i class="mdi mdi-calendar-filter icon-lg"></i>&nbsp;Audit records</a>
+                            <a href="/user/detect/log"><i class="mdi mdi-calendar-filter icon-lg"></i>&nbsp;Audit logs</a>
                         </li>
                     </ul>
-                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_help">The store</a>
+                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_help">Store</a>
                     <ul class="menu-collapse collapse in" id="ui_menu_help">
                         <li>
-                            <a href="/user/code"><i class="mdi mdi-wallet-plus icon-lg"></i>&nbsp;top-up</a>
+                            <a href="/user/code"><i class="mdi mdi-wallet-plus icon-lg"></i>&nbsp;Charge balance</a>
                         </li>
                         <li>
-                            <a href="/user/shop"><i class="mdi mdi-wallet-travel icon-lg"></i>&nbsp;Plan to buy</a>
+                            <a href="/user/shop"><i class="mdi mdi-wallet-travel icon-lg"></i>&nbsp;Buy plan</a>
                         </li>
                         <li>
                             <a href="/user/bought"><i class="mdi mdi-list-box icon-lg"></i>&nbsp;Purchase records</a>
                         </li>
                     </ul>
                     {if $user->is_admin}
-                        <a href="/admin"><i class="mdi mdi-account-tie icon-lg"></i>&nbsp;Administration panel</a>
+                        <a href="/admin"><i class="mdi mdi-account-tie icon-lg"></i>&nbsp;Admin</a>
                     {/if}
                     {if $can_backtoadmin}
-                        <a href="/user/backtoadmin"><i class="mdi mdi-keyboard-return icon-lg"></i>&nbsp;Returns an administrator</a>
+                        <a href="/user/backtoadmin"><i class="mdi mdi-keyboard-return icon-lg"></i>&nbsp;Back to admin</a>
                     {/if}
                 </li>
             </ul>

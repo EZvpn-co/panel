@@ -6,7 +6,7 @@
             <div class="row align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        <span class="home-title">The user center</span>
+                        <span class="home-title">User center</span>
                     </h2>
                     <div class="page-pretitle my-3">
                         <span class="home-subtitle">Check the account information and the latest announcement here</span>
@@ -31,7 +31,7 @@
                                         </div>
                                         <div class="col">
                                             <div class="font-weight-medium">
-                                                Account level
+                                                Level
                                             </div>
                                             <div class="text-muted">
                                                 LV. {$user->class}
@@ -52,7 +52,7 @@
                                         </div>
                                         <div class="col">
                                             <div class="font-weight-medium">
-                                                The account balance
+                                                Balance
                                             </div>
                                             <div class="text-muted">
                                                 {$user->money}
@@ -73,13 +73,13 @@
                                         </div>
                                         <div class="col">
                                             <div class="font-weight-medium">
-                                                At the same time to connectIPlimit
+                                                Device limit
                                             </div>
                                             <div class="text-muted">
                                                 {if $user->node_iplimit !== 0}
                                                     {$user->node_iplimit}
                                                 {else}
-                                                    Don't limit
+                                                    Unlimited
                                                 {/if}
                                             </div>
                                         </div>
@@ -98,13 +98,13 @@
                                         </div>
                                         <div class="col">
                                             <div class="font-weight-medium">
-                                                The speed limit
+                                                Speed limit
                                             </div>
                                             <div class="text-muted">
                                                 {if $user->node_speedlimit !== 0.0}
                                                     {$user->node_speedlimit}</code> Mbps
                                                 {else}
-                                                    Don't limit
+                                                    Unlimited
                                                 {/if}
                                             </div>
                                         </div>
@@ -122,7 +122,7 @@
                                     <li class="nav-item">
                                         <a href="#sub" class="nav-link active" data-bs-toggle="tab">
                                             <i class="ti ti-rss icon"></i>
-                                            &nbsp;General subscription
+                                            &nbsp;Univerisal subscription
                                         </a>
                                     </li>
                                     <li class="nav-item">
@@ -140,7 +140,7 @@
                                     <li class="nav-item">
                                         <a href="#macos" class="nav-link" data-bs-toggle="tab">
                                             <i class="ti ti-brand-finder icon"></i>
-                                            &nbsp;Macos
+                                            &nbsp;macOS
                                         </a>
                                     </li>
                                     <li class="nav-item">
@@ -152,7 +152,7 @@
                                     <li class="nav-item">
                                         <a href="#ios" class="nav-link" data-bs-toggle="tab">
                                             <i class="ti ti-brand-apple icon"></i>
-                                            &nbsp;IOS
+                                            &nbsp;iOS
                                         </a>
                                     </li>
                                     <li class="nav-item">
@@ -173,19 +173,17 @@
                                         <div class="tab-pane active show" id="sub">
                                             <div>
                                                 <p>
-                                                    General subscribe (json):<code>{$getUniversalSub}/json</code>
+                                                    Universal sub (json): <code>{$getUniversalSub}/json</code>
                                                 </p>
                                                 <p>
-                                                    General subscribe (clash):<code>{$getUniversalSub}/clash</code>
+                                                    Universal sub (clash): <code>{$getUniversalSub}/clash</code>
                                                 </p>
                                                 <div class="btn-list justify-content-start">
-                                                    <a data-clipboard-text="{$getUniversalSub}/json"
-                                                        class="copy btn btn-primary">
-                                                        Copy the general subscribe (json)
+                                                    <a data-clipboard-text="{$getUniversalSub}/json" class="copy btn btn-primary">
+                                                        Copy universal sub (json)
                                                     </a>
-                                                    <a data-clipboard-text="{$getUniversalSub}/clash"
-                                                        class="copy btn btn-primary">
-                                                        Copy the general subscribe (clash）
+                                                    <a data-clipboard-text="{$getUniversalSub}/clash" class="copy btn btn-primary">
+                                                        Copy universal sub (clash)
                                                     </a>
                                                 </div>
                                             </div>
@@ -193,34 +191,29 @@
                                         <div class="tab-pane show" id="traditional-sub">
                                             <div>
                                                 <p>
-                                                    Traditional subscription (Shadowsocks):<code>{$getTraditionalSub}?sub=2</code>
+                                                    Shadowsocks sub: <code>{$getTraditionalSub}?sub=2</code>
                                                 </p>
                                                 <p>
-                                                    Traditional subscription (V2Ray):<code>{$getTraditionalSub}?sub=3</code>
+                                                    V2ray sub: <code>{$getTraditionalSub}?sub=3</code>
                                                 </p>
                                                 <p>
-                                                    Traditional subscription (Trojan):<code>{$getTraditionalSub}?sub=4</code>
+                                                    Trojan sub: <code>{$getTraditionalSub}?sub=4</code>
                                                 </p>
                                                 <div class="btn-list justify-content-start">
-                                                    <a data-clipboard-text="{$getTraditionalSub}?sub=2"
-                                                        class="copy btn btn-primary">
-                                                        Copy the traditional subscription (Shadowsocks)
+                                                    <a data-clipboard-text="{$getTraditionalSub}?sub=2" class="copy btn btn-primary">
+                                                        Copy Shadowsocks sub:
                                                     </a>
-                                                    <a data-clipboard-text="{$getTraditionalSub}?sub=3"
-                                                        class="copy btn btn-primary">
-                                                        Copy the tra)itional subscription (V2Ray）
+                                                    <a data-clipboard-text="{$getTraditionalSub}?sub=3" class="copy btn btn-primary">
+                                                        Copy V2ray sub:
                                                     </a>
-                                                    <a data-clipboard-text="{$getTraditionalSub}?sub=4"
-                                                        class="copy btn btn-primary">
-                                                        Copy the traditional subscription (Trojan）
+                                                    <a data-clipboard-text="{$getTraditionalSub}?sub=4" class="copy btn btn-primary">
+                                                        Copy Trojan sub:
                                                     </a>
-                                                    <a href="/clients/v2rayN-Core.zip"
-                                                        class="btn btn-primary">
-                                                        download (2rayN（Windows）
+                                                    <a href="/clients/v2rayN-Core.zip" class="btn btn-primary">
+                                                        Download v2rayN (Windows)
                                                     </a>
-                                                    <a href="/clients/v2rayNG.apk"
-                                                        class="btn btn-primary">
-                                                        download v2rayNG(Android）
+                                                    <a href="/clients/v2rayNG.apk" class="btn btn-primary">
+                                                        Download v2rayNG (Android)
                                                     </a>
                                                 </div>
                                             </div>
@@ -228,65 +221,58 @@
                                         <div class="tab-pane" id="windows">
                                             <div>
                                                 <p>
-                                                    Apply to Clash Subscriptions:<code>{$getUniversalSub}/clash</code>
+                                                    Clash Subscriptions: <code>{$getUniversalSub}/clash</code>
                                                 </p>
                                                 <div class="btn-list justify-content-start">
-                                                    <a data-clipboard-text="{$getUniversalSub}/clash"
-                                                        class="copy btn btn-primary">
-                                                        copy Clash
+                                                    <a data-clipboard-text="{$getUniversalSub}/clash" class="copy btn btn-primary">
+                                                        Copy Clash sub
                                                     </a>
-                                                    <a href="/clients/Clash-Windows.exe"
-                                                        class="btn btn-primary">
-                                                        download Clash for Windows
+                                                    <a href="/clients/Clash-Windows.exe" class="btn btn-primary">
+                                                        Download Clash for Windows
                                                     </a>
-                                                    <a href="clash://install-config?url={$getUniversalSub}/clash&name={$config['appName']}"
-                                                        class="btn btn-primary">
-                                                        The import Clash
+                                                    <a href="clash://install-config?url={$getUniversalSub}/clash&name={$config['appName']}" class="btn btn-primary">
+                                                        Import to clash
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="tab-pane" id="macos">
                                             <p>
-                                                Apply to CSubscriptions: The subscription：<code>{$getUniversalSub}/clash</code>
+                                                Clash Subscriptions: <code>{$getUniversalSub}/clash</code>
                                             </p>
                                             <div class="btn-list justify-content-start">
-                                                <a data-clipboard-text="{$getUniversalSub}/clash"
-                                                    class="copy btn btn-primary">
-                                                    copy Clash
+                                                <a data-clipboard-text="{$getUniversalSub}/clash" class="copy btn btn-primary">
+                                                    Copy Clash sub
                                                 </a>
                                                 <a href="/clients/Clash-Windows.dmg"
                                                     class="btn btn-primary">
-                                                    download Clash for Windows
+                                                    Download Clash for macOS
                                                 </a>
-                                                <a href="clash://install-config?url={$getUniversalSub}/clash&name={$config['appName']}"
-                                                    class="btn btn-primary">
-                                                    The import Clash
+                                                <a href="clash://install-config?url={$getUniversalSub}/clash&name={$config['appName']}" class="btn btn-primary">
+                                                    Import to clash
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="tab-pane" id="android">
                                             <p>
-                                                Clash Subscriptions:<code>{$getUniversalSub}/clash</code>
+                                                Clash Subscriptions: <code>{$getUniversalSub}/clash</code>
                                             </p>
                                             <p>
-                                                Surfboard Subscriptions:<code>{$getUniversalSub}/surfboard</code>
+                                                Surfboard Subscriptions: <code>{$getUniversalSub}/surfboard</code>
                                             </p>
                                             <div class="btn-list justify-content-start">
-                                                <a data-clipboard-text="{$getUniversalSub}/clash"
-                                                    class="copy btn btn-primary">
-                                                    copy Clash
+                                                <a data-clipboard-text="{$getUniversalSub}/clash" class="copy btn btn-primary">
+                                                    Copy Clash sub
                                                 </a>
                                                 <a href="/clients/Clash-Android.apk"
                                                     class="btn btn-primary">
-                                                    download Clash for Android
+                                                    Download Clash for Android
                                                 </a>
-                                                <a href="clash://install-config?url={$getUniversalSub}/clash&name={$config['appName']}"
-                                                    class="btn btn-primary">
+                                                <a href="clash://install-config?url={$getUniversalSub}/clash&name={$config['appName']}" class="btn btn-primary">
                                                     Import to Clash
                                                 </a>
                                                 <a data-clipboard-text="{$getUniversalSub}/surfboard" class="copy btn btn-primary">
-                                                    Copy Surfboard
+                                                    Copy Surfboard sub
                                                 </a>
                                                 <a href="/clients/Surfboard-Android.apk"
                                                     class="btn btn-primary">
@@ -300,7 +286,7 @@
                                         </div>
                                         <div class="tab-pane" id="ios">
                                             <p>
-                                                Apply to Shadowrocket Subscriptions:<code>{$getUniversalSub}/clash</code>
+                                                Shadowrocket Subscriptions: <code>{$getUniversalSub}/clash</code>
                                             </p>
                                             <p>
                                                 In the purchase and Later, simplyallation Shadowrocket Later, simply <span style="color: red;">use Safari
@@ -310,36 +296,30 @@
                                                 If prompt unable to open, because of the need to install the corresponding first APP, and then you can import
                                             </p>
                                             <div class="btn-list justify-content-start">
-                                                <a href="https://apps.apple.com/us/app/shadowrocket/id932747118"
-                                                    class="btn btn-primary">
-                                                    buy Shadowrocket
+                                                <a href="https://apps.apple.com/us/app/shadowrocket/id932747118" class="btn btn-primary">
+                                                    Install Shadowrocket
                                                 </a>
-                                                <a data-clipboard-text="{$getUniversalSub}/clash"
-                                                    class="copy btn btn-primary">
-                                                    copy Shadowrocket
+                                                <a data-clipboard-text="{$getUniversalSub}/clash" class="copy btn btn-primary">
+                                                    Copy Shadowrocket sub
                                                 </a>
-                                                <a href="sub://{base64_encode("{$getUniversalSub}/clash")}"
-                                                    class="btn btn-primary">
-                                                    The import Shadowrocket
+                                                <a href="sub://{base64_encode("{$getUniversalSub}/clash")}" class="btn btn-primary">
+                                                    Import to Shadowrocket
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="tab-pane" id="linux">
                                             <p>
-                                                Apply to Clash Subscriptions:<code>{$getUniversalSub}/clash</code>
+                                                Clash Sub: <code>{$getUniversalSub}/clash</code>
                                             </p>
                                             <div class="btn-list justify-content-start">
-                                                <a data-clipboard-text="{$getUniversalSub}/clash"
-                                                    class="copy btn btn-primary">
-                                                    copy Clash
+                                                <a data-clipboard-text="{$getUniversalSub}/clash" class="copy btn btn-primary">
+                                                    Copy Clash sub
                                                 </a>
-                                                <a href="/clients/Clash-Windows.tar.gz"
-                                                    class="btn btn-primary">
-                                                    download Clash for Windows
+                                                <a href="/clients/Clash-Windows.tar.gz" class="btn btn-primary">
+                                                    Download Clash for Windows
                                                 </a>
-                                                <a href="clash://install-config?url={$getUniversalSub}/clash&name={$config['appName']}"
-                                                    class="btn btn-primary">
-                                                    The import Clash
+                                                <a href="clash://install-config?url={$getUniversalSub}/clash&name={$config['appName']}" class="btn btn-primary">
+                                                    Import to Clash
                                                 </a>
                                             </div>
                                         </div>
@@ -349,11 +329,11 @@
                                                 <table class="table table-vcenter card-table">
                                                     <tbody>
                                                     <tr>
-                                                        <td><strong>port</strong></td>
+                                                        <td><strong>Port</strong></td>
                                                         <td>{$user->port}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><strong>Connect the password</strong></td>
+                                                        <td><strong>Connection password</strong></td>
                                                         <td>{$user->passwd}</td>
                                                     </tr>
                                                     <tr>
@@ -361,7 +341,7 @@
                                                         <td>{$user->uuid}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><strong>A custom encryption</strong></td>
+                                                        <td><strong>Custom encryption</strong></td>
                                                         <td>{$user->method}</td>
                                                     </tr>
                                                     </tbody>

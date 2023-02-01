@@ -21,7 +21,7 @@ final class Tools
     {
         $iplocation = new QQWry();
         $location = $iplocation->getlocation($ip);
-        return iconv('gbk', 'utf-8//IGNORE', $location['country'] . $location['area']);
+        return $location['country'] . $location['area'];
     }
 
     /**
@@ -63,7 +63,7 @@ final class Tools
     public static function flowAutoShowZ($Value)
     {
         $number = substr($Value, 0, -2);
-        if (! is_numeric($number)) {
+        if (!is_numeric($number)) {
             return null;
         }
         $number = intval($number);
@@ -190,7 +190,7 @@ final class Tools
         if ($handle !== false) {
             $i = 0;
             while (($file = readdir($handle)) !== false) {
-                if ($file !== '.' && $file !== '..' && ! strpos($file, '.')) {
+                if ($file !== '.' && $file !== '..' && !strpos($file, '.')) {
                     $dirArray[$i] = $file;
                     $i++;
                 }
@@ -202,7 +202,7 @@ final class Tools
 
     public static function isSpecialChars($input)
     {
-        return ! preg_match('/[^A-Za-z0-9\-_\.]/', $input);
+        return !preg_match('/[^A-Za-z0-9\-_\.]/', $input);
     }
 
     public static function isParamValidate($type, $str)
@@ -222,7 +222,7 @@ final class Tools
     public static function keyFilter(Model $object, array $filter_array): Model
     {
         foreach ($object->toArray() as $key => $value) {
-            if (! \in_array($key, $filter_array)) {
+            if (!\in_array($key, $filter_array)) {
                 unset($object->$key);
             }
         }
@@ -342,14 +342,14 @@ final class Tools
             if ($i === 1) {
                 // 当前为第一页
                 if ($currentPage === $i) {
-                    $html .= '<li class="page-item disabled"><a class="page-link">上一页</a></li>';
+                    $html .= '<li class="page-item disabled"><a class="page-link">Prev page</a></li>';
                     $html .= $active;
                     if ($i === $totalPage) {
-                        $html .= '<li class="page-item disabled"><a class="page-link">下一页</a></li>';
+                        $html .= '<li class="page-item disabled"><a class="page-link">Next page</a></li>';
                         continue;
                     }
                 } else {
-                    $html .= '<li class="page-item"><a class="page-link" href="' . $data->url($currentPage - 1) . '">上一页</a></li>';
+                    $html .= '<li class="page-item"><a class="page-link" href="' . $data->url($currentPage - 1) . '">Prev page</a></li>';
                     if ($currentPage > 4) {
                         $html .= '<li class="page-item disabled"><a class="page-link">...</a></li>';
                     } else {
@@ -361,14 +361,14 @@ final class Tools
                 // 当前为最后一页
                 if ($currentPage === $i) {
                     $html .= $active;
-                    $html .= '<li class="page-item disabled"><a class="page-link">下一页</a></li>';
+                    $html .= '<li class="page-item disabled"><a class="page-link">Next page</a></li>';
                 } else {
                     if ($totalPage - $currentPage > 3) {
                         $html .= '<li class="page-item disabled"><a class="page-link">...</a></li>';
                     } else {
                         $html .= $page;
                     }
-                    $html .= '<li class="page-item"><a class="page-link" href="' . $data->url($currentPage + 1) . '">下一页</a></li>';
+                    $html .= '<li class="page-item"><a class="page-link" href="' . $data->url($currentPage + 1) . '">Next page</a></li>';
                 }
             }
             if ($i > 1 && $i < $totalPage) {
@@ -447,15 +447,15 @@ final class Tools
     public static function getTicketStatus($ticket)
     {
         if ($ticket->status === 'closed') {
-            return '已结单';
+            return 'billed';
         }
         if ($ticket->status === 'open_wait_user') {
-            return '等待用户回复';
+            return 'Waiting for user';
         }
         if ($ticket->status === 'open_wait_admin') {
-            return '进行中';
+            return 'processing';
         }
-        return '未知';
+        return 'unknown';
     }
 
     /**

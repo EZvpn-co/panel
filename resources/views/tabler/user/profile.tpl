@@ -22,7 +22,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
-                                <div class="subheader">Email account</div>
+                                <div class="subheader">Email</div>
                             </div>
                             <div class="h1 mb-3">{$user->email}</div>
                         </div>
@@ -32,7 +32,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
-                                <div class="subheader">Account nickname</div>
+                                <div class="subheader">Nickname</div>
                             </div>
                             <div class="h1 mb-3">{$user->user_name}</div>
                         </div>
@@ -42,7 +42,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
-                                <div class="subheader">Account registration time</div>
+                                <div class="subheader">Registration time</div>
                             </div>
                             <div class="h1 mb-3">{$user->reg_date}</div>
                         </div>
@@ -52,7 +52,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
-                                <div class="subheader">Cumulative use of traffic</div>
+                                <div class="subheader">Total traffic</div>
                             </div>
                             <div class="h1 mb-3">{round($user->transfer_total / 1073741824,2)} GB</div>
                         </div>
@@ -63,15 +63,15 @@
                 <div class="col-md-6 com-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Recent login record</h3>
+                            <h3 class="card-title">Recent login</h3>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-vcenter text-nowrap card-table">
                                 <thead>
                                     <tr>
                                         <th>IP</th>
-                                        <th>time</th>
-                                        <th>attribution</th>
+                                        <th>Time</th>
+                                        <th>Attribution</th>
                                     </tr>
                                 </thead>
                                 <tbody>

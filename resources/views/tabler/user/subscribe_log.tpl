@@ -25,11 +25,11 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>type</th>
+                                        <th>Type</th>
                                         <th>IP</th>
-                                        <th>attribution</th>
-                                        <th>time</th>
-                                        <th>logo</th>
+                                        <th>Attribution</th>
+                                        <th>Time</th>
+                                        <th>Logo</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -48,7 +48,7 @@
             <a class="menu-logo" href="/">&nbsp;{$config['appName']}</a>
             <ul class="nav">
                 <li>
-                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_me">my</a>
+                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_me">Account</a>
                     <ul class="menu-collapse collapse in" id="ui_menu_me">
                         <li>
                             <a href="/user"><i class="mdi mdi-home icon-lg"></i>&nbsp;User center</a>
@@ -73,7 +73,7 @@
                             <a href="/user/invite"><i class="mdi mdi-account-multiple-plus icon-lg"></i>&nbsp;Invitation</a>
                         </li>
                     </ul>
-                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_use">use</a>
+                    <a class="waves-attach" data-toggle="collapse" href="#ui_menu_use">Use</a>
                     <ul class="menu-collapse collapse in" id="ui_menu_use">
                         <li>
                             <a href="/user/server"><i class="mdi mdi-server icon-lg"></i>&nbsp;Servers</a>

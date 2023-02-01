@@ -79,7 +79,8 @@
                                         <tr>
                                             <td>{$login->ip}</td>
                                             <td>{date('Y-m-d H:i:s', $login->datetime)}</td>
-                                            <td>{Tools::getIpInfo($login->ip)}</td>
+                                            <td></td>
+                                            <!-- <td>{Tools::getIpInfo($login->ip)}</td> -->
                                         </tr>
                                     {/foreach}
                                 </tbody>

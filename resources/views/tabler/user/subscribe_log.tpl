@@ -38,7 +38,8 @@
                                         <td>#{$log->id}</td>
                                         <td>{$log->subscribe_type}</td>
                                         <td>{$log->request_ip}</td>
-                                        <td>{Tools::getIpInfo($log->request_ip)}</td>
+                                        <td></td>
+                                        <!-- <td>{Tools::getIpInfo($log->request_ip)}</td> -->
                                         <td>{$log->request_time}</td>
                                         <td>{$log->request_user_agent}</td>
                                     </tr>

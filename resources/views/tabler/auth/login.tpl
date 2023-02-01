@@ -5,21 +5,21 @@
         <div class="container-tight py-4">
             <div class="text-center mb-4">
                 <a href="#" class="navbar-brand navbar-brand-autodark">
-                    <img src="/images/uim-logo-round_96x96.png" height="64" alt="">
+                    <img src="/images/ez-logo-round_96x96.png" height="64" alt="">
                 </a>
             </div>
             <div class="card card-md">
                 <div class="card-body">
-                    <h2 class="card-title text-center mb-4">Login to the user center</h2>
+                    <h2 class="card-title text-center mb-4">Login to user center</h2>
                     <div class="mb-3">
-                        <label class="form-label">Registered mail</label>
+                        <label class="form-label">Eail</label>
                         <input id="email" type="email" class="form-control">
                     </div>
                     <div class="mb-2">
                         <label class="form-label">
-                            The login password
+                            Password
                             <span class="form-label-description">
-                                <a href="/password/reset">Forgot password</a>
+                                <a href="/password/reset">Forgot password?</a>
                             </span>
                         </label>
                         <div class="input-group input-group-flat">
@@ -27,13 +27,13 @@
                         </div>
                     </div>
                     <div class="mb-2">
-                        <label class="form-label">Two step certification</label>
-                        <input id="code" type="email" class="form-control" placeholder="If there is no set two step certification can be left blank">
+                        <label class="form-label">Two-step verification</label>
+                        <input id="code" type="email" class="form-control" placeholder="Enter two-step verification code if need">
                     </div>
                     <div class="mb-2">
                         <label class="form-check">
                             <input id="remember_me" type="checkbox" class="form-check-input" />
-                            <span class="form-check-label">Remember this device</span>
+                            <span class="form-check-label">Remember me</span>
                         </label>
                     </div>
                     {if $config['enable_login_captcha'] === true && $config['captcha_provider'] === 'turnstile'}
@@ -51,12 +51,12 @@
                     </div>
                     {/if}
                     <div class="form-footer">
-                        <button id="login-dashboard" class="btn btn-primary w-100">The login</button>
+                        <button id="login-dashboard" class="btn btn-primary w-100">Login</button>
                     </div>
                 </div>
             </div>
             <div class="text-center text-muted mt-3">
-                Still no account? <a href="/auth/register" tabindex="-1">Click on the register</a>
+                Still no account? <a href="/auth/register" tabindex="-1">Register</a>
             </div>
         </div>
     </div>

@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
-<html lang="zh">
+<html lang="en-us">
 <head>
     <meta charset="UTF-8">
     <meta name="robots" content="noindex">
-    <title>Terms of Service - {$config['appName']}</title>
+    <title>Terms of service - {$config['appName']}</title>
     <link rel="shortcut icon" href="/favicon.ico"/>
     <link rel="bookmark" href="/favicon.ico"/>
     <link rel="stylesheet" href="/assets/css/info-pages.min.css">
@@ -11,10 +11,10 @@
 <body>
 <div class="container">
     <div class="copy-container center-xy">
-        <h1>The user service agreement (Terms of Service)</h1>
+        <h1>The user service agreement (Terms of service)</h1>
         <p>{$config['appName']}, hereinafter referred to as the site.</p>
         <br>
-        <h2>privacy</h2>
+        <h2>Privacy</h2>
         <p>Email the only instrument for the site service, please safekeeping.</p>
         <br>
         <h2>Terms of use</h2>

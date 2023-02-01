@@ -6,8 +6,12 @@
             </div>
             <div class="modal-footer">
                 <p class="text-right">
-                    <button class="btn btn-flat btn-brand-accent waves-attach" data-dismiss="modal" type="button"
-                            id="result_ok">Know the
+                    <button
+                    class="btn btn-flat btn-brand-accent waves-attach"
+                    data-dismiss="modal"
+                    type="button"
+                    id="result_ok">
+                        Ok
                     </button>
                 </p>
             </div>

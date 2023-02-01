@@ -5,33 +5,33 @@
         <div class="container-tight py-4">
             <div class="text-center mb-4">
                 <a href="#" class="navbar-brand navbar-brand-autodark">
-                    <img src="/images/uim-logo-round_96x96.png" height="64" alt="">
+                    <img src="/images/ez-logo-round_96x96.png" height="64" alt="">
                 </a>
             </div>
             <div class="card card-md">
                 {if $config['register_mode'] != 'close'}
                     <div class="card-body">
-                        <h2 class="card-title text-center mb-4">Sign up for an account</h2>
+                        <h2 class="card-title text-center mb-4">Register</h2>
                         <div class="mb-3">
-                            <input id="name" type="text" class="form-control" placeholder="nickname">
+                            <input id="name" type="text" class="form-control" placeholder="Fullname">
                         </div>
                         <div class="mb-3">
-                            <input id="email" type="email" class="form-control" placeholder="email">
+                            <input id="email" type="email" class="form-control" placeholder="Email">
                         </div>
                         <div class="mb-3">
                             <div class="input-group input-group-flat">
-                                <input id="passwd" type="password" class="form-control" placeholder="The login password">
+                                <input id="passwd" type="password" class="form-control" placeholder="Password">
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="input-group input-group-flat">
-                                <input id="repasswd" type="password" class="form-control" placeholder="Repeat the login password">
+                                <input id="repasswd" type="password" class="form-control" placeholder="Repeat password">
                             </div>
                         </div>
                         {if $config['enable_reg_im'] == true}
                             <div class="mb-3">
                                 <select id="im_type" class="col form-select">
-                                    <option value="0">Please select a social software</option>
+                                    <option value="0">Please select a social media</option>
                                     <option value="1">WeChat</option>
                                     <option value="2">QQ</option>
                                     <option value="4">Telegram</option>
@@ -47,14 +47,14 @@
                         {if $config['register_mode'] != 'close' }
                             <div class="mb-3">
                                 <div class="input-group input-group-flat">
-                                    <input id="code" type="text" class="form-control" placeholder="Register invitation code{if $config['register_mode'] == 'open'}(optional){else}(required){/if}" value="{$code}">
+                                    <input id="code" type="text" class="form-control" placeholder="Invitation code{if $config['register_mode'] == 'open'}(optional){else}(required){/if}" value="{$code}">
                                 </div>
                             </div>
                         {/if}
                         {if $config['enable_email_verify'] == true}
                             <div class="mb-3">
                                 <div class="input-group mb-2">
-                                    <input id="emailcode" type="text" class="form-control" placeholder="Your email verification code">
+                                    <input id="emailcode" type="text" class="form-control" placeholder="Email verification code">
                                     <button id="email-verify" class="btn text-blue" type="button">To obtain</button>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                             <label class="form-check">
                                 <input id="tos" type="checkbox" class="form-check-input" />
                                 <span class="form-check-label">
-                                    I have read and agreed to <a href="/tos" tabindex="-1"> The terms of service and privacy policy </a>
+                                    I agree with <a href="/tos" tabindex="-1" target="_blank> The terms of service and privacy policy </a>
                                 </span>
                             </label>
                         </div>
@@ -82,17 +82,17 @@
                         </div>
                         {/if}
                         <div class="form-footer">
-                            <button id="confirm-register" type="submit" class="btn btn-primary w-100">Register a new account</button>
+                            <button id="confirm-register" type="submit" class="btn btn-primary w-100">Create account</button>
                         </div>
                     </div>
                 {else}
                     <div class="card-body">
-                        <p>No open registration, look back in a couple of days</p>
+                        <p>Registration is closed, back later</p>
                     </div>
                 {/if}
             </div>
             <div class="text-center text-muted mt-3">
-                Existing account? <a href="/auth/login" tabindex="-1">Click login</a>
+                Have an account? <a href="/auth/login" tabindex="-1">Login</a>
             </div>
         </div>
     </div>

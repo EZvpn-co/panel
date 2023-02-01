@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="zh-cn">
+<html lang="en-us">
 <head>
     <title>An error occurred - {$config['appName']} </title>
     <meta name="keywords" content=""/>

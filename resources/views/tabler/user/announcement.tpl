@@ -6,10 +6,10 @@
             <div class="row align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        <span class="home-title">Site announcement</span>
+                        <span class="home-title">Announcement</span>
                     </h2>
                     <div class="page-pretitle my-3">
-                        <span class="home-subtitle">All of the announcement the administrator</span>
+                        <span class="home-subtitle">All of the announcement</span>
                     </div>
                 </div>
             </div>
@@ -25,8 +25,8 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>The release date</th>
-                                        <th>Content of the announcement</th>
+                                        <th>Publish date</th>
+                                        <th>Content</th>
                                     </tr>
                                 </thead>
                                 <tbody>

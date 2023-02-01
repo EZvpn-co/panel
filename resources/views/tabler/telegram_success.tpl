@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
-<html lang="zh-cn">
+<html lang="en-us">
 <head>
-    <title>Is the jump user center - {$config['appName']} </title>
+    <title>User center - {$config['appName']} </title>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <meta charset="utf-8"/>

@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col">
                             <a id="success-confirm" href="" class="btn w-100" data-bs-dismiss="modal">
-                                Good
+                                Ok
                             </a>
                         </div>
                     </div>
@@ -29,14 +29,14 @@
             <div class="modal-status bg-danger"></div>
             <div class="modal-body text-center py-4">
                 <i class="ti ti-circle-x icon mb-2 text-danger icon-lg" style="font-size:3.5rem;"></i>
-                <p id="fail-message" class="text-muted">Error</p>
+                <p id="fail-message" class="text-muted">Fail</p>
             </div>
             <div class="modal-footer">
                 <div class="w-100">
                     <div class="row">
                         <div class="col">
                             <a href="" class="btn btn-danger w-100" data-bs-dismiss="modal">
-                                Confirm
+                                Ok
                             </a>
                         </div>
                     </div>
@@ -52,14 +52,14 @@
             <div class="col-lg-auto ms-lg-auto">
                 <ul class="list-inline list-inline-dots mb-0">
                     <li class="list-inline-item">
-                        <a href="/staff" class="link-secondary">Powered by SSPanel-UIM</a>
+                        <a href="www.ezvpn.co" class="link-secondary">Powered by EZvpn.co</a>
                     </li>
                 </ul>
             </div>
             <div class="col-12 col-lg-auto mt-3 mt-lg-0">
                 <ul class="list-inline list-inline-dots mb-0">
                     <li class="list-inline-item">
-                        Theme by <a href="https://tabler.io/" class="link-secondary">Tabler</a>
+                        
                     </li>
                 </ul>
             </div>

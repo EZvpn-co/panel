@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="zh-cn">
+<html lang="en-us">
 <head>
     <title>产生了一个错误 - {$config['appName']} </title>
     <meta name="keywords" content=""/>

@@ -5,17 +5,17 @@
         <div class="container-tight py-4">
             <div class="text-center mb-4">
                 <a href="#" class="navbar-brand navbar-brand-autodark">
-                    <img src="/images/uim-logo-round_96x96.png" height="64" alt="">
+                    <img src="/images/ez-logo-round_96x96.png" height="64" alt="">
                 </a>
             </div>
             <div class="card card-md">
                 <div class="card-body">
                     <h2 class="card-title text-center mb-4">Forgot password</h2>
                     <p class="text-muted mb-4">
-                        We will be to your registered email to send an email, mail contents include a link to reset your password
+                        We will send an email with a link to reset your password
                     </p>
                     <div class="mb-3">
-                        <label class="form-label">Registered mail</label>
+                        <label class="form-label">Email</label>
                         <input id="email" type="email" class="form-control">
                     </div>
                     {if $config['enable_reset_password_captcha'] === true && $config['captcha_provider'] === 'turnstile'}
@@ -35,14 +35,14 @@
                     <div class="form-footer">
                         <button id="send" class="btn btn-primary w-100">
                             <i class="ti ti-brand-telegram icon"></i>
-                            Send E-mail
+                            Send Email
                         </button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="text-center text-muted mt-3">
-            Existing account? <a href="/auth/login" tabindex="-1">Click login</a>
+            Have an account? <a href="/auth/login" tabindex="-1">Login</a>
         </div>
     </div>
 

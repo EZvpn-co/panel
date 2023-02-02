@@ -36,7 +36,7 @@ final class TelegramBotController extends BaseController
             $array_node = [];
             $array_node['id'] = $node->id;
             $array_node['name'] = $node->name;
-            $array_node['class'] = $_ENV['node_levels_name'][$node->node_class] || "NotSpecific";
+            $array_node['class'] = $_ENV['node_levels_name'][$node->node_class];
             $array_node['type'] = Tools::getNodeType($node);
             $array_node['sort'] = Tools::getNodeSort($node);
             $array_node['info'] = $node->info;

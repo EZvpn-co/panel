@@ -326,6 +326,6 @@ return function (SlimApp $app): void {
 
     // tlgBot
     $app->group('/tlg_bot', function (): void {
-        $this->post('servers', App\Controllers\TelegramBotController . ':servers');
+        $this->get('servers', App\Controllers\TelegramBotController . ':servers');
     });
 };

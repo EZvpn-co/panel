@@ -535,7 +535,7 @@ final class SubController extends BaseController
         $Rule = "FINAL, 🔓 EZvpn.co (" . $levelName . ") [" . date("Ymd", strtotime($user->class_expire)) . "]";
 
         $Conf = [
-            '#!MANAGED-CONFIG ' . $_ENV['subUrl'] . $_SERVER['REQUEST_URI'] . ' interval=900 strict=true',
+            '#!MANAGED-CONFIG ' . $_ENV['subUrl'] . $_SERVER['REQUEST_URI'] . ' interval=86400 strict=true',
             '',
             '#---------------------------------------------------#',
             '# Last update:' . date("Y-m-d h:i:s"),

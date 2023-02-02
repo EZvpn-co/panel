@@ -21,10 +21,36 @@ final class TelegramBotController extends BaseController
      */
     public function servers(Request $request, Response $response, array $args)
     {
+        $user = $this->user;
+        $query = Node::query();
+        $query->where('type', 1)->whereNotIn('sort', [9]);
+        if (!$user->is_admin) {
+            $group = ($user->node_group !== 0 ? [0, $user->node_group] : [0]);
+            $query->whereIn('node_group', $group);
+        }
+        $nodes = $query->orderBy('node_class')->orderBy('name')->get();
+        $all_node = [];
+        foreach ($nodes as $node) {
+            $array_node = [];
+            $array_node['id'] = $node->id;
+            $array_node['name'] = $node->name;
+            $array_node['class'] = $node->node_class;
+            $array_node['sort'] = $node->sort;
+            $array_node['info'] = $node->info;
+            $array_node['online_user'] = $node->online_user;
+            $array_node['online'] = $node->getNodeOnlineStatus();
+            $array_node['traffic_rate'] = $node->traffic_rate;
+            $array_node['status'] = $node->status;
+            $array_node['traffic_used'] = (int) Tools::flowToGB($node->node_bandwidth);
+            $array_node['traffic_limit'] = (int) Tools::flowToGB($node->node_bandwidth_limit);
+            $array_node['bandwidth'] = $node->getNodeSpeedlimit();
+
+            $all_node[] = $array_node;
+        }
 
         return $response->withJson([
             'ok' => true,
-            'servers' => []
+            'servers' => $all_node
         ]);
     }
 }

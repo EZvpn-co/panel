@@ -480,7 +480,7 @@ final class Tools
      */
     public static function getNodeType($node)
     {
-        return $node->type ? '显示' : '隐藏';
+        return $node->type ? 'Show' : 'Hide';
     }
 
     /**

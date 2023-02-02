@@ -33,9 +33,18 @@ $_ENV['streaming_media_unlock_multiplexing'] = [
 
 
 $_ENV['user_levels_name'] = [
+    -1 => "NotActive",
     0 => "Free",
-    1 => "Daily",
-    2 => "Daily+"
+    1 => "Normal",
+    2 => "VIP",
+    3 => "Full"
+];
+
+$_ENV['node_levels_name'] = [
+    0 => "Public",
+    1 => "Silver",
+    2 => "Golden",
+    3 => "Diamond",
 ];
 
 

@@ -322,4 +322,10 @@ return function (SlimApp $app): void {
     $app->group('/nodeConfig', function (): void {
         $this->post('', App\Controllers\Admin\NodeController::class . ':add');
     });
+
+
+    // tlgBot
+    $app->group('/tlg_bot', function (): void {
+        $this->post('servers', App\Controllers\TelegramBotController . ':servers');
+    });
 };

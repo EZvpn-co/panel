@@ -6,10 +6,10 @@
             <div class="row align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        <span class="home-title">Data modification</span>
+                        <span class="home-title">Edit Profile</span>
                     </h2>
                     <div class="page-pretitle my-3">
-                        <span class="home-subtitle">Modify part of account information</span>
+                        <span class="home-subtitle">Edit account information</span>
                     </div>
                 </div>
             </div>
@@ -25,28 +25,28 @@
                                 <a href="#personal_information" class="nav-link active" data-bs-toggle="tab"
                                     aria-selected="true" role="tab">
                                     <i class="ti ti-chart-candle icon"></i>&nbsp;
-                                    data
+                                    Profile
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a href="#login_security" class="nav-link" data-bs-toggle="tab" aria-selected="true"
                                     role="tab">
                                     <i class="ti ti-shield-lock icon"></i>&nbsp;
-                                    The login
+                                    Login
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a href="#use_safety" class="nav-link" data-bs-toggle="tab" aria-selected="false"
                                     tabindex="-1" role="tab">
                                     <i class="ti ti-brand-telegram icon"></i>&nbsp;
-                                    use
+                                    Use
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a href="#other_settings" class="nav-link" data-bs-toggle="tab" aria-selected="false"
                                     tabindex="-1" role="tab">
                                     <i class="ti ti-settings icon"></i>&nbsp;
-                                    other
+                                    Other
                                 </a>
                             </li>
                         </ul>
@@ -57,16 +57,14 @@
                                         <div class="col-sm-12 col-md-6">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h3 class="card-title">The login email</h3>
-                                                    <p>Current email:<code>{$user->email}</code></p>
+                                                    <h3 class="card-title">Email address</h3>
+                                                    <p>Current email: <code>{$user->email}</code></p>
                                                     <div class="mb-3">
-                                                        <input id="new-email" type="email" class="form-control"
-                                                            placeholder="The new email" {if $config['enable_change_email'] == false}disabled=""{/if}>
+                                                        <input id="new-email" type="email" class="form-control" placeholder="New email" {if $config['enable_change_email'] == false}disabled=""{/if}>
                                                     </div>
                                                     {if $config['enable_email_verify'] == true && $config['enable_change_email'] == true}
                                                     <div class="mb-3">
-                                                        <input id="email-code" type="text" class="form-control"
-                                                            placeholder="Verification code">
+                                                        <input id="email-code" type="text" class="form-control" placeholder="Verification code">
                                                     </div>
                                                     {/if}
                                                 </div>
@@ -74,14 +72,11 @@
                                                     <div class="d-flex">
                                                         {if $config['enable_email_verify'] == true && $config['enable_change_email'] == true}
                                                         <a id="email-verify" class="btn btn-link">Get verification code</a>
-                                                        <button id="modify-email"
-                                                            class="btn btn-primary ms-auto">Modify the</button>
+                                                        <button id="modify-email" class="btn btn-primary ms-auto">Submit</button>
                                                         {elseif $config['enable_change_email'] == true}
-                                                        <button id="modify-email"
-                                                            class="btn btn-primary ms-auto">Modify the</button>
+                                                        <button id="modify-email" class="btn btn-primary ms-auto">Submit</button>
                                                         {else}
-                                                        <button id="modify-email" class="btn btn-primary ms-auto"
-                                                            disabled>Not allowed to change</button>
+                                                        <button id="modify-email" class="btn btn-primary ms-auto" disabled>Can't change</button>
                                                         {/if}
                                                     </div>
                                                 </div>
@@ -93,27 +88,20 @@
                                                     <h3 class="card-title">contact</h3>
                                                     <div class="mb-3">
                                                         <select id="imtype" class="form-select">
-                                                            <option value="1" {if $user->im_type == '1'}selected{/if}>
-                                                                WeChat</option>
-                                                            <option value="2" {if $user->im_type == '2'}selected{/if}>
-                                                                QQ</option>
-                                                            <option value="3" {if $user->im_type == '3'}selected{/if}>
-                                                                Facebook</option>
-                                                            <option value="4" {if $user->im_type == '4'}selected{/if}>
-                                                                Telegram</option>
-                                                            <option value="5" {if $user->im_type == '5'}selected{/if}>
-                                                                Discord</option>
+                                                            <option value="1" {if $user->im_type == '1'}selected{/if}>WeChat</option>
+                                                            <option value="2" {if $user->im_type == '2'}selected{/if}>QQ</option>
+                                                            <option value="3" {if $user->im_type == '3'}selected{/if}>Facebook</option>
+                                                            <option value="4" {if $user->im_type == '4'}selected{/if}>Telegram</option>
+                                                            <option value="5" {if $user->im_type == '5'}selected{/if}>Discord</option>
                                                         </select>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <input id="imvalue" type="text" class="form-control" 
-                                                            {if $user->im_type == '4'} disabled="" {/if}
-                                                            value="{$user->im_value}" placeholder="Social account">
+                                                        <input id="imvalue" type="text" class="form-control" {if $user->im_type == '4'} disabled="" {/if} value="{$user->im_value}" placeholder="Social account">
                                                     </div>
                                                 </div>
                                                 <div class="card-footer">
                                                     <div class="d-flex">
-                                                        <a id="modify-im" class="btn btn-primary ms-auto">Modify the</a>
+                                                        <a id="modify-im" class="btn btn-primary ms-auto">Submit</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -124,13 +112,12 @@
                                                     <h3 class="card-title">The user name</h3>
                                                     <p>The current user name:<code>{$user->user_name}</code></p>
                                                     <div class="mb-3">
-                                                        <input id="new-nickname" type="text" class="form-control"
-                                                        placeholder="A new user name" autocomplete="off">
+                                                        <input id="new-nickname" type="text" class="form-control" placeholder="New Nickname" autocomplete="off">
                                                     </div>
                                                 </div>
                                                 <div class="card-footer">
                                                     <div class="d-flex">
-                                                        <a id="modify-username" class="btn btn-primary ms-auto">Modify the</a>
+                                                        <a id="modify-username" class="btn btn-primary ms-auto">Submit</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -140,9 +127,9 @@
                                             {if $user->telegram_id != 0}
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h3 class="card-title">unbundling Telegram</h3>
-                                                    <p>The binding of Telegram Account:
-                                                        {if $user->im_value === "User name is not set"}
+                                                    <h3 class="card-title">Unbundling Telegram</h3>
+                                                    <p>Binding Telegram Account:
+                                                        {if $user->im_value === "Username is not set"}
                                                         <code>{$user->telegram_id}</code>
                                                         {else}
                                                         <a href="https://t.me/{$user->im_value}">@{$user->im_value}</a>
@@ -151,36 +138,32 @@
                                                 </div>
                                                 <div class="card-footer">
                                                     <div class="d-flex">
-                                                        <a href="/user/telegram_reset"
-                                                            class="btn btn-red ms-auto">unbundling</a>
+                                                        <a href="/user/telegram_reset" class="btn btn-red ms-auto">unbundling</a>
                                                     </div>
                                                 </div>
                                             </div>
                                             {else}
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h3 class="card-title">The binding Telegram</h3>
+                                                    <h3 class="card-title">Binding Telegram</h3>
                                                     <div class="row">
                                                         <div class="col-6 col-sm-2 col-md-2 col-xl mb-3">
-                                                            Mobile tablet computer has been installed Telegram clickable
+                                                            Mobile, tablet, computer has been installed Telegram clickable
                                                         </div>
                                                         <div class="col-6 col-sm-2 col-md-2 col-sm mb-3">
-                                                            <a href="https://t.me/{$telegram_bot}?start={$bind_token}"
-                                                                class="btn btn-primary w-100">
-                                                                A key bindings
+                                                            <a href="https://t.me/{$telegram_bot}?start={$bind_token}" class="btn btn-primary w-150">
+                                                                One key bindings
                                                             </a>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-6 col-sm-2 col-md-2 col-xl mb-3">
-                                                            To the robot <a
-                                                                href="https://t.me/{$telegram_bot}">@{$telegram_bot}</a>
-                                                            Send verification code binding
+                                                            Send verification code to
+                                                            <a href="https://t.me/{$telegram_bot}">@{$telegram_bot}</a>
+                                                            Telegram bot
                                                         </div>
                                                         <div class="col-6 col-sm-2 col-md-2 col-sm mb-3">
-                                                            <button data-clipboard-text="{$bind_token}"
-                                                                class="copy btn btn-primary w-100">
-                                                                Copy the verification code
+                                                            <button data-clipboard-text="{$bind_token}" class="copy btn btn-primary w-150">Copy the verification code
                                                             </button>
                                                         </div>
                                                     </div>
@@ -201,13 +184,19 @@
                                                         <div class="col-sm-6 col-md-6">
                                                             <p>
                                                                 <i class="ti ti-brand-apple"></i>
-                                                                <a target="view_window"
-                                                                    href="https://apps.apple.com/us/app/google-authenticator/id388497605">Apple's client
+                                                                <a
+                                                                    target="view_window"
+                                                                    href="https://apps.apple.com/us/app/google-authenticator/id388497605"
+                                                                >
+                                                                    iOS app
                                                                 </a>
                                                                 &nbsp;&nbsp;&nbsp;
                                                                 <i class="ti ti-brand-android"></i>
-                                                                <a target="view_window"
-                                                                    href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=zh&gl=US">The android client
+                                                                <a
+                                                                    target="view_window"
+                                                                    href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=zh&gl=US"
+                                                                >
+                                                                    Android app
                                                                 </a>
                                                             </p>
                                                         </div>
@@ -219,28 +208,28 @@
                                                         <div class="col-md-9">
                                                             <div class="mb-3">
                                                                 <select id="ga-enable" class="form-select">
-                                                                    <option value="0">Do not use</option>
+                                                                    <option value="0">Disable</option>
                                                                     <option value="1"
                                                                         {if $user->ga_enable == '1'}selected{/if}>
-                                                                        Using two-step authentication to log in
+                                                                        Two-step authentication is Enable
                                                                     </option>
                                                                 </select>
                                                             </div>
                                                             <div class="mb-3">
                                                                 <input id="2fa-test-code" type="text"
-                                                                    class="form-control" placeholder="Testing two steps certification authentication code">
+                                                                    class="form-control" placeholder="Test auth code">
                                                             </div>
                                                             <div class="col-md-12">
-                                                                <p>Keys:<code>{$user->ga_token}</code></p>
+                                                                <p>Key: <code>{$user->ga_token}</code></p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="card-footer">
                                                     <div class="d-flex">
-                                                        <a id="reset-2fa" class="btn btn-link">reset</a>
-                                                        <a id="test-2fa" class="btn btn-link">test</a>
-                                                        <a id="save-2fa" class="btn btn-primary ms-auto">Set up the</a>
+                                                        <a id="reset-2fa" class="btn btn-link">Reset</a>
+                                                        <a id="test-2fa" class="btn btn-link">Test</a>
+                                                        <a id="save-2fa" class="btn btn-primary ms-auto">Submit</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -248,32 +237,26 @@
                                         <div class="col-sm-12 col-md-6">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h3 class="card-title">Modify the login password</h3>
+                                                    <h3 class="card-title">Change password</h3>
                                                     <div class="mb-3">
                                                         <form>
-                                                            <input id="password" type="password" class="form-control"
-                                                                placeholder="The current password" autocomplete="off">
+                                                            <input id="password" type="password" class="form-control" placeholder="Current password" autocomplete="off">
                                                         </form>
                                                     </div>
                                                     <div class="mb-3">
                                                         <form>
-                                                            <input id="new-password" type="password"
-                                                                class="form-control" placeholder="Enter a new password"
-                                                                autocomplete="off">
+                                                            <input id="new-password" type="password" class="form-control" placeholder="New password" autocomplete="off">
                                                         </form>
                                                     </div>
                                                     <div class="mb-3">
                                                         <form>
-                                                            <input id="again-new-password" type="password"
-                                                                class="form-control" placeholder="To enter a new password again"
-                                                                autocomplete="off">
+                                                            <input id="again-new-password" type="password" class="form-control" placeholder="Repeat new password" autocomplete="off">
                                                         </form>
                                                     </div>
                                                 </div>
                                                 <div class="card-footer">
                                                     <div class="d-flex">
-                                                        <a id="modify-login-passwd"
-                                                            class="btn btn-primary ms-auto">Modify the</a>
+                                                        <a id="modify-login-passwd" class="btn btn-primary ms-auto">Submit</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -300,7 +283,7 @@
                                                 </div>
                                                 <div class="card-footer">
                                                     <div class="d-flex">
-                                                        <a id="modify-user-method" class="btn btn-primary ms-auto">Modify the</a>
+                                                        <a id="modify-user-method" class="btn btn-primary ms-auto">Submit</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -314,7 +297,7 @@
                                                 <div class="card-footer">
                                                     <div class="d-flex">
                                                         <a id="reset-sub-url"
-                                                            class="btn btn-primary ms-auto bg-red">replace</a>
+                                                            class="btn btn-primary ms-auto bg-red">Reset</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -328,7 +311,7 @@
                                                 </div>
                                                 <div class="card-footer">
                                                     <div class="d-flex">
-                                                        <a id="reset-client-port" class="btn btn-red ms-auto">replace</a>
+                                                        <a id="reset-client-port" class="btn btn-red ms-auto">Reset</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -344,7 +327,7 @@
                                                 <div class="card-footer">
                                                     <div class="d-flex">
                                                         <a id="reset-passwd"
-                                                            class="btn btn-primary ms-auto bg-red">reset</a>
+                                                            class="btn btn-primary ms-auto bg-red">Reset</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -356,7 +339,7 @@
                                         <div class="col-sm-12 col-md-6">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h3 class="card-title">Daily dosage of push</h3>
+                                                    <h3 class="card-title">Send daily usage</h3>
                                                     <div class="mb-3">
                                                         <select id="daily-report" class="form-select">
                                                             <option value="0"
@@ -366,16 +349,14 @@
                                                                 {if $user->sendDailyMail == '1'}selected{/if}>Receive emails
                                                             </option>
                                                             <option value="2"
-                                                                {if $user->sendDailyMail == '2'}selected{/if}>Telegram
-                                                                Bot receive
+                                                                {if $user->sendDailyMail == '2'}selected{/if}>Telegram Bot
                                                             </option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="card-footer">
                                                     <div class="d-flex">
-                                                        <a id="modify-daily-report"
-                                                            class="btn btn-primary ms-auto">Modify the</a>
+                                                        <a id="modify-daily-report" class="btn btn-primary ms-auto">Submit</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -383,20 +364,18 @@
                                         <div class="col-sm-12 col-md-6">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h3 class="card-title">Modify the theme</h3>
+                                                    <h3 class="card-title">Change theme</h3>
                                                     <div class="mb-3">
                                                         <select id="user-theme" class="form-select">
                                                             {foreach $themes as $theme}
-                                                                <option value="{$theme}"
-                                                                    {if $user->theme == $theme}selected{/if}>{$theme}
-                                                                </option>
+                                                                <option value="{$theme}" {if $user->theme == $theme}selected{/if}>{$theme}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="card-footer">
                                                     <div class="d-flex">
-                                                        <a id="modify-user-theme" class="btn btn-primary ms-auto">Modify the</a>
+                                                        <a id="modify-user-theme" class="btn btn-primary ms-auto">Change</a>
                                                     </div>
                                                 </div>
                                             </div>   
@@ -410,13 +389,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="card-body">
-                                                    <h3 class="card-title">Delete the account data</h3>
+                                                    <h3 class="card-title">Delete account data</h3>
                                                 </div>    
                                                 <div class="card-footer">
-                                                    <a href="#" class="btn btn-red d-none d-sm-inline-block" data-bs-toggle="modal"
-                                                        data-bs-target="#destroy-account">
+                                                    <a href="#" class="btn btn-red d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#destroy-account">
                                                         <i class="ti ti-trash icon"></i>
-                                                        Confirm the deletion
+                                                        Delete account
                                                     </a>
                                                 </div>
                                             </div>  
@@ -476,15 +454,15 @@
                 <div class="modal-status bg-success"></div>
                 <div class="modal-body text-center py-4">
                     <i class="ti ti-circle-check icon mb-2 text-green icon-lg" style="font-size:3.5rem;"></i>
-                    <h3>Delete the success</h3>
-                    <p id="success-message" class="text-muted">Delete the success</p>
+                    <h3>Delete successfully</h3>
+                    <p id="success-message" class="text-muted">Success</p>
                 </div>
                 <div class="modal-footer">
                     <div class="w-100">
                         <div class="row">
                             <div class="col">
                                 <a href="#" class="btn w-100" data-bs-dismiss="modal">
-                                    good
+                                    Ok
                                 </a>
                             </div>
                         </div>
@@ -502,14 +480,14 @@
                 <div class="modal-body text-center py-4">
                     <i class="ti ti-circle-x icon mb-2 text-danger icon-lg" style="font-size:3.5rem;"></i>
                     <h3>Delete failed</h3>
-                    <p id="error-message" class="text-muted">Delete failed</p>
+                    <p id="error-message" class="text-muted">Failed</p>
                 </div>
                 <div class="modal-footer">
                     <div class="w-100">
                         <div class="row">
                             <div class="col">
                                 <a href="#" class="btn btn-danger w-100" data-bs-dismiss="modal">
-                                    confirm
+                                    Ok
                                 </a>
                             </div>
                         </div>
@@ -532,7 +510,7 @@
 
         var clipboard = new ClipboardJS('.copy');
         clipboard.on('success', function(e) {
-            $('#success-message').text('Has been copied to the clipboard');
+            $('#success-message').text('Copied');
             $('#success-dialog').modal('show');
         });
 

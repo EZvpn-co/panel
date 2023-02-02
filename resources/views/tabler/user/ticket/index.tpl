@@ -6,7 +6,7 @@
             <div class="row align-items-center">
                 <div class="col">
                     <h2 class="page-title">
-                        <span class="home-title my-3">Workers single-row table</span>
+                        <span class="home-title my-3">Ticketing</span>
                     </h2>
                     <div class="page-pretitle">
                         <span class="home-subtitle">Here you can contact the administrator for support</span>
@@ -17,7 +17,7 @@
                         <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal"
                             data-bs-target="#create-ticket">
                             <i class="icon ti ti-plus"></i>
-                            Create a work order
+                            New ticket
                         </a>
                         <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
                             data-bs-target="#create-ticket">
@@ -62,8 +62,7 @@
                                                 <span class="status status-grey">{$ticket->status}</span>
                                                 <!-- Work order type label -->
                                                 <span class="status status-grey">{$ticket->type}</span>
-                                                <a href="/user/ticket/{$ticket->id}/view"
-                                                    class="btn btn-primary ms-auto">To view</a>
+                                                <a href="/user/ticket/{$ticket->id}/view" class="btn btn-primary ms-auto">To view</a>
                                             </div>
                                         </div>
                                     </div>
@@ -72,7 +71,7 @@
                         {else}
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">No work order</h3>
+                                <h3 class="card-title">No ticket</h3>
                             </div>
                             <div class="card-body">If you need help, please click the button to open new work order</div>
                         </div>

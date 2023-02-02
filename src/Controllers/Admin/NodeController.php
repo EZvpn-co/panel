@@ -21,7 +21,7 @@ final class NodeController extends BaseController
         'field' => [
             'op' => 'Operate',
             'id' => 'NodeID',
-            'name' => 'Name',
+            // 'name' => 'Name',
             'server' => 'Server',
             'type' => 'Type',
             'sort' => 'Sort',

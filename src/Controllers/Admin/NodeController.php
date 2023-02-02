@@ -19,18 +19,18 @@ final class NodeController extends BaseController
 {
     public static $details = [
         'field' => [
-            'op' => '操作',
-            'id' => '节点ID',
-            'name' => '名称',
-            'server' => '地址',
-            'type' => '状态',
-            'sort' => '类型',
-            'traffic_rate' => '倍率',
-            'node_class' => '等级',
-            'node_group' => '组别',
-            'node_bandwidth_limit' => '流量限制/GB',
-            'node_bandwidth' => '已用流量/GB',
-            'bandwidthlimit_resetday' => '重置日',
+            'op' => 'Operate',
+            'id' => 'NodeID',
+            'name' => 'Name',
+            'server' => 'Server',
+            'type' => 'Type',
+            'sort' => 'Sort',
+            'traffic_rate' => 'Traffic rate',
+            'node_class' => 'Level',
+            'node_group' => 'Group',
+            'node_bandwidth_limit' => 'Bandwidth Limit(GB)',
+            'node_bandwidth' => 'Bandwidth(GB)',
+            'bandwidthlimit_resetday' => 'Reset Day',
         ],
     ];
 
@@ -111,7 +111,7 @@ final class NodeController extends BaseController
             $success = $node->changeNodeIp($server_list[0]);
         }
 
-        if (! $success) {
+        if (!$success) {
             return $response->withJson([
                 'ret' => 0,
                 'msg' => '获取节点IP失败，请检查您输入的节点地址是否正确！',
@@ -213,7 +213,7 @@ final class NodeController extends BaseController
             $success = $node->changeNodeIp($server_list[0]);
         }
 
-        if (! $success) {
+        if (!$success) {
             return $response->withJson([
                 'ret' => 0,
                 'msg' => '更新节点IP失败，请检查您输入的节点地址是否正确！',
@@ -279,7 +279,7 @@ final class NodeController extends BaseController
         $id = $args['id'];
         $node = Node::find($id);
 
-        if (! $node->delete()) {
+        if (!$node->delete()) {
             return $response->withJson([
                 'ret' => 0,
                 'msg' => '删除失败',
@@ -346,10 +346,10 @@ final class NodeController extends BaseController
 
         foreach ($nodes as $node) {
             $node->op = '<button type="button" class="btn btn-red" id="delete-node-' . $node->id . '" 
-            onclick="deleteNode(' . $node->id . ')">删除</button>
+            onclick="deleteNode(' . $node->id . ')">Delete</button>
             <button type="button" class="btn btn-orange" id="copy-node-' . $node->id . '" 
-            onclick="copyNode(' . $node->id . ')">复制</button>
-            <a class="btn btn-blue" href="/admin/node/' . $node->id . '/edit">编辑</a>';
+            onclick="copyNode(' . $node->id . ')">Copy</button>
+            <a class="btn btn-blue" href="/admin/node/' . $node->id . '/edit">Edit</a>';
             $node->type = Tools::getNodeType($node);
             $node->sort = Tools::getNodeSort($node);
             $node->node_bandwidth = round(Tools::flowToGB($node->node_bandwidth), 2);

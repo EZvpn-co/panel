@@ -56,4 +56,15 @@ final class TelegramBotController extends BaseController
             'servers' => $all_node
         ]);
     }
+
+
+    public function me(Request $request, Response $response, array $args)
+    {
+        $user = $this->user;
+
+        return $response->withJson([
+            'ok' => true,
+            'account' => $user
+        ]);
+    }
 }

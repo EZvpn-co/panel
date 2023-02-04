@@ -25,6 +25,8 @@ final class Auth
         return $user;
     }
 
+
+
     public static function logout(): void
     {
         self::getDriver()->logout();

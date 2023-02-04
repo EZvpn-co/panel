@@ -67,6 +67,8 @@ final class TelegramBotController extends BaseController
 
         $user->node_group = $_ENV['user_groups_name'][$user->node_group];
         $user->class = $_ENV['user_levels_name'][$user->class];
+        $user->used_traffic = $user->usedTraffic();
+        $user->unused_traffic = $user->unusedTraffic();
 
         return $response->withJson([
             'ok' => true,

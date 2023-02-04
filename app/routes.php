@@ -6,6 +6,7 @@ use App\Middleware\Admin;
 use App\Middleware\Auth;
 use App\Middleware\Guest;
 use App\Middleware\NodeToken;
+use App\Middleware\AuthTlgBot;
 use Slim\App as SlimApp;
 
 return function (SlimApp $app): void {
@@ -325,8 +326,9 @@ return function (SlimApp $app): void {
 
 
     // tlgBot
-    $app->get('/tlgBot/servers', App\Controllers\TelegramBotController::class . ':servers');
+
     $app->group('/tlgBot', function (): void {
+        $this->get('/servers', App\Controllers\TelegramBotController::class . ':servers');
         $this->get('/account', App\Controllers\TelegramBotController::class . ':account');
-    });
+    })->add(new AuthTlgBot());
 };

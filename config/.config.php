@@ -40,6 +40,11 @@ $_ENV['user_levels_name'] = [
     3 => "Full"
 ];
 
+$_ENV['user_groups_name'] = [
+    0 => "EZvpn",
+    1 => "EZvpn",
+];
+
 $_ENV['node_levels_name'] = [
     0 => "Public",
     1 => "Silver",

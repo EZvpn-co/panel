@@ -65,6 +65,9 @@ final class TelegramBotController extends BaseController
             return $response->withStatus(401);
         }
 
+        $user->node_group = $_ENV['user_groups_name'][$user->node_group];
+        $user->class = $_ENV['user_levels_name'][$user->class];
+
         return $response->withJson([
             'ok' => true,
             'account' => $user

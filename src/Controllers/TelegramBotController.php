@@ -61,6 +61,9 @@ final class TelegramBotController extends BaseController
     public function account(Request $request, Response $response, array $args)
     {
         $user = $this->user;
+        if (!$user->isLogin) {
+            return $response->withStatus(401);
+        }
 
         return $response->withJson([
             'ok' => true,

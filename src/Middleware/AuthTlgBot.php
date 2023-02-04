@@ -18,7 +18,6 @@ final class AuthTlgBot
             if ($user === null) {
                 $user = new User();
                 $user->isLogin = false;
-                return $next($request, $response);
             }
         }
         return $next($request, $response);

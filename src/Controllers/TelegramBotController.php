@@ -58,7 +58,7 @@ final class TelegramBotController extends BaseController
     }
 
 
-    public function me(Request $request, Response $response, array $args)
+    public function account(Request $request, Response $response, array $args)
     {
         $user = $this->user;
 

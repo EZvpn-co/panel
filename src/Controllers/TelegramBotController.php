@@ -69,6 +69,7 @@ final class TelegramBotController extends BaseController
         $user->class = $_ENV['user_levels_name'][$user->class];
         $user->used_traffic = $user->usedTraffic();
         $user->unused_traffic = $user->unusedTraffic();
+        $user->total_traffic = $user->enableTraffic();
 
         return $response->withJson([
             'ok' => true,

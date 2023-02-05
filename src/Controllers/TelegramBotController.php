@@ -142,10 +142,10 @@ final class TelegramBotController extends BaseController
             ]);
         }
 
-        // return AuthController::registerHelper($response, $name, $email, $password, $code, $imtype, $imvalue, 0, 0, 0);
-        return $response->withJson([
-            'ok' => true,
-            'account_id' => "Hi",
-        ]);
+        return AuthController::registerHelper($response, $name, $email, $password, $code, $imtype, $imvalue, 0, 0, 0);
+        // return $response->withJson([
+        //     'ok' => true,
+        //     'account_id' => "Hi",
+        // ]);
     }
 }

@@ -436,7 +436,7 @@ final class AuthController extends BaseController
             EmailVerify::where('email', $email)->delete();
         }
 
-        return $this->registerHelper($response, $name, $email, $passwd, $code, $imtype, $imvalue, 0, 0, 0);
+        return $this->registerHelper($response, $name, $email, $passwd, $code, $imtype, $imvalue, 0, 0, 0, true);
     }
 
     /**

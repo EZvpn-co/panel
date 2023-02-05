@@ -142,6 +142,6 @@ final class TelegramBotController extends BaseController
             ]);
         }
 
-        return AuthController::registerHelper($response, $name, $email, $password, $code, $imtype, $imvalue, 0, 0, 0);
+        return AuthController::registerHelper($response, $name, $email, $password, $code, $imtype, $imvalue, 0, 0, 0, false);
     }
 }

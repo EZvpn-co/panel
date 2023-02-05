@@ -129,7 +129,7 @@ final class UserController extends BaseController
             if ($password === '') {
                 $password = Tools::genRandomChar(16);
             }
-            AuthController::registerHelper($response, 'user', $email, $password, '', 1, '', 0, $balance, 1);
+            AuthController::registerHelper($response, 'user', $email, $password, '', 1, '', 0, $balance, 1, true);
             $user = User::where('email', $email)->first();
             if ($shop_id > 0) {
                 $shop = Shop::find($shop_id);
@@ -163,7 +163,7 @@ final class UserController extends BaseController
 
         return $response->withJson([
             'ret' => 1,
-            'msg' => '添加成功，用户邮箱：'.$email.' 密码：'.$password,
+            'msg' => '添加成功，用户邮箱：' . $email . ' 密码：' . $password,
         ]);
     }
 
@@ -222,7 +222,7 @@ final class UserController extends BaseController
         $user->forbidden_ip = str_replace(PHP_EOL, ',', $request->getParam('forbidden_ip'));
         $user->forbidden_port = str_replace(PHP_EOL, ',', $request->getParam('forbidden_port'));
 
-        if (! $user->save()) {
+        if (!$user->save()) {
             return $response->withJson([
                 'ret' => 0,
                 'msg' => '修改失败',
@@ -241,7 +241,7 @@ final class UserController extends BaseController
         $id = $args['id'];
         $user = User::find((int) $id);
 
-        if (! $user->killUser()) {
+        if (!$user->killUser()) {
             return $response->withJson([
                 'ret' => 0,
                 'msg' => '删除失败',
@@ -265,7 +265,7 @@ final class UserController extends BaseController
         $admin = User::find($adminid);
         $expire_in = \time() + 60 * 60;
 
-        if (! $admin->is_admin || ! $user || ! Auth::getUser()->isLogin) {
+        if (!$admin->is_admin || !$user || !Auth::getUser()->isLogin) {
             return $response->withJson([
                 'ret' => 0,
                 'msg' => '非法请求',

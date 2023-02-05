@@ -244,7 +244,7 @@ final class AuthController extends BaseController
      * @param Response  $response
      * @param array     $args
      */
-    public static function registerHelper($response, $name, $email, $passwd, $code, $imtype, $imvalue, $telegram_id, $money, $is_admin_reg)
+    public static function registerHelper($response, $name, $email, $passwd, $code, $imtype, $imvalue, $telegram_id, $money, $is_admin_reg, $autoLogin)
     {
         if (Setting::obtain('reg_mode') === 'close') {
             return ResponseHelper::error($response, 'Temporarily closed for registration');
@@ -345,11 +345,18 @@ final class AuthController extends BaseController
         }
 
         if ($user->save() && !$is_admin_reg) {
-            Auth::login($user->id, 3600);
-            $user->collectLoginIP($_SERVER['REMOTE_ADDR']);
-
-            return ResponseHelper::successfully($response, 'Successful registration! Entering the login interface');
+            if ($autoLogin) {
+                Auth::login($user->id, 3600);
+                $user->collectLoginIP($_SERVER['REMOTE_ADDR']);
+                return ResponseHelper::successfully($response, 'Successful registration! Entering the login interface');
+            } else {
+                return $response->withJson([
+                    'ok' => true,
+                    'account_id' => $user->id,
+                ]);
+            }
         }
+
 
         return ResponseHelper::error($response, 'Unknown error');
     }

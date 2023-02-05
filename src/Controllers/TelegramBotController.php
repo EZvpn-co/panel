@@ -88,9 +88,19 @@ final class TelegramBotController extends BaseController
             return $response->withStatus(401);
         }
 
+        $univSub = SubController::getUniversalSub($this->user);
+        $tradSub = LinkController::getTraditionalSub($this->user);
+
         return $response->withJson([
             'ok' => true,
-            'subscription' => $user->getSublink()
+            'subscription' => [
+                'json' => "{$univSub}/json",
+                'clash' => "{$univSub}/clash",
+                'surfboard' => "{$univSub}/surfboard",
+                'ss' => "{$tradSub}?sub=2",
+                'v2ray' => "{$tradSub}?sub=3",
+                'trojan' => "{$tradSub}?sub=4",
+            ]
         ]);
     }
 

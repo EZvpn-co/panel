@@ -7,6 +7,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\Node;
 use App\Models\User;
+use App\Models\Shop;
 use App\Utils\Tools;
 use Slim\Http\Request;
 use Slim\Http\Response;

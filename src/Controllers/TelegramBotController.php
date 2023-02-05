@@ -122,7 +122,7 @@ final class TelegramBotController extends BaseController
         $shop = Shop::where('status', 1)->orderBy('name')->get();
 
         for ($i = 0; $i < count($shop); $i++) {
-            $shop->content->class = $_ENV['user_levels_name'][$shop[$i]->class];
+            $shop->content->class = $_ENV['user_levels_name'][$shop[$i]->content->class];
         }
         return $response->withJson([
             'ok' => true,

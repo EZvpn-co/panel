@@ -10,6 +10,8 @@ use App\Models\User;
 use App\Utils\Tools;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use App\Utils\Hash;
+
 
 /*
  * Class TelegramBot
@@ -81,13 +83,27 @@ final class TelegramBotController extends BaseController
 
     public function login(Request $request, Response $response, array $args)
     {
-        $email = $request->getParam('email');
+        $email = strtolower(trim($request->getParam('email')));
+        $password = $request->getParam('password');
+
+        $user = User::where('email', $email)->first();
+        if ($user === null) {
+            return $response->withJson([
+                'ret' => 0,
+                'msg' => 'Email not found',
+            ]);
+        }
+
+        if (!Hash::checkPassword($user->pass, $password)) {
+            return $response->withJson([
+                'ret' => 0,
+                'msg' => 'Email or Password is invalid',
+            ]);
+        }
 
         return $response->withJson([
             'ok' => true,
-            'account_id' => 1,
-            'email' => $email
-
+            'account_id' => $user->id,
         ]);
     }
 }

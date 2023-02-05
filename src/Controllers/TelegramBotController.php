@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\Node;
+use App\Models\User;
 use App\Utils\Tools;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -74,6 +75,18 @@ final class TelegramBotController extends BaseController
         return $response->withJson([
             'ok' => true,
             'account' => $user
+        ]);
+    }
+
+
+    public function login(Request $request, Response $response, array $args)
+    {
+
+
+        return $response->withJson([
+            'ok' => true,
+            'account_id' => 1,
+
         ]);
     }
 }

@@ -111,7 +111,7 @@ final class TelegramBotController extends BaseController
     {
         $email = strtolower(trim($request->getParam('email')));
         $name = $request->getParam('name');
-        $password = $request->getParam('passwd');
+        $password = $request->getParam('password');
         $code = trim($request->getParam('code'));
         $imtype = 1;
         $imvalue = '';
@@ -143,9 +143,5 @@ final class TelegramBotController extends BaseController
         }
 
         return AuthController::registerHelper($response, $name, $email, $password, $code, $imtype, $imvalue, 0, 0, 0);
-        // return $response->withJson([
-        //     'ok' => true,
-        //     'account_id' => "Hi",
-        // ]);
     }
 }

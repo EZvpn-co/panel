@@ -119,18 +119,27 @@ final class TelegramBotController extends BaseController
         // check email format
         $check_res = Check::isEmailLegal($email);
         if ($check_res['ret'] === 0) {
-            return $response->withJson($check_res);
+            return $response->withStatus(400)->withJson([
+                'ret' => 0,
+                'msg' => $check_res['msg'],
+            ]);
         }
 
         // check email
         $user = User::where('email', $email)->first();
         if ($user !== null) {
-            return ResponseHelper::error($response, 'Mailbox has been registered');
+            return $response->withStatus(400)->withJson([
+                'ret' => 0,
+                'msg' => 'Mailbox has been registered',
+            ]);
         }
 
         // check pwd length
         if (strlen($password) < 8) {
-            return ResponseHelper::error($response, 'The password must be greater than 8 characters');
+            return $response->withStatus(400)->withJson([
+                'ret' => 0,
+                'msg' => 'The password must be greater than 8 characters',
+            ]);
         }
 
         // return AuthController::registerHelper($response, $name, $email, $password, $code, $imtype, $imvalue, 0, 0, 0);

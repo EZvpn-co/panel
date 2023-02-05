@@ -81,11 +81,12 @@ final class TelegramBotController extends BaseController
 
     public function login(Request $request, Response $response, array $args)
     {
-
+        $email = $request->getParam('email');
 
         return $response->withJson([
             'ok' => true,
             'account_id' => 1,
+            'email' => $email
 
         ]);
     }

@@ -80,6 +80,55 @@ final class TelegramBotController extends BaseController
         ]);
     }
 
+    public function subscription(Request $request, Response $response, array $args)
+    {
+        $user = $this->user;
+        if (!$user->isLogin) {
+            return $response->withStatus(401);
+        }
+
+        return $response->withJson([
+            'ok' => true,
+            'subscription' => $user->getSublink()
+        ]);
+    }
+
+    public function chargeByCode(Request $request, Response $response, array $args)
+    {
+        $user = $this->user;
+        if (!$user->isLogin) {
+            return $response->withStatus(401);
+        }
+
+        return $response->withJson([
+            'ok' => true,
+            'subscription' => $user->getSublink()
+        ]);
+    }
+
+    public function shop(Request $request, Response $response, array $args)
+    {
+        $shop = Shop::where('status', 1)->orderBy('name')->get();
+
+        return $response->withJson([
+            'ok' => true,
+            'plans' =>  $shop
+        ]);
+    }
+
+    public function purchase(Request $request, Response $response, array $args)
+    {
+        $user = $this->user;
+        if (!$user->isLogin) {
+            return $response->withStatus(401);
+        }
+
+        return $response->withJson([
+            'ok' => true,
+            'subscription' => $user->getSublink()
+        ]);
+    }
+
 
     public function login(Request $request, Response $response, array $args)
     {

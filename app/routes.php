@@ -329,7 +329,14 @@ return function (SlimApp $app): void {
 
     $app->group('/tlgBot', function (): void {
         $this->get('/servers', App\Controllers\TelegramBotController::class . ':servers');
+        $this->get('/shop', App\Controllers\TelegramBotController::class . ':shop');
+
         $this->get('/account', App\Controllers\TelegramBotController::class . ':account');
+        $this->get('/account/subscription', App\Controllers\TelegramBotController::class . ':subscription');
+        $this->post('/account/chargeByCode', App\Controllers\TelegramBotController::class . ':chargeByCode');
+        $this->post('/account/purchase', App\Controllers\TelegramBotController::class . ':purchase');
+
+
         $this->post('/login', App\Controllers\TelegramBotController::class . ':login');
         $this->post('/register', App\Controllers\TelegramBotController::class . ':register');
     })->add(new AuthTlgBot());

@@ -88,14 +88,14 @@ final class TelegramBotController extends BaseController
 
         $user = User::where('email', $email)->first();
         if ($user === null) {
-            return $response->withJson([
+            return $response->withStatus(401)->withJson([
                 'ret' => 0,
                 'msg' => 'Email not found',
             ]);
         }
 
         if (!Hash::checkPassword($user->pass, $password)) {
-            return $response->withJson([
+            return $response->withStatus(401)->withJson([
                 'ret' => 0,
                 'msg' => 'Email or Password is invalid',
             ]);

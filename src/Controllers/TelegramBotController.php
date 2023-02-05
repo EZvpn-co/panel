@@ -110,26 +110,33 @@ final class TelegramBotController extends BaseController
     public function register(Request $request, Response $response, array $args)
     {
         $email = strtolower(trim($request->getParam('email')));
-        $password = "123456789";
+        $name = $request->getParam('name');
+        $password = $request->getParam('passwd');
+        $code = trim($request->getParam('code'));
+        $imtype = 1;
+        $imvalue = '';
 
         // check email format
         $check_res = Check::isEmailLegal($email);
         if ($check_res['ret'] === 0) {
             return $response->withJson($check_res);
         }
+
         // check email
         $user = User::where('email', $email)->first();
         if ($user !== null) {
-            return ResponseHelper::error($response, 'Email has been registered');
+            return ResponseHelper::error($response, 'Mailbox has been registered');
         }
 
-        $refCode = "";
+        // check pwd length
+        if (strlen($password) < 8) {
+            return ResponseHelper::error($response, 'The password must be greater than 8 characters');
+        }
 
-
-        return AuthController->registerHelper($response, "abbas", $email, $password, $refCode, $imtype, $imvalue, 0, 0, 0);
-        return $response->withJson([
-            'ok' => true,
-            'account_id' => $user->id,
-        ]);
+        return AuthController::registerHelper($response, $name, $email, $password, $code, $imtype, $imvalue, 0, 0, 0);
+        // return $response->withJson([
+        //     'ok' => true,
+        //     'account_id' => $user->id,
+        // ]);
     }
 }

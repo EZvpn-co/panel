@@ -127,7 +127,7 @@ final class TelegramBotController extends BaseController
         }
         return $response->withJson([
             'ok' => true,
-            'hhh' => $shop[0]->content->class,
+            'hhh' => $shop[0]->content['class'],
             'plans' =>  $shop
         ]);
     }

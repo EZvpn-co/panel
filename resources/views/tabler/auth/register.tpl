@@ -63,7 +63,7 @@
                             <label class="form-check">
                                 <input id="tos" type="checkbox" class="form-check-input" />
                                 <span class="form-check-label">
-                                    I agree with <a href="/tos" tabindex="-1" target="_blank> The terms of service and privacy policy </a>
+                                    I agree with <a href="/tos" tabindex="-1" target="_blank"> The terms of service and privacy policy </a>
                                 </span>
                             </label>
                         </div>

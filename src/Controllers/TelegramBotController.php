@@ -110,7 +110,7 @@ final class TelegramBotController extends BaseController
     public function register(Request $request, Response $response, array $args)
     {
         $email = strtolower(trim($request->getParam('email')));
-        $password = $request->getParam('password');
+        $password = "123456789";
 
         // check email format
         $check_res = Check::isEmailLegal($email);
@@ -123,8 +123,10 @@ final class TelegramBotController extends BaseController
             return ResponseHelper::error($response, 'Email has been registered');
         }
 
+        $refCode = "";
 
-        return AuthController->registerHelper($response, $name, $email, $passwd, $code, $imtype, $imvalue, 0, 0, 0);
+
+        return AuthController->registerHelper($response, "abbas", $email, $password, $refCode, $imtype, $imvalue, 0, 0, 0);
         return $response->withJson([
             'ok' => true,
             'account_id' => $user->id,

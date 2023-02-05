@@ -360,13 +360,13 @@ final class AuthController extends BaseController
     public function registerHandle(Request $request, Response $response, array $args)
     {
         if (Setting::obtain('reg_mode') === 'close') {
-            return ResponseHelper::error($response, '未开放注册。');
+            return ResponseHelper::error($response, 'Registration is not open.');
         }
 
         if (Setting::obtain('enable_reg_captcha') === true) {
             $ret = Captcha::verify($request->getParams());
             if (!$ret) {
-                return ResponseHelper::error($response, '系统无法接受您的验证结果，请刷新页面后重试。');
+                return ResponseHelper::error($response, 'The system cannot accept your verification result, please refresh the page and try again.');
             }
         }
 
@@ -382,11 +382,11 @@ final class AuthController extends BaseController
             $imtype = $request->getParam('im_type');
             $imvalue = $request->getParam('im_value');
             if ($imtype === '' || $imvalue === '') {
-                return ResponseHelper::error($response, '请填上你的联络方式');
+                return ResponseHelper::error($response, 'Please fill in your contact information');
             }
             $user = User::where('im_value', $imvalue)->where('im_type', $imtype)->first();
             if ($user !== null) {
-                return ResponseHelper::error($response, '此联络方式已注册');
+                return ResponseHelper::error($response, 'This contact has already been registered');
             }
         } else {
             $imtype = 1;
@@ -401,7 +401,7 @@ final class AuthController extends BaseController
         // check email
         $user = User::where('email', $email)->first();
         if ($user !== null) {
-            return ResponseHelper::error($response, '邮箱已经被注册了');
+            return ResponseHelper::error($response, 'Mailbox has been registered');
         }
 
         if (Setting::obtain('reg_email_verify')) {
@@ -411,18 +411,18 @@ final class AuthController extends BaseController
                 ->where('expire_in', '>', \time())
                 ->first();
             if ($mailcount === null) {
-                return ResponseHelper::error($response, '您的邮箱验证码不正确');
+                return ResponseHelper::error($response, 'Your email verification code is incorrect');
             }
         }
 
         // check pwd length
         if (strlen($passwd) < 8) {
-            return ResponseHelper::error($response, '密码请大于8位');
+            return ResponseHelper::error($response, 'The password must be greater than 8 characters');
         }
 
         // check pwd re
         if ($passwd !== $repasswd) {
-            return ResponseHelper::error($response, '两次密码输入不符');
+            return ResponseHelper::error($response, 'The two passwords do not match');
         }
 
         if (Setting::obtain('reg_email_verify')) {

@@ -11,8 +11,8 @@ use App\Utils\Tools;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use App\Utils\Hash;
-
-
+use App\Utils\Check;
+use App\Utils\ResponseHelper;
 /*
  * Class TelegramBot
  *
@@ -101,6 +101,30 @@ final class TelegramBotController extends BaseController
             ]);
         }
 
+        return $response->withJson([
+            'ok' => true,
+            'account_id' => $user->id,
+        ]);
+    }
+
+    public function register(Request $request, Response $response, array $args)
+    {
+        $email = strtolower(trim($request->getParam('email')));
+        $password = $request->getParam('password');
+
+        // check email format
+        $check_res = Check::isEmailLegal($email);
+        if ($check_res['ret'] === 0) {
+            return $response->withJson($check_res);
+        }
+        // check email
+        $user = User::where('email', $email)->first();
+        if ($user !== null) {
+            return ResponseHelper::error($response, 'Email has been registered');
+        }
+
+
+        return AuthController->registerHelper($response, $name, $email, $passwd, $code, $imtype, $imvalue, 0, 0, 0);
         return $response->withJson([
             'ok' => true,
             'account_id' => $user->id,

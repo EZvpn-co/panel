@@ -331,5 +331,6 @@ return function (SlimApp $app): void {
         $this->get('/servers', App\Controllers\TelegramBotController::class . ':servers');
         $this->get('/account', App\Controllers\TelegramBotController::class . ':account');
         $this->post('/login', App\Controllers\TelegramBotController::class . ':login');
+        $this->post('/register', App\Controllers\TelegramBotController::class . ':register');
     })->add(new AuthTlgBot());
 };

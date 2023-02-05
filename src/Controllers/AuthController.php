@@ -65,7 +65,7 @@ final class AuthController extends BaseController
     {
         if (Setting::obtain('enable_login_captcha') === true) {
             $ret = Captcha::verify($request->getParams());
-            if (! $ret) {
+            if (!$ret) {
                 return $response->withJson([
                     'ret' => 0,
                     'msg' => '系统无法接受您的验证结果，请刷新页面后重试。',
@@ -86,7 +86,7 @@ final class AuthController extends BaseController
             ]);
         }
 
-        if (! Hash::checkPassword($user->pass, $passwd)) {
+        if (!Hash::checkPassword($user->pass, $passwd)) {
             // 记录登录失败
             $user->collectLoginIP($_SERVER['REMOTE_ADDR'], 1);
             return $response->withJson([
@@ -98,7 +98,7 @@ final class AuthController extends BaseController
         if ($user->ga_enable === 1) {
             $ga = new GA();
             $rcode = $ga->verifyCode($user->ga_token, $code);
-            if (! $rcode) {
+            if (!$rcode) {
                 return $response->withJson([
                     'ret' => 0,
                     'msg' => '两步验证码错误，如果您是丢失了生成器或者错误地设置了这个选项，您可以尝试重置密码，即可取消这个选项。',
@@ -247,26 +247,26 @@ final class AuthController extends BaseController
     public static function registerHelper($response, $name, $email, $passwd, $code, $imtype, $imvalue, $telegram_id, $money, $is_admin_reg)
     {
         if (Setting::obtain('reg_mode') === 'close') {
-            return ResponseHelper::error($response, '暂时不对外开放注册');
+            return ResponseHelper::error($response, 'Temporarily closed for registration');
         }
 
         if (Setting::obtain('reg_mode') === 'invite' && $code === '') {
-            return ResponseHelper::error($response, '注册需要填写邀请码');
+            return ResponseHelper::error($response, 'Registration requires an invitation code');
         }
 
         $c = InviteCode::where('code', $code)->first();
         if ($c === null) {
             if (Setting::obtain('reg_mode') === 'invite') {
-                return ResponseHelper::error($response, '这个邀请码不存在');
+                return ResponseHelper::error($response, 'This invitation code does not exist');
             }
         } elseif ($c->user_id !== 0) {
             $gift_user = User::where('id', $c->user_id)->first();
             if ($gift_user === null) {
-                return ResponseHelper::error($response, '邀请码已失效');
+                return ResponseHelper::error($response, 'The invitation code has expired');
             }
 
             if ($gift_user->invite_num === 0) {
-                return ResponseHelper::error($response, '邀请码不可用');
+                return ResponseHelper::error($response, 'The invitation code is not available');
             }
         }
 
@@ -305,18 +305,18 @@ final class AuthController extends BaseController
             $user->money = 0;
         }
 
-        //dumplin：填写邀请人，写入邀请奖励
+        //dumplin: Fill in the inviter, write the invitation reward
         $user->ref_by = 0;
         if ($c !== null && $c->user_id !== 0) {
             $invitation = Setting::getClass('invite');
-            // 设置新用户
+            // set up new user
             $user->ref_by = $c->user_id;
             $user->money = $invitation['invitation_to_register_balance_reward'];
-            // 给邀请人反流量
+            // Anti-traffic for the inviter
             $gift_user->transfer_enable += $invitation['invitation_to_register_traffic_reward'] * 1024 * 1024 * 1024;
             if ($gift_user->invite_num - 1 >= 0) {
                 --$gift_user->invite_num;
-                // 避免设置为不限制邀请次数的值 -1 发生变动
+                // Avoid changing the value -1 set to unlimited invites
             }
             $gift_user->save();
         }
@@ -348,10 +348,10 @@ final class AuthController extends BaseController
             Auth::login($user->id, 3600);
             $user->collectLoginIP($_SERVER['REMOTE_ADDR']);
 
-            return ResponseHelper::successfully($response, '注册成功！正在进入登录界面');
+            return ResponseHelper::successfully($response, 'Successful registration! Entering the login interface');
         }
 
-        return ResponseHelper::error($response, '未知错误');
+        return ResponseHelper::error($response, 'Unknown error');
     }
 
     /**
@@ -365,7 +365,7 @@ final class AuthController extends BaseController
 
         if (Setting::obtain('enable_reg_captcha') === true) {
             $ret = Captcha::verify($request->getParams());
-            if (! $ret) {
+            if (!$ret) {
                 return ResponseHelper::error($response, '系统无法接受您的验证结果，请刷新页面后重试。');
             }
         }

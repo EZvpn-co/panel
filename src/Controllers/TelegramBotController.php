@@ -420,9 +420,6 @@ final class TelegramBotController extends BaseController
             return $response->withStatus(401);
         }
 
-        $totalAccounts = User::where('ref_by', $user->id)->count();
-        if (!$totalAccounts)  $totalAccounts = 0;
-
         $pageNum = $request->getQueryParams()['page'] ?? 1;
         $pageCount = $request->getQueryParams()['pageCount'] ?? 15;
         $account = User::where('ref_by', $user->id)
@@ -432,7 +429,6 @@ final class TelegramBotController extends BaseController
 
         return $response->withJson([
             "ok" => true,
-            "total" => $totalAccounts,
             "account" => $account
         ]);
     }

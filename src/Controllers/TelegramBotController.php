@@ -420,34 +420,21 @@ final class TelegramBotController extends BaseController
             return $response->withStatus(401);
         }
 
-        // $code = InviteCode::where('user_id', $this->user->id)->first();
-        // if ($code === null) {
-        //     $this->user->addInviteCode();
-        //     $code = InviteCode::where('user_id', $this->user->id)->first();
-        // }
+        $totalAccounts = User::where('ref_by', $user->id)->count();
+        if (!$totalAccounts)  $totalAccounts = 0;
 
-        // $pageNum = $request->getQueryParams()['page'] ?? 1;
+        $pageNum = $request->getQueryParams()['page'] ?? 1;
+        $pageCount = $request->getQueryParams()['pageCount'] ?? 15;
+        $account = User::where('ref_by', $user->id)
+            ->orderBy('id', 'asc')
+            ->paginate($pageCount, ['*'], 'page', $pageNum);
 
-        // $paybacks = Payback::where('ref_by', $this->user->id)
-        //     ->orderBy('id', 'desc')
-        //     ->paginate(15, ['*'], 'page', $pageNum);
 
-        // $paybacks_sum = Payback::where('ref_by', $this->user->id)->sum('ref_get');
-        // if (!$paybacks_sum) {
-        //     $paybacks_sum = 0;
-        // }
-
-        // $render = Tools::paginateRender($paybacks);
-
-        // $invite_url = $_ENV['baseUrl'] . '/auth/register?code=' . $code->code;
-
-        // return $this->view()
-        //     ->assign('code', $code)
-        //     ->assign('render', $render)
-        //     ->assign('paybacks', $paybacks)
-        //     ->assign('invite_url', $invite_url)
-        //     ->assign('paybacks_sum', $paybacks_sum)
-        //     ->display('user/invite.tpl');
+        return $response->withJson([
+            "ok" => true,
+            "total" => $totalAccounts,
+            "account" => $account
+        ]);
     }
 
 

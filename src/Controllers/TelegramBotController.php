@@ -11,6 +11,8 @@ use App\Models\Shop;
 use App\Models\Code;
 use App\Models\Setting;
 use App\Models\Payback;
+use App\Models\Bought;
+use App\Models\Coupon;
 use App\Utils\Tools;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -181,10 +183,109 @@ final class TelegramBotController extends BaseController
             return $response->withStatus(401);
         }
 
-        return $response->withJson([
-            'ok' => true,
-            'subscription' => $user->getSublink()
-        ]);
+        $shop = $request->getParam('plan');
+        $coupon = trim($request->getParam('coupon'));
+        $autorenew = $request->getParam('autorenew');
+        $disableothers = $request->getParam('disableothers');
+        $coupon_code = $coupon;
+
+        $shop = Shop::where('id', $shop)
+            ->where('status', 1)
+            ->first();
+
+        if ($shop === null) {
+            return $response->withStatus(400)->withJson([
+                "ok" => false,
+                "msg" => 'The product does not exist or has been discontinued'
+            ]);
+        }
+
+        $orders = Bought::where('userid', $user->id)->get();
+        foreach ($orders as $order) {
+            if ($order->shop()->useLoop()) {
+                if ($order->valid()) {
+                    return $response->withStatus(400)->withJson([
+                        "ok" => false,
+                        "msg" => 'The package you purchased with the automatic reset system has not expired, so you cannot purchase a new package'
+                    ]);
+                }
+            }
+        }
+
+        if ($coupon === '') {
+            $credit = 0;
+        } else {
+            $coupon = Coupon::where('code', $coupon)->first();
+            if ($coupon === null) {
+                return $response->withStatus(400)->withJson([
+                    "ok" => false,
+                    "msg" => 'This coupon code does not exist'
+                ]);
+            }
+            $credit = $coupon->credit;
+            if ($coupon->order($shop->id) === false) {
+                return $response->withStatus(400)->withJson([
+                    "ok" => false,
+                    "msg" => 'This promo code does not apply to this item'
+                ]);
+            }
+            if ($coupon->expire < \time()) {
+                return $response->withStatus(400)->withJson([
+                    "ok" => false,
+                    "msg" => 'This coupon code has expired'
+                ]);
+            }
+            if ($coupon->onetime > 0) {
+                $use_count = Bought::where('userid', $user->id)
+                    ->where('coupon', $coupon->code)
+                    ->count();
+                if ($use_count >= $coupon->onetime) {
+                    return $response->withStatus(400)->withJson([
+                        "ok" => false,
+                        "msg" => 'This coupon code has been used the maximum number of times'
+                    ]);
+                }
+            }
+        }
+
+        $price = $shop->price * (100 - $credit) / 100;
+        if (bccomp((string) $user->money, (string) $price, 2) === -1) {
+            return $response->withStatus(400)->withJson([
+                "ok" => false,
+                "msg" => 'The account balance is insufficient, please recharge first'
+            ]);
+        }
+        $user->money = bcsub((string) $user->money, (string) $price, 2);
+        $user->save();
+
+        if ($disableothers === 1) {
+            $boughts = Bought::where('userid', $user->id)->get();
+            foreach ($boughts as $disable_bought) {
+                $disable_bought->renew = 0;
+                $disable_bought->save();
+            }
+        }
+
+        $bought = new Bought();
+        $bought->userid = $user->id;
+        $bought->shopid = $shop->id;
+        $bought->datetime = \time();
+        if ($autorenew === 0 || $shop->auto_renew === 0) {
+            $bought->renew = 0;
+        } else {
+            $bought->renew = \time() + $shop->auto_renew * 86400;
+        }
+        $bought->coupon = $coupon_code;
+        $bought->price = $price;
+        $bought->save();
+        $shop->buy($user);
+
+
+        if ($user->ref_by > 0 && Setting::obtain('invitation_mode') === 'after_purchase') {
+            Payback::rebate($user->id, $price);
+        }
+
+        return ResponseHelper::successfully($response, 'Successful purchase');
     }
 
 

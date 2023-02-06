@@ -13,6 +13,8 @@ use App\Models\Setting;
 use App\Models\Payback;
 use App\Models\Bought;
 use App\Models\Coupon;
+use App\Models\InviteCode;
+
 use App\Utils\Tools;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -369,6 +371,8 @@ final class TelegramBotController extends BaseController
             ]);
         }
 
+        $user->addInviteCode();
+
         $user->is_agent = 1;
         $user->save();
 
@@ -376,5 +380,111 @@ final class TelegramBotController extends BaseController
             "ok" => true,
             "msg" => 'You are an agent'
         ]);
+    }
+
+
+    public function agency(Request $request, Response $response, array $args)
+    {
+        $user = $this->user;
+        if (!$user->isLogin) {
+            return $response->withStatus(401);
+        }
+
+        $code = InviteCode::where('user_id', $user->id)->first();
+        if ($code === null) {
+            $user->addInviteCode();
+            $code = InviteCode::where('user_id', $user->id)->first();
+        }
+
+        $totalPaybacks = Payback::where('ref_by', $user->id)->sum('ref_get');
+        if (!$totalPaybacks) $totalPaybacks = 0;
+
+        $totalAccounts = User::where('ref_by', $user->id)->count();
+        if (!$totalAccounts)  $totalAccounts = 0;
+
+
+        return $response->withJson([
+            "ok" => true,
+            "code" => $code,
+            "paybacks" => $totalPaybacks,
+            "accounts" => $totalAccounts,
+            "percent" => Setting::obtain('code_payback') * 100
+        ]);
+    }
+
+
+    public function agencyUsers(Request $request, Response $response, array $args)
+    {
+        $user = $this->user;
+        if (!$user->isLogin) {
+            return $response->withStatus(401);
+        }
+
+        // $code = InviteCode::where('user_id', $this->user->id)->first();
+        // if ($code === null) {
+        //     $this->user->addInviteCode();
+        //     $code = InviteCode::where('user_id', $this->user->id)->first();
+        // }
+
+        // $pageNum = $request->getQueryParams()['page'] ?? 1;
+
+        // $paybacks = Payback::where('ref_by', $this->user->id)
+        //     ->orderBy('id', 'desc')
+        //     ->paginate(15, ['*'], 'page', $pageNum);
+
+        // $paybacks_sum = Payback::where('ref_by', $this->user->id)->sum('ref_get');
+        // if (!$paybacks_sum) {
+        //     $paybacks_sum = 0;
+        // }
+
+        // $render = Tools::paginateRender($paybacks);
+
+        // $invite_url = $_ENV['baseUrl'] . '/auth/register?code=' . $code->code;
+
+        // return $this->view()
+        //     ->assign('code', $code)
+        //     ->assign('render', $render)
+        //     ->assign('paybacks', $paybacks)
+        //     ->assign('invite_url', $invite_url)
+        //     ->assign('paybacks_sum', $paybacks_sum)
+        //     ->display('user/invite.tpl');
+    }
+
+
+    public function agencyAdd(Request $request, Response $response, array $args)
+    {
+        // $user = $this->user;
+        // if (!$user->isLogin) {
+        //     return $response->withStatus(401);
+        // }
+
+        // $code = InviteCode::where('user_id', $this->user->id)->first();
+        // if ($code === null) {
+        //     $this->user->addInviteCode();
+        //     $code = InviteCode::where('user_id', $this->user->id)->first();
+        // }
+
+        // $pageNum = $request->getQueryParams()['page'] ?? 1;
+
+        // $paybacks = Payback::where('ref_by', $this->user->id)
+        //     ->orderBy('id', 'desc')
+        //     ->paginate(15, ['*'], 'page', $pageNum);
+
+        // $paybacks_sum = Payback::where('ref_by', $this->user->id)->sum('ref_get');
+        // if (!$paybacks_sum) {
+        //     $paybacks_sum = 0;
+        // }
+
+        // $render = Tools::paginateRender($paybacks);
+
+        // $invite_url = $_ENV['baseUrl'] . '/auth/register?code=' . $code->code;
+
+        // return $this->view()
+        //     ->assign('code', $code)
+        //     ->assign('render', $render)
+        //     ->assign('paybacks', $paybacks)
+        //     ->assign('invite_url', $invite_url)
+        //     ->assign('paybacks_sum', $paybacks_sum)
+        //     ->display('user/invite.tpl');
     }
 }

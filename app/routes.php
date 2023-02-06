@@ -338,6 +338,10 @@ return function (SlimApp $app): void {
         $this->post('/account/chargeByCode', App\Controllers\TelegramBotController::class . ':chargeByCode');
         $this->post('/account/purchase', App\Controllers\TelegramBotController::class . ':purchase');
 
+        $this->get('/account/agency', App\Controllers\TelegramBotController::class . ':purchase');
+        $this->get('/account/agency/users', App\Controllers\TelegramBotController::class . ':purchase');
+        $this->post('/account/agency/add', App\Controllers\TelegramBotController::class . ':purchase');
+
 
         $this->post('/login', App\Controllers\TelegramBotController::class . ':login');
         $this->post('/register', App\Controllers\TelegramBotController::class . ':register');

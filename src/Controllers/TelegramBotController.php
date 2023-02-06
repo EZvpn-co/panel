@@ -405,10 +405,10 @@ final class TelegramBotController extends BaseController
 
         return $response->withJson([
             "ok" => true,
-            "code" => $code,
+            "code" => $code->code,
             "paybacks" => $totalPaybacks,
             "accounts" => $totalAccounts,
-            // "percent" => Setting::obtain('code_payback') * 100
+            "percent" => $user->agency_percent
         ]);
     }
 

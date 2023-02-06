@@ -131,7 +131,7 @@ final class CodeController extends BaseController
         if (Setting::obtain('mail_driver') !== 'none') {
             Mail::send(
                 $user->email,
-                $_ENV['appName'] . '- 充值码',
+                $_ENV['appName'] . '- recharge code',
                 'giftcard.tpl',
                 [
                     'text' => implode('<br/>', $cards),
@@ -140,6 +140,6 @@ final class CodeController extends BaseController
             );
         }
 
-        return ResponseHelper::successfully($response, '充值码添加成功');
+        return ResponseHelper::successfully($response, 'Recharge code added successfully');
     }
 }

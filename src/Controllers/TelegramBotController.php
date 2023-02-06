@@ -154,6 +154,15 @@ final class TelegramBotController extends BaseController
 
     public function shop(Request $request, Response $response, array $args)
     {
+        $plan = $request->getParam('plan');
+        if ($plan) {
+            $shop = Shop::where('id', $plan)->get()[0];
+            $shop->className = $_ENV['user_levels_name'][$shop->content['class']];
+            return $response->withJson([
+                'ok' => true,
+                'plan' =>  $shop
+            ]);
+        }
         $shop = Shop::where('status', 1)->orderBy('name')->get();
 
         for ($i = 0; $i < count($shop); $i++) {

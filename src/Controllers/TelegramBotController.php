@@ -408,7 +408,7 @@ final class TelegramBotController extends BaseController
             "code" => $code,
             "paybacks" => $totalPaybacks,
             "accounts" => $totalAccounts,
-            "percent" => Setting::obtain('code_payback') * 100
+            // "percent" => Setting::obtain('code_payback') * 100
         ]);
     }
 

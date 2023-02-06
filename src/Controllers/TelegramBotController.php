@@ -430,7 +430,7 @@ final class TelegramBotController extends BaseController
 
         return $response->withJson([
             "ok" => true,
-            "account" => $account
+            "accounts" => $account
         ]);
     }
 

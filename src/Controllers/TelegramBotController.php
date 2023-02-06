@@ -8,6 +8,9 @@ use App\Controllers\BaseController;
 use App\Models\Node;
 use App\Models\User;
 use App\Models\Shop;
+use App\Models\Code;
+use App\Models\Setting;
+use App\Models\Payback;
 use App\Utils\Tools;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -111,10 +114,42 @@ final class TelegramBotController extends BaseController
             return $response->withStatus(401);
         }
 
-        return $response->withJson([
-            'ok' => true,
-            'subscription' => $user->getSublink()
-        ]);
+        $code = trim($request->getParam('code'));
+        if ($code === '') {
+            return $response->withStatus(404)->withJson([
+                "ok" => false,
+                "msg" => 'Please fill in the recharge code'
+            ]);
+        }
+
+        $codeq = Code::where('code', $code)->where('isused', 0)->first();
+        if ($codeq === null) {
+            return $response->withStatus(404)->withJson([
+                "ok" => false,
+                "msg" => 'There is no such recharge code'
+            ]);
+        }
+
+        $codeq->isused = 1;
+        $codeq->usedatetime = date('Y-m-d H:i:s');
+        $codeq->userid = $user->id;
+        $codeq->save();
+
+        if ($codeq->type === -1) {
+            $user->money += $codeq->number;
+            $user->save();
+
+            // 返利
+            if ($user->ref_by > 0 && Setting::obtain('invitation_mode') === 'after_recharge') {
+                Payback::rebate($user->id, $codeq->number);
+            }
+
+            return $response->withJson([
+                'ret' => 1,
+                'money' => $user->money,
+                'new_money' => $codeq->number,
+            ]);
+        }
     }
 
     public function shop(Request $request, Response $response, array $args)

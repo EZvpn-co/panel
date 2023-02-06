@@ -354,4 +354,27 @@ final class TelegramBotController extends BaseController
 
         return AuthController::registerHelper($response, $name, $email, $password, $code, $imtype, $imvalue, 0, 0, 0, false);
     }
+
+    public function beAgent(Request $request, Response $response, array $args)
+    {
+        $user = $this->user;
+        if (!$user->isLogin) {
+            return $response->withStatus(401);
+        }
+
+        if ($user->is_agent === 1) {
+            return $response->withStatus(400)->withJson([
+                "ok" => false,
+                "msg" => 'You already are an agent'
+            ]);
+        }
+
+        $user->is_agent = 1;
+        $user->save();
+
+        return $response->withJson([
+            "ok" => true,
+            "msg" => 'You are an agent'
+        ]);
+    }
 }

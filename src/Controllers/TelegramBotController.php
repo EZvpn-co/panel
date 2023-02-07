@@ -286,7 +286,7 @@ final class TelegramBotController extends BaseController
             $user->save();
 
 
-            Payback::rebate($user->id, $price);
+            Payback::rebate($u->id, $price);
         } else {
             if (bccomp((string) $u->money, (string) $price, 2) === -1) {
                 return $response->withStatus(400)->withJson([

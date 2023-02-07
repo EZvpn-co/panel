@@ -180,16 +180,36 @@ final class TelegramBotController extends BaseController
 
     public function purchase(Request $request, Response $response, array $args)
     {
+
+
+
         $user = $this->user;
         if (!$user->isLogin) {
             return $response->withStatus(401);
         }
+
+        $subuid = $request->getParam('subuid');
 
         $shop = $request->getParam('plan');
         $coupon = trim($request->getParam('coupon'));
         $autorenew = $request->getParam('autorenew');
         $disableothers = $request->getParam('disableothers');
         $coupon_code = $coupon;
+
+
+        $u = $user;
+        if ($subuid) {
+            $u = User::where('id', $subuid)->first();
+        }
+
+        if ($u === null) {
+            return $response->withStatus(400)->withJson([
+                "ok" => false,
+                "msg" => 'The user not found'
+            ]);
+        }
+
+
 
         $shop = Shop::where('id', $shop)
             ->where('status', 1)
@@ -202,7 +222,7 @@ final class TelegramBotController extends BaseController
             ]);
         }
 
-        $orders = Bought::where('userid', $user->id)->get();
+        $orders = Bought::where('userid', $u->id)->get();
         foreach ($orders as $order) {
             if ($order->shop()->useLoop()) {
                 if ($order->valid()) {
@@ -238,7 +258,7 @@ final class TelegramBotController extends BaseController
                 ]);
             }
             if ($coupon->onetime > 0) {
-                $use_count = Bought::where('userid', $user->id)
+                $use_count = Bought::where('userid', $u->id)
                     ->where('coupon', $coupon->code)
                     ->count();
                 if ($use_count >= $coupon->onetime) {
@@ -250,18 +270,41 @@ final class TelegramBotController extends BaseController
             }
         }
 
+        // ==========> money
         $price = $shop->price * (100 - $credit) / 100;
-        if (bccomp((string) $user->money, (string) $price, 2) === -1) {
-            return $response->withStatus(400)->withJson([
-                "ok" => false,
-                "msg" => 'The account balance is insufficient, please recharge first'
-            ]);
+
+        // from agent
+        if ($subuid) {
+            // del from money
+            if (bccomp((string) $user->money, (string) $price, 2) === -1) {
+                return $response->withStatus(400)->withJson([
+                    "ok" => false,
+                    "msg" => 'The account balance is insufficient, please recharge first'
+                ]);
+            }
+            $user->money = bcsub((string) $user->money, (string) $price, 2);
+            $user->save();
+
+
+            Payback::rebate($user->id, $price);
+        } else {
+            if (bccomp((string) $u->money, (string) $price, 2) === -1) {
+                return $response->withStatus(400)->withJson([
+                    "ok" => false,
+                    "msg" => 'The account balance is insufficient, please recharge first'
+                ]);
+            }
+            $u->money = bcsub((string) $u->money, (string) $price, 2);
+            $u->save();
         }
-        $user->money = bcsub((string) $user->money, (string) $price, 2);
-        $user->save();
+
+
+
+        // ==========> money
+
 
         if ($disableothers === 1) {
-            $boughts = Bought::where('userid', $user->id)->get();
+            $boughts = Bought::where('userid', $u->id)->get();
             foreach ($boughts as $disable_bought) {
                 $disable_bought->renew = 0;
                 $disable_bought->save();
@@ -269,7 +312,7 @@ final class TelegramBotController extends BaseController
         }
 
         $bought = new Bought();
-        $bought->userid = $user->id;
+        $bought->userid = $u->id;
         $bought->shopid = $shop->id;
         $bought->datetime = \time();
         if ($autorenew === 0 || $shop->auto_renew === 0) {
@@ -280,12 +323,9 @@ final class TelegramBotController extends BaseController
         $bought->coupon = $coupon_code;
         $bought->price = $price;
         $bought->save();
-        $shop->buy($user);
 
 
-        if ($user->ref_by > 0 && Setting::obtain('invitation_mode') === 'after_purchase') {
-            Payback::rebate($user->id, $price);
-        }
+        $shop->buy($u);
 
         return ResponseHelper::successfully($response, 'Successful purchase');
     }
@@ -408,7 +448,7 @@ final class TelegramBotController extends BaseController
             "code" => $code->code,
             "paybacks" => $totalPaybacks,
             "accounts" => $totalAccounts,
-            "percent" => $user->agency_percent
+            "percent" => $user->rebate_ratio * 100
         ]);
     }
 
@@ -432,43 +472,5 @@ final class TelegramBotController extends BaseController
             "ok" => true,
             "accounts" => $account
         ]);
-    }
-
-
-    public function agencyAdd(Request $request, Response $response, array $args)
-    {
-        // $user = $this->user;
-        // if (!$user->isLogin) {
-        //     return $response->withStatus(401);
-        // }
-
-        // $code = InviteCode::where('user_id', $this->user->id)->first();
-        // if ($code === null) {
-        //     $this->user->addInviteCode();
-        //     $code = InviteCode::where('user_id', $this->user->id)->first();
-        // }
-
-        // $pageNum = $request->getQueryParams()['page'] ?? 1;
-
-        // $paybacks = Payback::where('ref_by', $this->user->id)
-        //     ->orderBy('id', 'desc')
-        //     ->paginate(15, ['*'], 'page', $pageNum);
-
-        // $paybacks_sum = Payback::where('ref_by', $this->user->id)->sum('ref_get');
-        // if (!$paybacks_sum) {
-        //     $paybacks_sum = 0;
-        // }
-
-        // $render = Tools::paginateRender($paybacks);
-
-        // $invite_url = $_ENV['baseUrl'] . '/auth/register?code=' . $code->code;
-
-        // return $this->view()
-        //     ->assign('code', $code)
-        //     ->assign('render', $render)
-        //     ->assign('paybacks', $paybacks)
-        //     ->assign('invite_url', $invite_url)
-        //     ->assign('paybacks_sum', $paybacks_sum)
-        //     ->display('user/invite.tpl');
     }
 }

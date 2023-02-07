@@ -43,7 +43,8 @@ final class Payback extends Model
             // 预计返利 (expected_rebate) 是指：订单金额 * 返点比例
             $expected_rebate = $order_amount * $configs['rebate_ratio'];
             // 调整返利 (adjust_rebate) 是指：若历史返利总额在加上此次预计返利金额超过总返利限制，总返利限制与历史返利总额的差值
-            if ($total_rebate_amount + $expected_rebate > $configs['rebate_amount_limit']
+            if (
+                $total_rebate_amount + $expected_rebate > $configs['rebate_amount_limit']
                 && $total_rebate_amount <= $configs['rebate_amount_limit']
             ) {
                 $adjust_rebate = $configs['rebate_amount_limit'] - $total_rebate_amount;
@@ -64,7 +65,7 @@ final class Payback extends Model
     {
         $gift_user = User::where('id', $gift_user_id)->first();
         if ($gift_user !== null) {
-            $rebate_amount = $order_amount * Setting::obtain('rebate_ratio');
+            $rebate_amount = $order_amount * $gift_user->rebate_ratio;
             // 返利
             $gift_user->money += $adjust_rebate ?? $rebate_amount;
             $gift_user->save();

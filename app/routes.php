@@ -340,7 +340,6 @@ return function (SlimApp $app): void {
 
         $this->get('/account/agency', App\Controllers\TelegramBotController::class . ':agency');
         $this->get('/account/agency/users', App\Controllers\TelegramBotController::class . ':agencyUsers');
-        $this->post('/account/agency/add', App\Controllers\TelegramBotController::class . ':agencyAdd');
 
 
         $this->post('/login', App\Controllers\TelegramBotController::class . ':login');

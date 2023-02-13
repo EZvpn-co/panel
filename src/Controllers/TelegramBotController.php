@@ -466,8 +466,11 @@ final class TelegramBotController extends BaseController
         $pageCount = $request->getQueryParams()['pageCount'] ?? 15;
         $search = $request->getQueryParams()['search'] ?? "";
 
-        $account = User::where('ref_by', $user->id)
-            ->where('email', 'LIKE', "%$search%")
+        $account = User::where('ref_by', $user->id);
+
+        if ($search) $account =  $account->where('email', 'LIKE', "%$search%");
+
+        $account = $account
             ->orderBy('id', 'desc')
             ->select(['id', 'user_name', 'email',])
             ->paginate($pageCount, ['*'], 'page', $pageNum);

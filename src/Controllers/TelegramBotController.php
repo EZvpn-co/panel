@@ -76,6 +76,8 @@ final class TelegramBotController extends BaseController
             return $response->withStatus(401);
         }
 
+
+
         $user->node_group = $_ENV['user_groups_name'][$user->node_group];
         $user->class = $_ENV['user_levels_name'][$user->class];
         $user->used_traffic = $user->usedTraffic();
@@ -462,7 +464,10 @@ final class TelegramBotController extends BaseController
 
         $pageNum = $request->getQueryParams()['page'] ?? 1;
         $pageCount = $request->getQueryParams()['pageCount'] ?? 15;
+        $search = $request->getQueryParams()['search'] ?? "";
+
         $account = User::where('ref_by', $user->id)
+            ->where('email', 'LIKE', "%$search%")
             ->orderBy('id', 'desc')
             ->select(['id', 'user_name', 'email',])
             ->paginate($pageCount, ['*'], 'page', $pageNum);

@@ -76,17 +76,21 @@ final class TelegramBotController extends BaseController
             return $response->withStatus(401);
         }
 
+        $account = $request->getParam('account');
 
-
-        $user->node_group = $_ENV['user_groups_name'][$user->node_group];
-        $user->class = $_ENV['user_levels_name'][$user->class];
-        $user->used_traffic = $user->usedTraffic();
-        $user->unused_traffic = $user->unusedTraffic();
-        $user->total_traffic = $user->enableTraffic();
-
+        if ($account) {
+            $u = User::where('id', $account)->where('ref_by', $user->id)->first();
+        } else {
+            $u = $user;
+        }
+        $u->node_group = $_ENV['user_groups_name'][$u->node_group];
+        $u->class = $_ENV['user_levels_name'][$u->class];
+        $u->used_traffic = $u->usedTraffic();
+        $u->unused_traffic = $u->unusedTraffic();
+        $u->total_traffic = $u->enableTraffic();
         return $response->withJson([
             'ok' => true,
-            'account' => $user
+            'account' => $u
         ]);
     }
 

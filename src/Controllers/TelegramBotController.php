@@ -88,6 +88,9 @@ final class TelegramBotController extends BaseController
         $u->used_traffic = $u->usedTraffic();
         $u->unused_traffic = $u->unusedTraffic();
         $u->total_traffic = $u->enableTraffic();
+
+        $u->total_traffic_gb = $u->enableTrafficInGB();
+
         return $response->withJson([
             'ok' => true,
             'account' => $u

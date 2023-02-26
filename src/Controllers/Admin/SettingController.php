@@ -40,15 +40,18 @@ final class SettingController extends BaseController
         $class = $request->getParam('class');
 
         switch ($class) {
-            // 支付
+                // 支付
             case 'f2f_pay':
                 $list = ['f2f_pay_app_id', 'f2f_pay_pid', 'f2f_pay_public_key', 'f2f_pay_private_key', 'f2f_pay_notify_url'];
+                break;
+            case 'now_payment':
+                $list = ['f2f_pagggy_app_id', 'f2f_pay_pid', 'f2f_pay_public_key', 'f2f_pay_private_key', 'f2f_pay_notify_url'];
                 break;
             case 'vmq_pay':
                 $list = ['vmq_gateway', 'vmq_key'];
                 break;
             case 'payjs_pay':
-                $list = ['payjs_url','payjs_mchid', 'payjs_key'];
+                $list = ['payjs_url', 'payjs_mchid', 'payjs_key'];
                 break;
             case 'theadpay':
                 $list = ['theadpay_url', 'theadpay_mchid', 'theadpay_key'];
@@ -97,11 +100,12 @@ final class SettingController extends BaseController
                 break;
                 // 注册设置
             case 'register':
-                $list = ['reg_mode', 'reg_email_verify', 'email_verify_ttl', 'email_verify_ip_limit', 'random_group', 'min_port', 'max_port',   'sign_up_for_free_traffic','free_user_reset_day', 'free_user_reset_bandwidth', 'sign_up_for_free_time', 'sign_up_for_class', 'sign_up_for_class_time', 'sign_up_for_invitation_codes', 'connection_device_limit', 'connection_rate_limit', 'sign_up_for_method', 'reg_forbidden_ip', 'reg_forbidden_port', 'enable_reg_im', 'sign_up_for_daily_report'];
+                $list = ['reg_mode', 'reg_email_verify', 'email_verify_ttl', 'email_verify_ip_limit', 'random_group', 'min_port', 'max_port',   'sign_up_for_free_traffic', 'free_user_reset_day', 'free_user_reset_bandwidth', 'sign_up_for_free_time', 'sign_up_for_class', 'sign_up_for_class_time', 'sign_up_for_invitation_codes', 'connection_device_limit', 'connection_rate_limit', 'sign_up_for_method', 'reg_forbidden_ip', 'reg_forbidden_port', 'enable_reg_im', 'sign_up_for_daily_report'];
                 break;
                 // 邀请设置
             case 'invite':
-                $list = ['invitation_to_register_balance_reward', 'invitation_to_register_traffic_reward', 'invite_price', 'custom_invite_price',
+                $list = [
+                    'invitation_to_register_balance_reward', 'invitation_to_register_traffic_reward', 'invite_price', 'custom_invite_price',
                     'invitation_mode', 'invite_rebate_mode', 'rebate_ratio', 'rebate_frequency_limit', 'rebate_amount_limit', 'rebate_time_range_limit',
                 ];
                 break;
@@ -120,17 +124,17 @@ final class SettingController extends BaseController
                 $setting->value = $request->getParam("${item}");
             }
 
-            if (! $setting->save()) {
+            if (!$setting->save()) {
                 return $response->withJson([
                     'ret' => 0,
-                    'msg' => "保存 ${item} 时出错",
+                    'msg' => "Error saving ${item}",
                 ]);
             }
         }
 
         return $response->withJson([
             'ret' => 1,
-            'msg' => '保存成功',
+            'msg' => 'Saved successfully',
         ]);
     }
 
@@ -141,7 +145,7 @@ final class SettingController extends BaseController
         try {
             Mail::send(
                 $to,
-                '测试邮件',
+                'test mail',
                 'auth/test.tpl',
                 [],
                 []
@@ -149,12 +153,12 @@ final class SettingController extends BaseController
         } catch (Exception $e) {
             return $response->withJson([
                 'ret' => 0,
-                'msg' => '测试邮件发送失败',
+                'msg' => 'The test email was sent successfully The test email was sent failed',
             ]);
         }
         return $response->withJson([
             'ret' => 1,
-            'msg' => '测试邮件发送成功',
+            'msg' => 'Test email sent successfully',
         ]);
     }
 
@@ -191,7 +195,7 @@ final class SettingController extends BaseController
 
         return $response->withJson([
             'ret' => 1,
-            'msg' => '保存成功',
+            'msg' => 'Saved successfully',
         ]);
     }
 }

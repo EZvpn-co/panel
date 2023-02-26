@@ -215,7 +215,7 @@
                                     <nav class="tab-nav margin-top-no">
                                         <ul class="nav nav-list">
                                             <li class="active">
-                                                <a data-toggle="tab" href="#public_payment_settings">&nbsp;Set up the</a>
+                                                <a data-toggle="tab" href="#public_payment_settings">&nbsp;Setup</a>
                                             </li>
                                             {foreach $payment_gateways as $key => $value}
                                             <li>

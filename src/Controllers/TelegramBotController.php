@@ -97,6 +97,26 @@ final class TelegramBotController extends BaseController
         ]);
     }
 
+
+    public function accountCharge(Request $request, Response $response, array $args)
+    {
+        $user = $this->user;
+        if (!$user->isLogin) {
+            return $response->withStatus(401);
+        }
+
+        $moneycharge = $request->getParam('moneycharge');
+
+
+        $user->money = $user->money + $moneycharge;
+        $user->save();
+
+        return $response->withJson([
+            "ok" => true,
+            'account' => $user
+        ]);
+    }
+
     public function subscription(Request $request, Response $response, array $args)
     {
         $user = $this->user;
@@ -186,6 +206,12 @@ final class TelegramBotController extends BaseController
             'plans' =>  $shop
         ]);
     }
+
+
+
+
+
+
 
     public function purchase(Request $request, Response $response, array $args)
     {

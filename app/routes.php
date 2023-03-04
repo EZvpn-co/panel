@@ -333,6 +333,7 @@ return function (SlimApp $app): void {
 
 
         $this->get('/account', App\Controllers\TelegramBotController::class . ':account');
+        $this->patch('/account/charge', App\Controllers\TelegramBotController::class . ':accountCharge');
         $this->post('/account/beAgent', App\Controllers\TelegramBotController::class . ':beAgent');
         $this->get('/account/subscription', App\Controllers\TelegramBotController::class . ':subscription');
         $this->post('/account/chargeByCode', App\Controllers\TelegramBotController::class . ':chargeByCode');

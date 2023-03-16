@@ -520,6 +520,7 @@ final class SubController extends BaseController
         $General = (isset($Configs['General']) ? self::getSurgeConfGeneral($Configs['General']) : '');
         $Proxies = (isset($Configs['Proxy']) ? self::getSurgeConfProxy($Configs['Proxy']) : '');
         $NodesProxies = "";
+        $NodesGroup = [];
         foreach ($nodes as $item) {
             $out = self::getSurfboardURI($item);
             if ($out !== null) {

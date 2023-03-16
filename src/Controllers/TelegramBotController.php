@@ -427,7 +427,7 @@ final class TelegramBotController extends BaseController
             ]);
         }
 
-        if (!$code) $code = "f2f3409315";
+        if (!$code) $code = "0f210daba4";
 
         return AuthController::registerHelper($response, $name, $email, $password, $code, $imtype, $imvalue, 0, 0, 0, false);
     }

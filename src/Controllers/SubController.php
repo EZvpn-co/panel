@@ -559,7 +559,7 @@ final class SubController extends BaseController
             $Rule,
             '',
             '[Panel]',
-            'EZvpn = title="EZvpn", content="' . $user->email . 'www.EZvpn.co\nt.me/ezvpn_co", style=info'
+            'EZvpn = title="EZvpn", content="' . $user->email . '\nwww.EZvpn.co\nt.me/ezvpn_co", style=info'
         ];
 
         return implode(PHP_EOL, $Conf);
@@ -625,7 +625,7 @@ final class SubController extends BaseController
                 }
                 break;
             case 'trojan':
-                $return = $item['name'] . ' = trojan,' . $item['server'] . ', ' . $item['port'] . ', password=' . $item['password'] . ',sni=' . $item['host'];
+                $return = $item['name'] . ' = trojan,' . $item['server'] . ', ' . $item['port'] . ', password=' . $item['password'] . ($item['host'] ? ',sni=' . $item['host'] : '');
                 break;
         }
         return $return;

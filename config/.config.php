@@ -41,8 +41,8 @@ $_ENV['user_levels_name'] = [
 ];
 
 $_ENV['user_groups_name'] = [
-    0 => "EZvpn - Daily",
-    1 => "EZvpn - Daily",
+    0 => "Daily",
+    1 => "Close Friends",
 ];
 
 $_ENV['node_levels_name'] = [

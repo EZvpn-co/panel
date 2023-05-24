@@ -7,7 +7,7 @@ $_ENV['salt'] = ''; //It is recommended to cooperate with md5/sha256, bcrypt/arg
 
 $_ENV['debug'] = false; //debug mode switch, please keep it as false in production environment
 $_ENV['appName'] = 'EZvpn'; //site name
-$_ENV['baseUrl'] = 'https://panel.ezvpn.co'; //site address
+$_ENV['baseUrl'] = 'https://dashboard.ezvpn.co'; //site address
 $_ENV['muKey'] = 'igU6fyUmkneTRbRgQ1Kw'; //WebAPI key, used for communication between node server and panel
 
 //Database settings ---------------------------------------------- ----------------------------------------------
@@ -17,9 +17,9 @@ $_ENV['muKey'] = 'igU6fyUmkneTRbRgQ1Kw'; //WebAPI key, used for communication be
 $_ENV['db_driver']    = 'mysql';
 $_ENV['db_host']      = '';
 $_ENV['db_socket']    = '';
-$_ENV['db_database']  = 'ezvpn';           //数据库名
-$_ENV['db_username']  = 'ezvpn';              //数据库用户名
-$_ENV['db_password']  = 'ae84dGymB5MXN7TB';           //用户名对应的密码
+$_ENV['db_database']  = 'dashboard_ezvpn';           //数据库名
+$_ENV['db_username']  = 'root';              //数据库用户名
+$_ENV['db_password']  = 'rasoul707';           //用户名对应的密码
 #高级
 $_ENV['db_charset']   = 'utf8mb4';
 $_ENV['db_collation'] = 'utf8mb4_unicode_ci';

@@ -17,7 +17,7 @@ $_ENV['muKey'] = 'igU6fyUmkneTRbRgQ1Kw'; //WebAPI key, used for communication be
 $_ENV['db_driver']    = 'mysql';
 $_ENV['db_host']      = '';
 $_ENV['db_socket']    = '';
-$_ENV['db_database']  = 'dashboard_ezvpn';           //数据库名
+$_ENV['db_database']  = 'ezvpn_dashboard';           //数据库名
 $_ENV['db_username']  = 'root';              //数据库用户名
 $_ENV['db_password']  = 'rasoul707';           //用户名对应的密码
 #高级

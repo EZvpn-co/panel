@@ -37,7 +37,6 @@ $_ENV['user_levels_name'] = [
     0 => "Free",
     1 => "Normal",
     2 => "VIP",
-    3 => "Full"
 ];
 
 $_ENV['user_groups_name'] = [
@@ -49,7 +48,6 @@ $_ENV['node_levels_name'] = [
     0 => "Public",
     1 => "Silver",
     2 => "Golden",
-    3 => "Diamond",
 ];
 
 

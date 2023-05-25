@@ -362,7 +362,7 @@ final class AuthController extends BaseController
             }
             return ResponseHelper::error($response, 'Unknown error');
         } catch (\Throwable $th) {
-            return $th;
+            return json_encode($th);
         }
     }
 

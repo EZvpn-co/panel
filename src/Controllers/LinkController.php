@@ -211,6 +211,7 @@ final class LinkController extends BaseController
                     $host = $node_custom_config['host'] ?? '';
                     $path = $node_custom_config['path'] ?? '/';
                     $enable_vless = $node_custom_config['enable_vless'] ?? '0';
+                    $sni = $node_custom_config['sni'] ?? $node_custom_config['host'] ?? $server;
 
                     $flow = $node_custom_config['flow'] ?? '';
 
@@ -231,7 +232,7 @@ final class LinkController extends BaseController
 
                     if ($enable_vless === '1' || $enable_vless === 1) {
                         $links .= 'vless://' . $user->uuid . '@' . $server . ':' . $v2_port . '?path=' . $path .
-                            '&security=' . $security . '&type=' . $network . '&headerType=' . $header_type . '&flow=' . $flow . '#' . $node_raw->name . PHP_EOL;
+                            '&security=' . $security . '&type=' . $network . '&sni=' . $sni . '&headerType=' . $header_type . '&flow=' . $flow . '#' . $node_raw->name . PHP_EOL;
                         break;
                     }
                     $links .= 'vmess://' . \base64_encode(\json_encode($v2rayn_array)) . PHP_EOL;

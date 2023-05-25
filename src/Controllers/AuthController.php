@@ -362,8 +362,8 @@ final class AuthController extends BaseController
             }
             return ResponseHelper::error($response, 'Unknown error');
         } catch (\Throwable $th) {
-            //throw $th;
-            return "hhhhhhhhhhhhhi";
+            throw $th;
+            // return "hhhhhhhhhhhhhi";
         }
     }
 

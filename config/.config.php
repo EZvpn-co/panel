@@ -19,7 +19,7 @@ $_ENV['db_host']      = '';
 $_ENV['db_socket']    = '';
 $_ENV['db_database']  = 'ezvpn_dashboard';           //数据库名
 $_ENV['db_username']  = 'root';              //数据库用户名
-$_ENV['db_password']  = 'rasoul707';           //用户名对应的密码
+$_ENV['db_password']  = 'tehONDretSVERveRnive';           //用户名对应的密码
 #高级
 $_ENV['db_charset']   = 'utf8mb4';
 $_ENV['db_collation'] = 'utf8mb4_unicode_ci';

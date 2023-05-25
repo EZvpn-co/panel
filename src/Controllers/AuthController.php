@@ -246,124 +246,119 @@ final class AuthController extends BaseController
      */
     public static function registerHelper($response, $name, $email, $passwd, $code, $imtype, $imvalue, $telegram_id, $money, $is_admin_reg, $autoLogin)
     {
+        //code...
 
-        try {
-            //code...
-
-            if (Setting::obtain('reg_mode') === 'close') {
-                return ResponseHelper::error($response, 'Temporarily closed for registration');
-            }
-
-            if (Setting::obtain('reg_mode') === 'invite' && $code === '') {
-                return ResponseHelper::error($response, 'Registration requires an invitation code');
-            }
-
-            $c = InviteCode::where('code', $code)->first();
-            if ($c === null) {
-                if (Setting::obtain('reg_mode') === 'invite') {
-                    return ResponseHelper::error($response, 'This invitation code does not exist');
-                }
-            } elseif ($c->user_id !== 0) {
-                $gift_user = User::where('id', $c->user_id)->first();
-                if ($gift_user === null) {
-                    return ResponseHelper::error($response, 'The invitation code has expired');
-                }
-
-                if ($gift_user->invite_num === 0) {
-                    return ResponseHelper::error($response, 'The invitation code is not available');
-                }
-            }
-
-            $configs = Setting::getClass('register');
-            // do reg user
-            $user = new User();
-            $antiXss = new AntiXSS();
-            $current_timestamp = \time();
-
-            $user->user_name = $antiXss->xss_clean($name);
-            $user->email = $email;
-            $user->remark = '';
-            $user->pass = Hash::passwordHash($passwd);
-            $user->passwd = Tools::genRandomChar(16);
-            $user->uuid = Uuid::uuid3(Uuid::NAMESPACE_DNS, $email . '|' . $current_timestamp);
-            $user->api_token = Uuid::uuid3(Uuid::NAMESPACE_DNS, $user->pass . '|' . $current_timestamp);
-            $user->port = Tools::getAvPort();
-            $user->t = 0;
-            $user->u = 0;
-            $user->d = 0;
-            $user->method = $configs['sign_up_for_method'];
-            $user->forbidden_ip = Setting::obtain('reg_forbidden_ip');
-            $user->forbidden_port = Setting::obtain('reg_forbidden_port');
-            $user->im_type = $imtype;
-            $user->im_value = $antiXss->xss_clean($imvalue);
-
-            $user->transfer_enable = Tools::toGB($configs['sign_up_for_free_traffic']);
-            $user->invite_num = $configs['sign_up_for_invitation_codes'];
-            $user->auto_reset_day = Setting::obtain('free_user_reset_day');
-            $user->auto_reset_bandwidth = Setting::obtain('free_user_reset_bandwidth');
-            $user->sendDailyMail = $configs['sign_up_for_daily_report'];
-
-            if ($money > 0) {
-                $user->money = $money;
-            } else {
-                $user->money = 0;
-            }
-
-            //dumplin: Fill in the inviter, write the invitation reward
-            $user->ref_by = 0;
-            if ($c !== null && $c->user_id !== 0) {
-                $invitation = Setting::getClass('invite');
-                // set up new user
-                $user->ref_by = $c->user_id;
-                $user->money = $invitation['invitation_to_register_balance_reward'];
-                // Anti-traffic for the inviter
-                $gift_user->transfer_enable += $invitation['invitation_to_register_traffic_reward'] * 1024 * 1024 * 1024;
-                if ($gift_user->invite_num - 1 >= 0) {
-                    --$gift_user->invite_num;
-                    // Avoid changing the value -1 set to unlimited invites
-                }
-                $gift_user->save();
-            }
-
-            if ($telegram_id) {
-                $user->telegram_id = $telegram_id;
-            }
-
-            $ga = new GA();
-            $secret = $ga->createSecret();
-            $user->ga_token = $secret;
-            $user->ga_enable = 0;
-            $user->class_expire = date('Y-m-d H:i:s', \time() + $configs['sign_up_for_class_time'] * 86400);
-            $user->class = $configs['sign_up_for_class'];
-            $user->node_connector = $configs['connection_device_limit'];
-            $user->node_speedlimit = $configs['connection_rate_limit'];
-            $user->expire_in = date('Y-m-d H:i:s', \time() + $configs['sign_up_for_free_time'] * 86400);
-            $user->reg_date = date('Y-m-d H:i:s');
-            $user->reg_ip = $_SERVER['REMOTE_ADDR'];
-            $user->theme = $_ENV['theme'];
-            $random_group = Setting::obtain('random_group');
-            if ($random_group === '') {
-                $user->node_group = 0;
-            } else {
-                $user->node_group = $random_group[array_rand(explode(',', $random_group))];
-            }
-
-            if ($user->save() && !$is_admin_reg) {
-                if ($autoLogin) {
-                    Auth::login($user->id, 3600);
-                    $user->collectLoginIP($_SERVER['REMOTE_ADDR']);
-                    return ResponseHelper::successfully($response, 'Successful registration! Entering the login interface');
-                } else {
-                    return $response->withJson([
-                        'ok' => true,
-                        'account_id' => $user->id,
-                    ]);
-                }
-            }
-            return ResponseHelper::error($response, 'Unknown error');
-        } catch (\Throwable $th) {
-            return json_encode($th);
+        if (Setting::obtain('reg_mode') === 'close') {
+            return ResponseHelper::error($response, 'Temporarily closed for registration');
         }
+
+        if (Setting::obtain('reg_mode') === 'invite' && $code === '') {
+            return ResponseHelper::error($response, 'Registration requires an invitation code');
+        }
+
+        $c = InviteCode::where('code', $code)->first();
+        if ($c === null) {
+            if (Setting::obtain('reg_mode') === 'invite') {
+                return ResponseHelper::error($response, 'This invitation code does not exist');
+            }
+        } elseif ($c->user_id !== 0) {
+            $gift_user = User::where('id', $c->user_id)->first();
+            if ($gift_user === null) {
+                return ResponseHelper::error($response, 'The invitation code has expired');
+            }
+
+            if ($gift_user->invite_num === 0) {
+                return ResponseHelper::error($response, 'The invitation code is not available');
+            }
+        }
+
+        $configs = Setting::getClass('register');
+        // do reg user
+        $user = new User();
+        $antiXss = new AntiXSS();
+        $current_timestamp = \time();
+
+        $user->user_name = $antiXss->xss_clean($name);
+        $user->email = $email;
+        $user->remark = '';
+        $user->pass = Hash::passwordHash($passwd);
+        $user->passwd = Tools::genRandomChar(16);
+        $user->uuid = Uuid::uuid3(Uuid::NAMESPACE_DNS, $email . '|' . $current_timestamp);
+        $user->api_token = Uuid::uuid3(Uuid::NAMESPACE_DNS, $user->pass . '|' . $current_timestamp);
+        $user->port = Tools::getAvPort();
+        $user->t = 0;
+        $user->u = 0;
+        $user->d = 0;
+        $user->method = $configs['sign_up_for_method'];
+        $user->forbidden_ip = Setting::obtain('reg_forbidden_ip');
+        $user->forbidden_port = Setting::obtain('reg_forbidden_port');
+        $user->im_type = $imtype;
+        $user->im_value = $antiXss->xss_clean($imvalue);
+
+        $user->transfer_enable = Tools::toGB($configs['sign_up_for_free_traffic']);
+        $user->invite_num = $configs['sign_up_for_invitation_codes'];
+        $user->auto_reset_day = Setting::obtain('free_user_reset_day');
+        $user->auto_reset_bandwidth = Setting::obtain('free_user_reset_bandwidth');
+        $user->sendDailyMail = $configs['sign_up_for_daily_report'];
+
+        if ($money > 0) {
+            $user->money = $money;
+        } else {
+            $user->money = 0;
+        }
+
+        //dumplin: Fill in the inviter, write the invitation reward
+        $user->ref_by = 0;
+        if ($c !== null && $c->user_id !== 0) {
+            $invitation = Setting::getClass('invite');
+            // set up new user
+            $user->ref_by = $c->user_id;
+            $user->money = $invitation['invitation_to_register_balance_reward'];
+            // Anti-traffic for the inviter
+            $gift_user->transfer_enable += $invitation['invitation_to_register_traffic_reward'] * 1024 * 1024 * 1024;
+            if ($gift_user->invite_num - 1 >= 0) {
+                --$gift_user->invite_num;
+                // Avoid changing the value -1 set to unlimited invites
+            }
+            $gift_user->save();
+        }
+
+        if ($telegram_id) {
+            $user->telegram_id = $telegram_id;
+        }
+
+        $ga = new GA();
+        $secret = $ga->createSecret();
+        $user->ga_token = $secret;
+        $user->ga_enable = 0;
+        $user->class_expire = date('Y-m-d H:i:s', \time() + $configs['sign_up_for_class_time'] * 86400);
+        $user->class = $configs['sign_up_for_class'];
+        $user->node_connector = $configs['connection_device_limit'];
+        $user->node_speedlimit = $configs['connection_rate_limit'];
+        $user->expire_in = date('Y-m-d H:i:s', \time() + $configs['sign_up_for_free_time'] * 86400);
+        $user->reg_date = date('Y-m-d H:i:s');
+        $user->reg_ip = $_SERVER['REMOTE_ADDR'];
+        $user->theme = $_ENV['theme'];
+        $random_group = Setting::obtain('random_group');
+        if ($random_group === '') {
+            $user->node_group = 0;
+        } else {
+            $user->node_group = $random_group[array_rand(explode(',', $random_group))];
+        }
+
+        if ($user->save() && !$is_admin_reg) {
+            if ($autoLogin) {
+                Auth::login($user->id, 3600);
+                $user->collectLoginIP($_SERVER['REMOTE_ADDR']);
+                return ResponseHelper::successfully($response, 'Successful registration! Entering the login interface');
+            } else {
+                return $response->withJson([
+                    'ok' => true,
+                    'account_id' => $user->id,
+                ]);
+            }
+        }
+        return ResponseHelper::error($response, 'Unknown error');
     }
 
     /**

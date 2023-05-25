@@ -5,7 +5,7 @@ $_ENV['key'] = 'EzVpNisBeSt'; //Please be sure to modify this key to a random st
 $_ENV['pwdMethod'] = 'bcrypt'; // password encryption optional md5, sha256, bcrypt, argon2i, argon2id (argon2i requires at least php7.2)
 $_ENV['salt'] = ''; //It is recommended to cooperate with md5/sha256, bcrypt/argon2i/argon2id will ignore this item
 
-$_ENV['debug'] = true; //debug mode switch, please keep it as false in production environment
+$_ENV['debug'] = false; //debug mode switch, please keep it as false in production environment
 $_ENV['appName'] = 'EZvpn'; //site name
 $_ENV['baseUrl'] = 'https://dashboard.ezvpn.co'; //site address
 $_ENV['muKey'] = 'igU6fyUmkneTRbRgQ1Kw'; //WebAPI key, used for communication between node server and panel

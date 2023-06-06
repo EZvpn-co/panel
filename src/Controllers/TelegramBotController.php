@@ -141,6 +141,11 @@ final class TelegramBotController extends BaseController
                 'json' => "{$univSub}/json",
                 'clash' => "{$univSub}/clash",
                 'surfboard' => "{$univSub}/surfboard",
+
+                'all' => "{$tradSub}?sub=1",
+                'vmess' => "{$tradSub}?sub=5",
+                'tjvmess' => "{$tradSub}?sub=6",
+
                 'ss' => "{$tradSub}?sub=2",
                 'v2ray' => "{$tradSub}?sub=3",
                 'trojan' => "{$tradSub}?sub=4",

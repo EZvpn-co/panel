@@ -70,6 +70,10 @@ final class LinkController extends BaseController
 
         if (isset($params['sub'])) {
             switch ($params['sub']) {
+                case '1':
+                    $sub_type = 'all';
+                    $sub_info = self::getAll($user);
+                    break;
                 case '2':
                     $sub_type = 'ss';
                     $sub_info = self::getSS($user);
@@ -81,6 +85,14 @@ final class LinkController extends BaseController
                 case '4':
                     $sub_type = 'trojan';
                     $sub_info = self::getTrojan($user);
+                    break;
+                case '5':
+                    $sub_type = 'vmess';
+                    $sub_info = self::getVmess($user);
+                    break;
+                case '6':
+                    $sub_type = 'trojan-vmess';
+                    $sub_info = self::getTrojanVmess($user);
                     break;
                 default:
                     $sub_type = 'ss';
@@ -99,17 +111,18 @@ final class LinkController extends BaseController
             . '; total=' . $user->transfer_enable
             . '; expire=' . strtotime($user->class_expire);
 
-        return $response->withHeader('Subscription-Userinfo', $sub_details)->write(
-            $sub_info
-        );
+        return $response->withHeader('Subscription-Userinfo', $sub_details)->write($sub_info);
     }
 
 
+    // All
+    public static function getAll($user): string
+    {
+        return "";
+    }
 
 
-
-
-    // 传统 SS 订阅
+    // Shadow socks
     public static function getSS($user): string
     {
         $links = '';
@@ -143,7 +156,7 @@ final class LinkController extends BaseController
         return $links;
     }
 
-    // SIP002 SS 订阅
+    // SIP002 SS
     public static function getSIP002($user): string
     {
         $links = '';
@@ -179,6 +192,7 @@ final class LinkController extends BaseController
         return $links;
     }
 
+    // vmess vless
     public static function getV2Ray($user): string
     {
         $links = '';
@@ -245,6 +259,7 @@ final class LinkController extends BaseController
         return $links;
     }
 
+    // trojan
     public static function getTrojan($user): string
     {
         $links = '';
@@ -291,6 +306,123 @@ final class LinkController extends BaseController
 
         return $links;
     }
+
+    // vmess only
+    public static function getVmess($user): string
+    {
+        $links = '';
+        //篩選出用戶能連接的節點
+        $nodes_raw = Node::where('type', 1)
+            ->where('node_class', '<=', $user->class)
+            ->whereIn('node_group', [0, $user->node_group])
+            ->where(static function ($query): void {
+                $query->where('node_bandwidth_limit', '=', 0)->orWhereRaw('node_bandwidth < node_bandwidth_limit');
+            })
+            ->get();
+
+        foreach ($nodes_raw as $node_raw) {
+            $node_custom_config = \json_decode($node_raw->custom_config, true);
+            //檢查是否配置“前端/订阅中下发的服务器地址”
+            if (!\array_key_exists('server_user', $node_custom_config)) {
+                $server = $node_raw->server;
+            } else {
+                $server = $node_custom_config['server_user'];
+            }
+            switch ($node_raw->sort) {
+                case '11':
+                    $v2_port = $node_custom_config['v2_port'] ?? ($node_custom_config['offset_port_user'] ?? ($node_custom_config['offset_port_node'] ?? 443));
+                    //默認值有問題的請懂 V2 怎麽用的人來改一改。
+                    $alter_id = $node_custom_config['alter_id'] ?? '0';
+                    $security = $node_custom_config['security'] ?? 'none';
+                    $network = $node_custom_config['network'] ?? '';
+                    $header = $node_custom_config['header'] ?? ['type' => 'none'];
+                    $header_type = $header['type'] ?? '';
+                    $host = $node_custom_config['host'] ?? '';
+                    $path = $node_custom_config['path'] ?? '/';
+                    $enable_vless = $node_custom_config['enable_vless'] ?? '0';
+                    $sni = $node_custom_config['sni'] ?? $node_custom_config['host'] ?? $server;
+                    $alpn = $node_custom_config['alpn'] ?? "";
+                    $serviceName = $node_custom_config['serviceName'] ?? '';
+
+                    $flow = $node_custom_config['flow'] ?? '';
+
+                    $v2rayn_array = [
+                        'v' => '2',
+                        'ps' => $node_raw->name,
+                        'add' => $server,
+                        'port' => $v2_port,
+                        'id' => $user->uuid,
+                        'aid' => $alter_id,
+                        'net' => $network,
+                        'type' => $header_type,
+                        'host' => $host,
+                        'path' => $path,
+                        'tls' => $security,
+                        'flow' => $flow
+                    ];
+
+                    if ($enable_vless === '1' || $enable_vless === 1) {
+                        break;
+                    }
+                    $links .= 'vmess://' . \base64_encode(\json_encode($v2rayn_array)) . PHP_EOL;
+                    break;
+            }
+        }
+
+        return $links;
+    }
+
+    // trojan+vmess
+    public static function getTrojanVmess($user): string
+    {
+        $links = '';
+        //篩選出用戶能連接的節點
+        $nodes_raw = Node::where('type', 1)
+            ->where('node_class', '<=', $user->class)
+            ->whereIn('node_group', [0, $user->node_group])
+            ->where(static function ($query): void {
+                $query->where('node_bandwidth_limit', '=', 0)->orWhereRaw('node_bandwidth < node_bandwidth_limit');
+            })
+            ->get();
+
+        foreach ($nodes_raw as $node_raw) {
+            $node_custom_config = \json_decode($node_raw->custom_config, true);
+            //檢查是否配置“前端/订阅中下发的服务器地址”
+            if (!\array_key_exists('server_user', $node_custom_config)) {
+                $server = $node_raw->server;
+            } else {
+                $server = $node_custom_config['server_user'];
+            }
+            switch ($node_raw->sort) {
+                case '14':
+                    $trojan_port = $node_custom_config['trojan_port'] ?? ($node_custom_config['offset_port_user'] ?? ($node_custom_config['offset_port_node'] ?? 443));
+                    $host = $node_custom_config['host'] ?? '';
+                    $allow_insecure = $node_custom_config['allow_insecure'] ?? '0';
+                    $security = $node_custom_config['security'] ?? \array_key_exists('enable_xtls', $node_custom_config) && $node_custom_config['enable_xtls'] === '1' ? 'xtls' : 'tls';
+                    $mux = $node_custom_config['mux'] ?? '';
+                    $transport = $node_custom_config['transport'] ?? \array_key_exists('grpc', $node_custom_config) && $node_custom_config['grpc'] === '1' ? 'grpc' : 'tcp';
+
+                    $transport_plugin = $node_custom_config['transport_plugin'] ?? '';
+                    $transport_method = $node_custom_config['transport_method'] ?? '';
+                    $servicename = $node_custom_config['servicename'] ?? '';
+                    $path = $node_custom_config['path'] ?? '';
+
+                    $flow = $node_custom_config['flow'] ?? '';
+
+                    $links .= 'trojan://' . $user->uuid . '@' . $server . ':' . $trojan_port . '?peer=' . $host . '&sni=' . $host .
+                        '&obfs=' . $transport_plugin . '&path=' . $path . '&mux=' . $mux . '&allowInsecure=' . $allow_insecure .
+                        '&obfsParam=' . $transport_method . '&type=' . $transport . '&security=' . $security . '&flow=' . $flow . '&serviceName=' . $servicename . '#' .
+                        $node_raw->name . PHP_EOL;
+                    break;
+            }
+        }
+
+        return $links;
+    }
+
+
+
+
 
     public static function getTraditionalSub($user)
     {

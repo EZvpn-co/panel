@@ -323,6 +323,8 @@ final class AuthController extends BaseController
             $gift_user->save();
         }
 
+
+
         if ($telegram_id) {
             $user->telegram_id = $telegram_id;
         }

@@ -91,6 +91,14 @@ final class TelegramBotController extends BaseController
 
         $u->total_traffic_gb = $u->enableTrafficInGB();
 
+        $code = InviteCode::where('user_id', $u->id)->first();
+        if ($code === null) {
+            $u->addInviteCode();
+            $code = InviteCode::where('user_id', $u->id)->first();
+        }
+
+        $u->referral_code = $code->code;
+
         return $response->withJson([
             'ok' => true,
             'account' => $u

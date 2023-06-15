@@ -394,6 +394,43 @@ final class LinkController extends BaseController
                 $server = $node_custom_config['server_user'];
             }
             switch ($node_raw->sort) {
+                case '11':
+                    $v2_port = $node_custom_config['v2_port'] ?? ($node_custom_config['offset_port_user'] ?? ($node_custom_config['offset_port_node'] ?? 443));
+                    //默認值有問題的請懂 V2 怎麽用的人來改一改。
+                    $alter_id = $node_custom_config['alter_id'] ?? '0';
+                    $security = $node_custom_config['security'] ?? 'none';
+                    $network = $node_custom_config['network'] ?? '';
+                    $header = $node_custom_config['header'] ?? ['type' => 'none'];
+                    $header_type = $header['type'] ?? '';
+                    $host = $node_custom_config['host'] ?? '';
+                    $path = $node_custom_config['path'] ?? '/';
+                    $enable_vless = $node_custom_config['enable_vless'] ?? '0';
+                    $sni = $node_custom_config['sni'] ?? $node_custom_config['host'] ?? $server;
+                    $alpn = $node_custom_config['alpn'] ?? "";
+                    $serviceName = $node_custom_config['serviceName'] ?? '';
+
+                    $flow = $node_custom_config['flow'] ?? '';
+
+                    $v2rayn_array = [
+                        'v' => '2',
+                        'ps' => $node_raw->name,
+                        'add' => $server,
+                        'port' => $v2_port,
+                        'id' => $user->uuid,
+                        'aid' => $alter_id,
+                        'net' => $network,
+                        'type' => $header_type,
+                        'host' => $host,
+                        'path' => $path,
+                        'tls' => $security,
+                        'flow' => $flow
+                    ];
+
+                    if ($enable_vless === '1' || $enable_vless === 1) {
+                        break;
+                    }
+                    $links .= 'vmess://' . \base64_encode(\json_encode($v2rayn_array)) . PHP_EOL;
+                    break;
                 case '14':
                     $trojan_port = $node_custom_config['trojan_port'] ?? ($node_custom_config['offset_port_user'] ?? ($node_custom_config['offset_port_node'] ?? 443));
                     $host = $node_custom_config['host'] ?? '';
